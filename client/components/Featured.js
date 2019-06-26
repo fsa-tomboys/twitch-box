@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
-import {Grid} from 'semantic-ui-react'
+import {Grid, Image, Card, Button} from 'semantic-ui-react'
 import TwitchClient from 'twitch'
 import axios from 'axios'
 
@@ -8,9 +8,10 @@ export class Featured extends Component {
   constructor() {
     super()
     this.state = {
-      featuredVids: []
+      featuredVids: [],
+      selected: []
     }
-    // this.makeClient = this.makeClient.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
   async componentDidMount() {
     const client = await TwitchClient.withCredentials(
@@ -30,31 +31,38 @@ export class Featured extends Component {
     })
   }
 
+  handleClick(element) {
+    let newArr = this.state.selected
+    if (newArr.includes(element.stream.channel.name)) {
+      newArr.splice(newArr.indexOf(element.stream.channel.name), 1)
+    } else {
+      newArr.push(element.stream.channel.name)
+    }
+
+    this.setState({
+      selected: newArr
+    })
+    console.log(this.state)
+  }
   render() {
     return (
       <div>
-        {this.state.featuredVids.map(function(element) {
-          return <img src={element.image} />
-        })}
-        {/* <Grid>
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid> */}
+        <br />
+        <Grid>
+          {this.state.featuredVids.map(element => {
+            return (
+              <Image
+                src={element.image}
+                className={
+                  this.state.selected.includes(element.stream.channel.name)
+                    ? 'selected'
+                    : 'unselected'
+                }
+                onClick={() => this.handleClick(element)}
+              />
+            )
+          })}
+        </Grid>
       </div>
     )
   }
