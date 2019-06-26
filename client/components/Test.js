@@ -25,19 +25,10 @@ export class Test extends Component {
         <Grid>
           <Grid.Row>
             <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
+              <ReactTwitchEmbedVideo channel="magikarpUsedFlylol" />
             </Grid.Column>
             <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
+              <ReactTwitchEmbedVideo channel="frostprime_" />
             </Grid.Column>
           </Grid.Row>
         </Grid>
