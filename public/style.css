@@ -19,3 +19,23 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.customize-form-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.customize-form-inputs-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.customize-form-input {
+  display: flex;
+}
+
+.customize-form-buttons-box {
+  display: flex;
+  justify-content: center;
+}

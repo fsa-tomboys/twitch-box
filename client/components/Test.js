@@ -25,7 +25,7 @@ export class Test extends Component {
         <Grid>
           <Grid.Row>
             <Grid.Column width={8}>
-              <ReactTwitchEmbedVideo channel="talk2megooseman" />
+              <ReactTwitchEmbedVideo channel="maxgrosshandler" />
             </Grid.Column>
             <Grid.Column width={8}>
               <ReactTwitchEmbedVideo channel="talk2megooseman" />
