@@ -6,7 +6,7 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
-export {Test} from './Test'
+export {MultiStream} from './Multistream'
 export {Customize} from './Customize'
 export {default as SingleStreamComponent} from './SingleStreamComponent'
 export {Featured} from './Featured'
