@@ -25,7 +25,7 @@ export class Customize extends React.Component {
 
   handleChange(evt) {
     // console.log('evt.target.name: ', evt.target.name)
-    // console.log('evt.target.value: ', evt.target.value)
+    console.log('evt.target.value: ', evt.target.value)
     this.setState({[evt.target.name]: evt.target.value})
   }
 
@@ -37,6 +37,11 @@ export class Customize extends React.Component {
         arr.push(this.state[key])
       }
     }
+
+    this.props.history.push({
+      pathname: '/home',
+      state: {testArray: arr}
+    })
     // arr is an array of strings to be passed to other component
   }
 
@@ -100,7 +105,9 @@ export class Customize extends React.Component {
                 </Button>
               </div>
               <div className="customize-form-button">
-                <Button type="submit">Watch Streams</Button>
+                <Button type="submit" onClick={this.handleSubmit}>
+                  Watch Streams
+                </Button>
               </div>
             </div>
           </Form>
