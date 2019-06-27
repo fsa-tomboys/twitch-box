@@ -12,8 +12,15 @@ export class Test extends Component {
     this.state = {
       width: window.innerHeight,
       height: window.innerHeight,
-      testArray: ['orb', 'maxgrosshandler']
+      testArray: ['orb', 'maxgrosshandler'],
+      name: 'orb'
     }
+    this.options = this.testArray.map(name => ({
+      key: name,
+      text: name,
+      value: name
+    }))
+    this.handleSelect = this.handleSelect.bind(this)
     this.updateDimensions = this.updateDimensions.bind(this)
   }
 
@@ -30,6 +37,10 @@ export class Test extends Component {
       // console.log(this.state.width)
       // console.log(this.state.height)
     })
+  }
+
+  handleSelect(evt) {
+    this.setState({name: evt.target.textContent})
   }
 
   // componentWillMount() {
@@ -53,7 +64,11 @@ export class Test extends Component {
         {this.props.location.state.testArray.map(element => (
           <SingleStreamComponent name={element} />
         ))}
-        <Chat testArray={this.props.location.state.testArray} />
+        <Chat
+          name={this.state.name}
+          options={this.options}
+          handleSelect={this.handleSelect}
+        />
       </div>
     )
   }
