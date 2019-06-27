@@ -2,6 +2,23 @@ import React, {Component} from 'react'
 import {Icon} from 'semantic-ui-react'
 
 class SingleStreamComponent extends Component {
+  constructor() {
+    super()
+    this.state = {
+      width: window.innerWidth - 200,
+      height: window.innerHeight - 200
+    }
+  }
+
+  // if (this.props.classIndex === 0) {
+  //   addClassName = 'main'
+  //   this.setState({width: window.innerWidth - 200})
+  //   this.setState({height: window.innerHeight - 200})
+  // } else {
+  //   this.setState({width: 300})
+  //   this.setState({height: 200})
+  // }
+
   render() {
     return (
       <div className="single-stream-outer">
@@ -28,8 +45,10 @@ class SingleStreamComponent extends Component {
           src={`https://player.twitch.tv/?allowfullscreen&channel=${
             this.props.name
           }`}
-          width="640"
-          height="390"
+          // width="640"
+          // height="390"
+          width={this.state.width}
+          height={this.state.height}
           frameBorder="0"
           scrolling="no"
           allow="autoplay; fullscreen"
