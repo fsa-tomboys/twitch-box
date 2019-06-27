@@ -8,15 +8,16 @@ export const Chat = props => {
     text: elem,
     value: elem
   }))
+  console.log('----->>>>', props.setHeight)
   return (
     <div>
       <div className="chat-container">
         <iframe
           frameBorder="0"
-          scrolling="no"
+          scrolling="yes"
           id="chat_embed"
           src={`https://www.twitch.tv/embed/${array[index]}/chat`}
-          height="500"
+          height={props.setHeight}
           width="350"
         />
       </div>

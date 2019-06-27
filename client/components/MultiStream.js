@@ -62,14 +62,15 @@ export class MultiStream extends Component {
                 classIndex={index}
               />
             ))}
-            {this.state.testArray.length > 0 && (
-              <Chat
-                index={this.state.index}
-                array={this.state.testArray}
-                handleSelect={this.handleSelect}
-              />
-            )}
           </div>
+          {this.state.testArray.length > 0 && (
+            <Chat
+              index={this.state.index}
+              array={this.state.testArray}
+              handleSelect={this.handleSelect}
+              setHeight={window.innerHeight - 100}
+            />
+          )}
         </div>
       </div>
     )

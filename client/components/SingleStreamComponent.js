@@ -25,12 +25,12 @@ class SingleStreamComponent extends Component {
         break
       case 2:
         width = window.innerWidth - 550
-        height = window.innerHeight / 2
+        height = (window.innerHeight - 200) / 2
         break
       case 3:
         if (streamNumber === 0) {
           width = window.innerWidth - 550
-          height = window.innerHeight / 2
+          height = (window.innerHeight - 200) / 2
         } else {
           width = (window.innerWidth - 550) / 2
           height = window.innerHeight / 2

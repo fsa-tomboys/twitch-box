@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background: gray;
+  /* background: gray; */
 }
 
 a {
@@ -12,7 +12,8 @@ label {
 }
 
 nav {
-  background-color: #242525;
+  /* background-color: #242525; */
+  background: black;
 }
 
 nav a {
@@ -30,18 +31,27 @@ form div {
   display: flex;
   justify-content: center;
   color: #5a5d5c;
+  color: #c9cfce;
   padding: 1.5rem; /* set the padding space for the title text */
-  background-color: #c9cfce;
+  /* background-color: #c9cfce; */
+  background: black;
 }
 
 .top-header h1 {
   margin: 0; /* let text fill the whole background */
+  font-size: 3em;
 }
 
 .nav-link-container {
   display: flex;
   justify-content: space-between;
   font-size: 1.3rem;
+}
+.nav-login-items,
+.nav-function-items {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
 }
 
 .customize-form-box {
@@ -76,6 +86,7 @@ form div {
   display: flex;
   /* max-width: 700px; */
   flex-wrap: wrap;
+  width: 100%;
 }
 .single-stream-outer {
   /* position: absolute; */
@@ -83,6 +94,7 @@ form div {
   /* border: 1px solid red; */
   display: block;
   margin-left: 10px;
+  margin-top: 10px;
   /* border: 10px solid black; */
 }
 .single-stream-overlay-menu {
@@ -138,5 +150,6 @@ form div {
 }
 
 .chat-container {
-  width: 350px;
+  width: 100%;
+  height: 100%;
 }

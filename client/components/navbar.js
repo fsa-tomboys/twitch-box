@@ -6,9 +6,7 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <div className="top-header">
-      <h1>TWITCH BOX</h1>
-    </div>
+    {/* <span className="top-header"><h1>TWITCH BOX</h1></span> */}
     <nav>
       <div>
         {isLoggedIn ? (
@@ -18,6 +16,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Link to="/featured">Featured Streams</Link>
               <Link to="/customize">Customize Streams</Link>
             </div>
+            <span className="top-header">
+              <h1>TWITCH BOX</h1>
+            </span>
             <div className="nav-login-items">
               <a href="#" onClick={handleClick}>
                 Logout
@@ -31,6 +32,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Link to="/featured">Featured Streams</Link>
               <Link to="/customize">Customize Streams</Link>
             </div>
+            <span className="top-header">
+              <h1>TWITCH BOX</h1>
+            </span>
             <div className="nav-login-items">
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
@@ -39,7 +43,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         )}
       </div>
     </nav>
-    <hr />
   </div>
 )
 
