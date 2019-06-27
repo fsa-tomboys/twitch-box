@@ -6,13 +6,22 @@ class SingleStreamComponent extends Component {
     return (
       <div className="single-stream-outer">
         <div className="single-stream-overlay-menu">
-          {/* <span className="single-stream-overlay-links">test</span> */}
           <div className="single-stream-overlay-icon-box">
-            <Icon name="user outline" size="large" />
-            <Icon name="sound" size="large" />
-            <Icon name="chat" size="large" />
-            <Icon name="refresh" size="large" />
-            <Icon name="window close" size="large" />
+            <a className="single-stream-link" href="#">
+              <Icon name="user outline" size="large" />{' '}
+            </a>
+            <a className="single-stream-link" href="#">
+              <Icon name="sound" size="large" />
+            </a>
+            <a className="single-stream-link" href="#">
+              <Icon name="chat" size="large" />
+            </a>
+            <a className="single-stream-link" href="#">
+              <Icon name="refresh" size="large" />
+            </a>
+            <a className="single-stream-link" href="#">
+              <Icon name="window close" size="large" />
+            </a>
           </div>
         </div>
         <iframe
