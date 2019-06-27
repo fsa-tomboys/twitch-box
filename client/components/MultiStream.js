@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import SingleStreamComponent from './SingleStreamComponent'
 import {Chat} from './chat'
 import {Button, Header, Input, Modal, Label} from 'semantic-ui-react'
+import MultistreamSidebar from './MultistreamSidebar'
+
 export class MultiStream extends Component {
   constructor() {
     super()
@@ -44,12 +46,14 @@ export class MultiStream extends Component {
             ))}
           </Modal.Description>
         </Modal>
-
         <div className="main-layout-container">
-          {this.props.location.state.testArray.map(element => (
-            <SingleStreamComponent name={element} />
-          ))}
-          <Chat testArray={this.props.location.state.testArray} />
+          <MultistreamSidebar />
+          <div className="all-streams-container">
+            {this.props.location.state.testArray.map(element => (
+              <SingleStreamComponent name={element} />
+            ))}
+            <Chat testArray={this.props.location.state.testArray} />
+          </div>
         </div>
       </div>
     )
