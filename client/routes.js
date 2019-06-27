@@ -34,7 +34,7 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
 
-        <Route component={Test} />
+        <Route component={Featured} />
       </Switch>
     )
   }

@@ -12,6 +12,19 @@ export class Featured extends Component {
       selected: []
     }
     this.handleClick = this.handleClick.bind(this)
+    this.routeChange = this.routeChange.bind(this)
+    this.resetState = this.resetState.bind(this)
+  }
+  routeChange() {
+    this.props.history.push({
+      pathname: '/home',
+      state: {testArray: this.state.selected}
+    })
+  }
+  resetState() {
+    this.setState({
+      selected: []
+    })
   }
   async componentDidMount() {
     const client = await TwitchClient.withCredentials(
@@ -61,6 +74,11 @@ export class Featured extends Component {
             )
           })}
         </Grid>
+        <br />
+        <div className="customize-form-buttons-box">
+          <Button onClick={this.resetState}>Clear</Button>
+          <Button onClick={this.routeChange}>Watch Streams</Button>
+        </div>
       </div>
     )
   }
