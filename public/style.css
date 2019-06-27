@@ -19,6 +19,44 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.main-layout-container {
+  display: flex;
+}
+.single-stream-outer {
+  /* position: absolute; */
+
+  border: 1px solid red;
+  display: block;
+  margin: 20px;
+}
+.single-stream-overlay-menu {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  background: black;
+  /* opacity: 0.1; */
+  z-index: 1;
+
+  /* visibility: hidden; */
+}
+.single-stream-overlay-menu:hover {
+  /* position:absolute; */
+  width: 100%;
+  background: black;
+  height: 50px;
+  opacity: 1;
+  z-index: 1;
+  color: white;
+  /* visibility: visible; */
+}
+
+.single-stream-overlay-links {
+  /* position: relative;
+    top:0; */
+}
 .selected {
   opacity: 0.4;
 }
