@@ -6,7 +6,7 @@ import {
   Login,
   Signup,
   UserHome,
-  Test,
+  MultiStream,
   Featured,
   Customize,
   Chat
@@ -31,7 +31,7 @@ class Routes extends Component {
         {/* <Route path="/singlestream" component={SingleStreamComponent} /> */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/home" component={Test} />
+        <Route path="/home" component={MultiStream} />
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />
