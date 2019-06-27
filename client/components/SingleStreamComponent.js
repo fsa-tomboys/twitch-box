@@ -2,24 +2,51 @@ import React, {Component} from 'react'
 import {Icon} from 'semantic-ui-react'
 
 class SingleStreamComponent extends Component {
-  constructor() {
-    super()
-    this.state = {
-      width: window.innerWidth - 200,
-      height: window.innerHeight - 200
-    }
-  }
-
-  // if (this.props.classIndex === 0) {
-  //   addClassName = 'main'
-  //   this.setState({width: window.innerWidth - 200})
-  //   this.setState({height: window.innerHeight - 200})
-  // } else {
-  //   this.setState({width: 300})
-  //   this.setState({height: 200})
-  // }
-
   render() {
+    let width
+    let height
+    // if 4 -> 1 on top and 3 on the bottom
+    //  1 full width and height and 3 1/3 of width and specific height
+
+    // if 3 -> 1 on top and 2 on the bottom
+    //  1 full width and height and 3 1/2 of width and specific height
+    //
+    // if 2 -> 1 on top and 1 on the bottom
+    //  Both full widt hand 1/2 heigth and specific width
+
+    //  if 1 -> full screen
+
+    let streamNumber = this.props.streamNum
+    let totalStreams = this.props.totalNumber
+    switch (totalStreams) {
+      case 1:
+        width = window.innerWidth - 200
+        height = window.innerHeight - 200
+        break
+      case 2:
+        width = window.innerWidth
+        height = window.innerHeight / 2
+
+        break
+      case 3:
+        if (streamNumber === 0) {
+          width = window.innerWidth - 200
+          height = window.innerHeight - 200
+        } else {
+          width = (window.innerWidth - 200) / 2
+          height = window.innerHeight
+        }
+        break
+      case 4:
+        width = (window.innerWidth - 200) / 2
+        height = (window.innerHeight - 200) / 2
+        break
+
+      default:
+        console.log('nothing')
+        break
+    }
+
     return (
       <div className="single-stream-outer">
         <div className="single-stream-overlay-menu">
@@ -41,14 +68,15 @@ class SingleStreamComponent extends Component {
             </a>
           </div>
         </div>
+
         <iframe
           src={`https://player.twitch.tv/?allowfullscreen&channel=${
             this.props.name
           }`}
           // width="640"
           // height="390"
-          width={this.state.width}
-          height={this.state.height}
+          width={width}
+          height={height}
           frameBorder="0"
           scrolling="no"
           allow="autoplay; fullscreen"
