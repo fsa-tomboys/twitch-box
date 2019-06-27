@@ -4,6 +4,7 @@ import {Grid} from 'semantic-ui-react'
 import equal from 'fast-deep-equal'
 import SingleStreamComponent from './SingleStreamComponent'
 import TwitchClient from 'twitch'
+import {Chat} from './chat'
 
 export class Test extends Component {
   constructor() {
@@ -52,6 +53,7 @@ export class Test extends Component {
         {this.props.location.state.testArray.map(element => (
           <SingleStreamComponent name={element} />
         ))}
+        <Chat testArray={this.props.location.state.testArray} />
       </div>
     )
   }
