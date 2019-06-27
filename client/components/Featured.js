@@ -12,6 +12,13 @@ export class Featured extends Component {
       selected: []
     }
     this.handleClick = this.handleClick.bind(this)
+    this.routeChange = this.routeChange.bind(this)
+  }
+  routeChange() {
+    this.props.history.push({
+      pathname: '/home',
+      state: {testArray: this.state.selected}
+    })
   }
   async componentDidMount() {
     const client = await TwitchClient.withCredentials(
@@ -61,6 +68,7 @@ export class Featured extends Component {
             )
           })}
         </Grid>
+        <Button onClick={this.routeChange}>Hello!</Button>
       </div>
     )
   }

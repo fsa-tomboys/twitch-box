@@ -49,7 +49,7 @@ export class Test extends Component {
     // let newHeight = String(this.state.height)
     return (
       <div className="main-layout-container">
-        {this.state.testArray.map(element => (
+        {this.props.location.state.testArray.map(element => (
           <SingleStreamComponent name={element} />
         ))}
       </div>
