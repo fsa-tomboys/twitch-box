@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-  /* background: gray; */
 }
 
 a {
@@ -32,8 +31,7 @@ form div {
   justify-content: center;
   color: #5a5d5c;
   color: #c9cfce;
-  padding: 1.5rem; /* set the padding space for the title text */
-  /* background-color: #c9cfce; */
+  padding: 1.5rem;
   background: black;
 }
 
@@ -87,6 +85,7 @@ form div {
   /* max-width: 700px; */
   flex-wrap: wrap;
   width: 100%;
+  background: gray;
 }
 .single-stream-outer {
   /* position: absolute; */
