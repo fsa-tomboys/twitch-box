@@ -33,9 +33,15 @@ form div {
 
 .customize-form-input {
   display: flex;
+  justify-content: center;
 }
 
 .customize-form-buttons-box {
   display: flex;
   justify-content: center;
+}
+
+.customize-form-button {
+  display: flex;
+  margin: 0.2rem;
 }

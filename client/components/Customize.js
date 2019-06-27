@@ -42,52 +42,64 @@ export class Customize extends React.Component {
         <div>
           <Form className="customize-form-box">
             <div className="customize-form-inputs-box">
-              <Form.Field className="customize-form-input">
-                <input
-                  onChange={this.handleChange}
-                  name="name1"
-                  value={this.state.name1}
-                  placeholder="First Channel"
-                />
-              </Form.Field>
-              {this.state.name1 && (
-                <Form.Field className="customize-form-input">
+              <div className="customize-form-input">
+                <Form.Field>
                   <input
                     onChange={this.handleChange}
-                    name="name2"
-                    value={this.state.name2}
-                    placeholder="Second Channel"
+                    name="name1"
+                    value={this.state.name1}
+                    placeholder="First Channel"
                   />
                 </Form.Field>
-              )}
-              {this.state.name2 && (
-                <Form.Field className="customize-form-input">
-                  <input
-                    onChange={this.handleChange}
-                    name="name3"
-                    value={this.state.name3}
-                    placeholder="Third Channel"
-                  />
-                </Form.Field>
-              )}
-              {this.state.name3 && (
-                <Form.Field className="customize-form-input">
-                  <input
-                    onChange={this.handleChange}
-                    name="name4"
-                    value={this.state.name4}
-                    placeholder="Forth Channel"
-                  />
-                </Form.Field>
-              )}
+              </div>
+              <div className="customize-form-input">
+                {this.state.name1 && (
+                  <Form.Field>
+                    <input
+                      onChange={this.handleChange}
+                      name="name2"
+                      value={this.state.name2}
+                      placeholder="Second Channel"
+                    />
+                  </Form.Field>
+                )}
+              </div>
+              <div className="customize-form-input">
+                {this.state.name2 && (
+                  <Form.Field>
+                    <input
+                      onChange={this.handleChange}
+                      name="name3"
+                      value={this.state.name3}
+                      placeholder="Third Channel"
+                    />
+                  </Form.Field>
+                )}
+              </div>
+              <div className="customize-form-input">
+                {this.state.name3 && (
+                  <Form.Field>
+                    <input
+                      onChange={this.handleChange}
+                      name="name4"
+                      value={this.state.name4}
+                      placeholder="Forth Channel"
+                    />
+                  </Form.Field>
+                )}
+              </div>
             </div>
             <div className="customize-form-buttons-box">
-              <Button type="button" onClick={evt => this.handleClear()}>
-                Clear
-              </Button>
-              <Button type="submit" onClick={evt => this.handleSubmit()}>
-                Watch Streams
-              </Button>
+              <div className="customize-form-button">
+                <Button type="button" onClick={evt => this.handleClear()}>
+                  Clear
+                </Button>
+              </div>
+              <div className="customize-form-button">
+                <Button type="submit" onClick={evt => this.handleSubmit()}>
+                  Watch Streams
+                </Button>
+              </div>
             </div>
           </Form>
         </div>
