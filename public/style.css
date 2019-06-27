@@ -20,6 +20,31 @@ form div {
   display: inline-block;
 }
 
+.customize-form-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.customize-form-inputs-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.customize-form-input {
+  display: flex;
+  justify-content: center;
+}
+
+.customize-form-buttons-box {
+  display: flex;
+  justify-content: center;
+}
+
+.customize-form-button {
+  display: flex;
+  margin: 0.2rem;
+}
 .main-layout-container {
   display: flex;
 }
