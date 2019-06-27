@@ -20,28 +20,26 @@ class SingleStreamComponent extends Component {
     let totalStreams = this.props.totalNumber
     switch (totalStreams) {
       case 1:
-        width = window.innerWidth - 200
-        height = window.innerHeight - 200
+        width = window.innerWidth - 550
+        height = window.innerHeight
         break
       case 2:
-        width = window.innerWidth
+        width = window.innerWidth - 550
         height = window.innerHeight / 2
-
         break
       case 3:
         if (streamNumber === 0) {
-          width = window.innerWidth - 200
-          height = window.innerHeight - 200
+          width = window.innerWidth - 550
+          height = window.innerHeight / 2
         } else {
-          width = (window.innerWidth - 200) / 2
-          height = window.innerHeight
+          width = (window.innerWidth - 550) / 2
+          height = window.innerHeight / 2
         }
         break
       case 4:
-        width = (window.innerWidth - 200) / 2
-        height = (window.innerHeight - 200) / 2
+        width = (window.innerWidth - 550) / 2
+        height = window.innerHeight / 2
         break
-
       default:
         console.log('nothing')
         break

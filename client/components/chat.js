@@ -10,7 +10,7 @@ export const Chat = props => {
   }))
   return (
     <div>
-      <div>
+      <div className="chat-container">
         <iframe
           frameBorder="0"
           scrolling="no"

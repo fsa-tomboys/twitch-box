@@ -136,3 +136,7 @@ form div {
   background: black;
   width: 150px;
 }
+
+.chat-container {
+  width: 350px;
+}
