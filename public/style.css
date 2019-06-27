@@ -11,7 +11,12 @@ label {
   display: block;
 }
 
+nav {
+  background-color: #242525;
+}
+
 nav a {
+  color: white;
   display: inline-block;
   margin: 1em;
 }
@@ -19,6 +24,24 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.top-header {
+  display: flex;
+  justify-content: center;
+  color: #5a5d5c;
+  padding: 1.5rem; /* set the padding space for the title text */
+  background-color: #c9cfce;
+}
+
+.top-header h1 {
+  margin: 0; /* let text fill the whole background */
+}
+
+.nav-link-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
 }
 
 .customize-form-box {

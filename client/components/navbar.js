@@ -6,25 +6,38 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>BOILERMAKER</h1>
+    <div className="top-header">
+      <h1>TWITCH BOX</h1>
+    </div>
     <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/featured">Featured Streams</Link>
-          <Link to="/customize">Customize Streams</Link>
-        </div>
-      )}
+      <div>
+        {isLoggedIn ? (
+          <div className="nav-link-container">
+            {/* The navbar will show these links after you log in */}
+            <div className="nav-function-items">
+              <Link to="/featured">Featured Streams</Link>
+              <Link to="/customize">Customize Streams</Link>
+            </div>
+            <div className="nav-login-items">
+              <a href="#" onClick={handleClick}>
+                Logout
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div className="nav-link-container">
+            {/* The navbar will show these links before you log in */}
+            <div className="nav-function-items">
+              <Link to="/featured">Featured Streams</Link>
+              <Link to="/customize">Customize Streams</Link>
+            </div>
+            <div className="nav-login-items">
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+            </div>
+          </div>
+        )}
+      </div>
     </nav>
     <hr />
   </div>
