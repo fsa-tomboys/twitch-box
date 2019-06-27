@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
-import {Button, Header, Input, Modal, Label} from 'semantic-ui-react'
+import {Button, Header, Input, Modal, Form} from 'semantic-ui-react'
 
 const MultistreamSidebar = props => {
-  console.log(props.testArray)
   return (
     <div className="multistream-sidebar">
-      <Modal trigger={<Button>Edit</Button>}>
+      <Modal trigger={<Button>Edit</Button>} size="tiny">
         <Modal.Header>Edit Streams</Modal.Header>
 
         <Modal.Description className="customize-form-box">
@@ -21,6 +20,12 @@ const MultistreamSidebar = props => {
               </Button>
             </div>
           ))}
+          <Form onSubmit={props.addStream}>
+            <Form.Field>
+              <Input type="text" name="newStream" />
+            </Form.Field>
+            <Button type="submit">Add stream</Button>
+          </Form>
         </Modal.Description>
       </Modal>
     </div>
