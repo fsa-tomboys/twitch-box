@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background: gray;
 }
 
 a {
@@ -56,9 +57,10 @@ form div {
 .single-stream-outer {
   /* position: absolute; */
 
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: block;
-  margin: 20px;
+  margin-left: 10px;
+  /* border: 10px solid black; */
 }
 .single-stream-overlay-menu {
   position: relative;
@@ -108,6 +110,6 @@ form div {
 .multistream-sidebar {
   position: relative;
   height: 100hw;
-  background: green;
-  width: 50px;
+  background: black;
+  width: 150px;
 }
