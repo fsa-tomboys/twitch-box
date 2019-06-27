@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import SingleStreamComponent from './SingleStreamComponent'
 import {Chat} from './chat'
-import {Button, Header, Input, Modal, Label} from 'semantic-ui-react'
+import {Button, Modal} from 'semantic-ui-react'
 import MultistreamSidebar from './MultistreamSidebar'
 
 export class MultiStream extends Component {
