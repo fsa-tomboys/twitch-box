@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background: gray;
 }
 
 a {
@@ -48,12 +49,18 @@ form div {
 .main-layout-container {
   display: flex;
 }
+.all-streams-container {
+  display: flex;
+  /* max-width: 700px; */
+  flex-wrap: wrap;
+}
 .single-stream-outer {
   /* position: absolute; */
 
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: block;
-  margin: 20px;
+  margin-left: 10px;
+  /* border: 10px solid black; */
 }
 .single-stream-overlay-menu {
   position: relative;
@@ -100,5 +107,9 @@ form div {
   float: right;
 }
 
-.single-stream-link {
+.multistream-sidebar {
+  position: relative;
+  height: 100hw;
+  background: black;
+  width: 150px;
 }
