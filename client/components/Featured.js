@@ -13,11 +13,17 @@ export class Featured extends Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
+    this.resetState = this.resetState.bind(this)
   }
   routeChange() {
     this.props.history.push({
       pathname: '/home',
       state: {testArray: this.state.selected}
+    })
+  }
+  resetState() {
+    this.setState({
+      selected: []
     })
   }
   async componentDidMount() {
@@ -68,7 +74,11 @@ export class Featured extends Component {
             )
           })}
         </Grid>
-        <Button onClick={this.routeChange}>Hello!</Button>
+        <br />
+        <div className="customize-form-buttons-box">
+          <Button onClick={this.resetState}>Clear</Button>
+          <Button onClick={this.routeChange}>Watch Streams</Button>
+        </div>
       </div>
     )
   }
