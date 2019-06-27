@@ -1,11 +1,19 @@
 import React, {Component} from 'react'
+import {Icon} from 'semantic-ui-react'
 
 class SingleStreamComponent extends Component {
   render() {
     return (
       <div className="single-stream-outer">
         <div className="single-stream-overlay-menu">
-          <span className="single-stream-overlay-links">test</span>
+          {/* <span className="single-stream-overlay-links">test</span> */}
+          <div className="single-stream-overlay-icon-box">
+            <Icon name="user outline" size="large" />
+            <Icon name="sound" size="large" />
+            <Icon name="chat" size="large" />
+            <Icon name="refresh" size="large" />
+            <Icon name="window close" size="large" />
+          </div>
         </div>
         <iframe
           src={`https://player.twitch.tv/?allowfullscreen&channel=${

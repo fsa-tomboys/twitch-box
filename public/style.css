@@ -63,3 +63,10 @@ form div {
 .unselected {
   opacity: 1;
 }
+
+.single-stream-overlay-icon-box {
+  padding: 10px;
+  padding-right: 20px;
+  position: relative;
+  float: right;
+}
