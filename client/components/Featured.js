@@ -18,8 +18,6 @@ export class Featured extends Component {
       'wpp8xoz167jt0vnmlmko398h4g8ydh',
       process.env.TWITCH_SECRET
     )
-    const user = await client.kraken.users.getUserByName('orb')
-    console.log(user)
     let snake = await axios.get(
       'https://api.twitch.tv/kraken/streams/featured?limit=10',
       {
