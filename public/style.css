@@ -62,29 +62,43 @@ form div {
   height: 50px;
   top: 0;
   background: black;
+  color: black;
   /* opacity: 0.1; */
   z-index: 1;
 
   /* visibility: hidden; */
 }
+
+.single-stream-link {
+  color: black;
+}
+
+.single-stream-overlay-menu:hover .single-stream-link {
+  color: white;
+}
+
 .single-stream-overlay-menu:hover {
-  /* position:absolute; */
   width: 100%;
   background: black;
   height: 50px;
   opacity: 1;
   z-index: 1;
   color: white;
-  /* visibility: visible; */
 }
 
-.single-stream-overlay-links {
-  /* position: relative;
-    top:0; */
-}
 .selected {
   opacity: 0.4;
 }
 .unselected {
   opacity: 1;
+}
+
+.single-stream-overlay-icon-box {
+  padding: 10px;
+  padding-right: 20px;
+  position: relative;
+  float: right;
+}
+
+.single-stream-link {
 }
