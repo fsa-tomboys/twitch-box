@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
-import {Grid} from 'semantic-ui-react'
+import {Button, Header, Input, Modal, Label} from 'semantic-ui-react'
 import equal from 'fast-deep-equal'
 import SingleStreamComponent from './SingleStreamComponent'
 import TwitchClient from 'twitch'
@@ -15,6 +15,7 @@ export class Test extends Component {
       testArray: ['orb', 'maxgrosshandler']
     }
     this.updateDimensions = this.updateDimensions.bind(this)
+    this.remove = this.remove.bind(this)
   }
 
   updateDimensions() {
@@ -22,9 +23,20 @@ export class Test extends Component {
     this.setState({width: window.innerWidth, height: window.innerHeight})
     console.log(this.state)
   }
+  remove(element) {
+    let arr = this.state.testArray
+    var index = arr.indexOf(element)
+    if (index !== -1) arr.splice(index, 1)
+    this.setState({
+      testArray: arr
+    })
+  }
 
   componentDidMount() {
     this.updateDimensions()
+    this.setState({
+      testArray: this.props.location.state.testArray
+    })
     window.addEventListener('resize', () => {
       this.updateDimensions()
       // console.log(this.state.width)
@@ -49,11 +61,32 @@ export class Test extends Component {
     // let newWidth = String(this.state.width)
     // let newHeight = String(this.state.height)
     return (
-      <div className="main-layout-container">
-        {this.props.location.state.testArray.map(element => (
-          <SingleStreamComponent name={element} />
-        ))}
-        <Chat testArray={this.props.location.state.testArray} />
+      <div>
+        <Modal trigger={<Button>Edit</Button>}>
+          <Modal.Header>Edit Streams</Modal.Header>
+
+          <Modal.Description className="customize-form-box">
+            {this.state.testArray.map(element => (
+              <div>
+                <Button
+                  animated
+                  disabled={this.state.testArray.length === 1}
+                  onClick={() => this.remove(element)}
+                >
+                  <Button.Content visible>{element}</Button.Content>
+                  <Button.Content hidden>Remove</Button.Content>
+                </Button>
+              </div>
+            ))}
+          </Modal.Description>
+        </Modal>
+
+        <div className="main-layout-container">
+          {this.props.location.state.testArray.map(element => (
+            <SingleStreamComponent name={element} />
+          ))}
+          <Chat testArray={this.props.location.state.testArray} />
+        </div>
       </div>
     )
   }
