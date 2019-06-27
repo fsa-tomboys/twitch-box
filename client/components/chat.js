@@ -1,40 +1,43 @@
 import React from 'react'
-import {Button, Form, Checkbox} from 'semantic-ui-react'
+import {Select, Search, Button, Form, Checkbox} from 'semantic-ui-react'
 
 export class Chat extends React.Component {
   constructor(props) {
     super(props)
-    this.initState = {}
+    this.testArray = this.props.testArray
+    // this.testArray = ['orb', 'maxgrosshandler']
+    this.initState =
+      this.testArray.length === 0 ? {name: ''} : {name: this.testArray[0]}
     this.state = this.initState
-    this.handleChange = this.handleChange.bind(this)
-    this.handleClear = this.handleClear.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.options = this.testArray.map(name => ({
+      key: name,
+      text: name,
+      value: name
+    }))
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
-  handleClear() {
-    this.setState(this.initState)
-  }
-
-  handleChange(evt) {
-    // console.log('evt.target.name: ', evt.target.name)
-    // console.log('evt.target.value: ', evt.target.value)
-    this.setState({[evt.target.name]: evt.target.value})
-  }
-
-  handleSubmit(evt) {
-    evt.preventDefault()
+  handleSelect(evt) {
+    this.setState({name: evt.target.textContent})
   }
 
   render() {
     return (
       <div>
-        <iframe
-          frameBorder="<frameborder width>"
-          scrolling="<scrolling>"
-          id="<channel>"
-          src="<src url>"
-          height="<height>"
-          width="<width>"
+        <div>
+          <iframe
+            frameBorder="0"
+            scrolling="no"
+            id="chat_embed"
+            src={`https://www.twitch.tv/embed/${this.state.name}/chat`}
+            height="500"
+            width="350"
+          />
+        </div>
+        <Select
+          placeholder="Select the Channel for Chat"
+          options={this.options}
+          onChange={evt => this.handleSelect(evt)}
         />
       </div>
     )
