@@ -16,6 +16,7 @@ export class Customize extends React.Component {
     this.state = this.initState
     this.handleChange = this.handleChange.bind(this)
     this.handleClear = this.handleClear.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleClear() {
@@ -30,17 +31,20 @@ export class Customize extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
+    let arr = []
+    for (let key in this.state) {
+      if (this.state[key]) {
+        arr.push(this.state[key])
+      }
+    }
+    // arr is an array of strings to be passed to other component
   }
 
   render() {
-    console.log('name1: ', this.state.name1)
-    console.log('name2: ', this.state.name2)
-    console.log('name3: ', this.state.name3)
-    console.log('name4: ', this.state.name4)
     return (
       <div>
         <div>
-          <Form className="customize-form-box">
+          <Form className="customize-form-box" onSubmit={this.handleSubmit}>
             <div className="customize-form-inputs-box">
               <div className="customize-form-input">
                 <Form.Field>
@@ -96,9 +100,7 @@ export class Customize extends React.Component {
                 </Button>
               </div>
               <div className="customize-form-button">
-                <Button type="submit" onClick={evt => this.handleSubmit()}>
-                  Watch Streams
-                </Button>
+                <Button type="submit">Watch Streams</Button>
               </div>
             </div>
           </Form>
