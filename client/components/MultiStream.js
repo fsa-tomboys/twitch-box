@@ -8,8 +8,10 @@ export class MultiStream extends Component {
   constructor() {
     super()
     this.state = {
-      testArray: ['orb', 'maxgrosshandler']
+      testArray: ['orb', 'maxgrosshandler'],
+      index: 0
     }
+    this.handleSelect = this.handleSelect.bind(this)
     this.remove = this.remove.bind(this)
   }
   remove(element) {
@@ -26,6 +28,12 @@ export class MultiStream extends Component {
       testArray: this.props.location.state.testArray
     })
   }
+
+  handleSelect(evt) {
+    let index = this.state.testArray.indexOf(evt.target.textContent)
+    this.setState({index})
+  }
+
   render() {
     return (
       <div>
@@ -38,10 +46,16 @@ export class MultiStream extends Component {
           )}
 
           <div className="all-streams-container">
-            {this.props.location.state.testArray.map(element => (
+            {this.state.testArray.map(element => (
               <SingleStreamComponent name={element} />
             ))}
-            <Chat testArray={this.props.location.state.testArray} />
+            {this.state.testArray[0] !== 'orb' && (
+              <Chat
+                index={this.state.index}
+                array={this.state.testArray}
+                handleSelect={this.handleSelect}
+              />
+            )}
           </div>
         </div>
       </div>
