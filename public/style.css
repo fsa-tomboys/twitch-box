@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background: gray;
 }
 
 a {
@@ -10,7 +11,12 @@ label {
   display: block;
 }
 
+nav {
+  background-color: #242525;
+}
+
 nav a {
+  color: white;
   display: inline-block;
   margin: 1em;
 }
@@ -18,6 +24,24 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.top-header {
+  display: flex;
+  justify-content: center;
+  color: #5a5d5c;
+  padding: 1.5rem; /* set the padding space for the title text */
+  background-color: #c9cfce;
+}
+
+.top-header h1 {
+  margin: 0; /* let text fill the whole background */
+}
+
+.nav-link-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
 }
 
 .customize-form-box {
@@ -48,12 +72,18 @@ form div {
 .main-layout-container {
   display: flex;
 }
+.all-streams-container {
+  display: flex;
+  /* max-width: 700px; */
+  flex-wrap: wrap;
+}
 .single-stream-outer {
   /* position: absolute; */
 
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: block;
-  margin: 20px;
+  margin-left: 10px;
+  /* border: 10px solid black; */
 }
 .single-stream-overlay-menu {
   position: relative;
@@ -62,29 +92,47 @@ form div {
   height: 50px;
   top: 0;
   background: black;
+  color: black;
   /* opacity: 0.1; */
   z-index: 1;
 
   /* visibility: hidden; */
 }
+
+.single-stream-link {
+  color: black;
+}
+
+.single-stream-overlay-menu:hover .single-stream-link {
+  color: white;
+}
+
 .single-stream-overlay-menu:hover {
-  /* position:absolute; */
   width: 100%;
   background: black;
   height: 50px;
   opacity: 1;
   z-index: 1;
   color: white;
-  /* visibility: visible; */
 }
 
-.single-stream-overlay-links {
-  /* position: relative;
-    top:0; */
-}
 .selected {
   opacity: 0.4;
 }
 .unselected {
   opacity: 1;
+}
+
+.single-stream-overlay-icon-box {
+  padding: 10px;
+  padding-right: 20px;
+  position: relative;
+  float: right;
+}
+
+.multistream-sidebar {
+  position: relative;
+  height: 100hw;
+  background: black;
+  width: 150px;
 }
