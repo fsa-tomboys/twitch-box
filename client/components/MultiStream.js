@@ -13,6 +13,7 @@ export class MultiStream extends Component {
     }
     this.handleSelect = this.handleSelect.bind(this)
     this.remove = this.remove.bind(this)
+    this.addStream = this.addStream.bind(this)
   }
   remove(element) {
     let arr = this.state.testArray
@@ -21,6 +22,13 @@ export class MultiStream extends Component {
     if (index !== -1) arr.splice(index, 1)
     this.setState({
       testArray: arr
+    })
+  }
+  addStream(event) {
+    let arr = this.state.testArray
+    let newArr = arr.concat(event.target.newStream.value)
+    this.setState({
+      testArray: newArr
     })
   }
   componentDidMount() {
@@ -38,10 +46,11 @@ export class MultiStream extends Component {
     return (
       <div>
         <div className="main-layout-container">
-          {this.state.testArray[0] !== 'orb' && (
+          {this.state.testArray.length > 0 && (
             <MultistreamSidebar
               testArray={this.state.testArray}
               remove={this.remove}
+              addStream={this.addStream}
             />
           )}
 
