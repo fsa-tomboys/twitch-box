@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 
 class SingleStreamComponent extends Component {
   render() {
