@@ -8,19 +8,17 @@ export const Chat = props => {
     text: elem,
     value: elem
   }))
-  console.log('----->>>>', props.setHeight)
   return (
-    <div>
-      <div className="chat-container">
-        <iframe
-          frameBorder="0"
-          scrolling="yes"
-          id="chat_embed"
-          src={`https://www.twitch.tv/embed/${array[index]}/chat`}
-          height={props.setHeight}
-          width="350"
-        />
-      </div>
+    <div className="chat-container">
+      <iframe
+        frameBorder="0"
+        scrolling="yes"
+        id="chat_embed"
+        src={`https://www.twitch.tv/embed/${array[index]}/chat`}
+        height={props.setHeight}
+        width="350"
+        // theme="dark" not working
+      />
       <Select
         placeholder="Select the Channel for Chat"
         options={options}

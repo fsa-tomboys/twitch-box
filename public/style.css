@@ -31,19 +31,20 @@ form div {
   justify-content: center;
   color: #5a5d5c;
   color: #c9cfce;
-  padding: 1.5rem;
+  padding: 1rem;
   background: black;
 }
 
 .top-header h1 {
   margin: 0; /* let text fill the whole background */
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .nav-link-container {
   display: flex;
   justify-content: space-between;
   font-size: 1.3rem;
+  height: 90px;
 }
 .nav-login-items,
 .nav-function-items {
@@ -92,8 +93,8 @@ form div {
 
   /* border: 1px solid red; */
   display: block;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 5px;
+  margin-top: 5px;
   /* border: 10px solid black; */
 }
 .single-stream-overlay-menu {
@@ -148,7 +149,7 @@ form div {
   width: 150px;
 }
 
-.chat-container {
+/* .chat-container {
   width: 100%;
   height: 100%;
-}
+} */

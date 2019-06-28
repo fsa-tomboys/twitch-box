@@ -68,7 +68,7 @@ export class MultiStream extends Component {
               index={this.state.index}
               array={this.state.testArray}
               handleSelect={this.handleSelect}
-              setHeight={window.innerHeight - 100}
+              setHeight={window.innerHeight - 140}
             />
           )}
         </div>
