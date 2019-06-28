@@ -31,7 +31,7 @@ class Routes extends Component {
         {/* <Route path="/singlestream" component={SingleStreamComponent} /> */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/home" component={Featured} />
+        <Route path="/home" component={MultiStream} />
         <Route path="/home:list" component={MultiStream} />
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
