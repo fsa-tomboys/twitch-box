@@ -17,19 +17,13 @@ if (!process.env.TWITCH_CLIENT_ID || !process.env.TWITCH_CLIENT_SECRET) {
   const strategy = new twitchStrategy(
     twitchConfig,
     (token, refreshToken, profile, done) => {
-      const twitchId = profile.id
       const name = profile.displayName
-      const email = profile.emails[0].value
-
-      User.findOrCreate(
-        {
-          where: {twitchId},
-          defaults: {name, email}
-        },
-        function(err, user) {
-          return done(err, user)
-        }
-      )
+      User.findOrCreate({
+        where: {twitchId: profile.id},
+        defaults: {name}
+      })
+        .then(([user]) => done(null, user))
+        .catch(done)
     }
   )
 
