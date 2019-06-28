@@ -14,7 +14,7 @@ export const Chat = props => {
         frameBorder="0"
         scrolling="yes"
         id="chat_embed"
-        src={`https://www.twitch.tv/embed/${array[index]}/chat`}
+        src={`https://www.twitch.tv/embed/${array[index]}/chat?darkpopout`}
         height={props.setHeight}
         width="350"
         // theme="dark" not working

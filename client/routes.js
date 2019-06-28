@@ -32,6 +32,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={Featured} />
+        <Route path="/home:list" component={MultiStream} />
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />
