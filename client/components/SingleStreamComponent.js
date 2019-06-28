@@ -6,7 +6,6 @@ class SingleStreamComponent extends Component {
     let width
     let height
     let streamNumber = this.props.streamNum
-    console.log('Total streams', totalStreams)
     let totalStreams = this.props.totalNumber
     switch (totalStreams) {
       case 1:
@@ -31,7 +30,7 @@ class SingleStreamComponent extends Component {
         height = window.innerHeight / 2 - 100
         break
       default:
-        console.log('nothing')
+        console.log('There must be an error.')
         break
     }
 
