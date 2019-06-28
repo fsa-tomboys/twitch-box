@@ -3,7 +3,7 @@ import SingleStreamComponent from './SingleStreamComponent'
 import {Chat} from './chat'
 import {Button, Modal} from 'semantic-ui-react'
 import MultistreamSidebar from './MultistreamSidebar'
-
+import queryString from 'query-string'
 export class MultiStream extends Component {
   constructor() {
     super()
@@ -32,8 +32,15 @@ export class MultiStream extends Component {
     })
   }
   componentDidMount() {
+    let queryStuff = queryString.parse(this.props.match.params.list)
+    console.log('query stuff is here ', queryStuff)
+    if (queryStuff.list === undefined) {
+      queryStuff = queryString.parse(this.props.location.search)
+      console.log('query thing changed ', queryStuff)
+    }
+    let arrFromProps = queryStuff.list.split(',')
     this.setState({
-      testArray: this.props.location.state.testArray
+      testArray: arrFromProps || this.props.location.state.testArray
     })
   }
 

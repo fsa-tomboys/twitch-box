@@ -17,7 +17,7 @@ export class Featured extends Component {
   }
   routeChange() {
     this.props.history.push({
-      pathname: '/home',
+      pathname: '/home?list=' + this.state.selected.join(','),
       state: {testArray: this.state.selected}
     })
   }
