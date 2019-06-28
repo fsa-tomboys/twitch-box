@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import SingleStreamComponent from './SingleStreamComponent'
 import {Chat} from './chat'
-import {Button, Header, Input, Modal, Label} from 'semantic-ui-react'
+import {Button, Modal} from 'semantic-ui-react'
 import MultistreamSidebar from './MultistreamSidebar'
 
 export class MultiStream extends Component {
@@ -41,7 +41,6 @@ export class MultiStream extends Component {
     let index = this.state.testArray.indexOf(evt.target.textContent)
     this.setState({index})
   }
-
   render() {
     return (
       <div>
@@ -55,17 +54,23 @@ export class MultiStream extends Component {
           )}
 
           <div className="all-streams-container">
-            {this.state.testArray.map(element => (
-              <SingleStreamComponent name={element} />
-            ))}
-            {this.state.testArray.length > 0 && (
-              <Chat
-                index={this.state.index}
-                array={this.state.testArray}
-                handleSelect={this.handleSelect}
+            {this.state.testArray.map((element, index) => (
+              <SingleStreamComponent
+                name={element}
+                streamNum={index}
+                totalNumber={this.state.testArray.length}
+                classIndex={index}
               />
-            )}
+            ))}
           </div>
+          {this.state.testArray.length > 0 && (
+            <Chat
+              index={this.state.index}
+              array={this.state.testArray}
+              handleSelect={this.handleSelect}
+              setHeight={window.innerHeight - 140}
+            />
+          )}
         </div>
       </div>
     )
