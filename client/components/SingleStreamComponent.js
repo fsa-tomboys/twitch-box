@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Link from 'react-router-dom'
 import {Icon} from 'semantic-ui-react'
 
 class SingleStreamComponent extends Component {
@@ -39,7 +40,13 @@ class SingleStreamComponent extends Component {
         <div className="single-stream-overlay-menu">
           <div className="single-stream-overlay-icon-box">
             <a className="single-stream-link" href="#">
-              <Icon name="user outline" size="large" />{' '}
+              <Icon
+                name="user outline"
+                size="large"
+                onClick={() => {
+                  window.open(`https://twitch.tv/${this.props.name}`)
+                }}
+              />{' '}
             </a>
             <a className="single-stream-link" href="#">
               <Icon name="sound" size="large" />
