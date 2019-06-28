@@ -28,8 +28,8 @@ export class Featured extends Component {
   }
   async componentDidMount() {
     const client = await TwitchClient.withCredentials(
-      'wpp8xoz167jt0vnmlmko398h4g8ydh',
-      process.env.TWITCH_SECRET
+      process.env.TWITCH_CLIENT_ID,
+      process.env.TWITCH_CLIENT_SECRET
     )
     let snake = await axios.get(
       'https://api.twitch.tv/kraken/streams/featured?limit=10',
