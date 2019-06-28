@@ -4,14 +4,7 @@ import {Button, Header, Input, Modal, Form} from 'semantic-ui-react'
 const MultistreamSidebar = props => {
   return (
     <div className="multistream-sidebar">
-      <Modal
-        trigger={
-          <button className="sidebar-edit-btn">
-            <i className="fab fa-twitch" />
-          </button>
-        }
-        size="tiny"
-      >
+      <Modal trigger={<a className="sidebar-edit-btn">edit</a>} size="tiny">
         {/* <Modal trigger={<Button>Edit</Button>} size="tiny"> */}
         <Modal.Header>Edit Streams</Modal.Header>
 
