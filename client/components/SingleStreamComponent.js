@@ -14,25 +14,25 @@ class SingleStreamComponent extends Component {
     }
     switch (totalStreams) {
       case 1:
-        width = window.innerWidth - 480
+        width = window.innerWidth - 473
         height = window.innerHeight - 140
 
         break
       case 2:
-        width = window.innerWidth - 480
+        width = window.innerWidth - 473
         height = window.innerHeight / 2 - 100
         break
       case 3:
         if (streamNumber === 0) {
-          width = window.innerWidth - 446
+          width = window.innerWidth - 473
           height = window.innerHeight / 2 - 100
         } else {
-          width = (window.innerWidth - 452) / 2
+          width = (window.innerWidth - 478) / 2
           height = window.innerHeight / 2 - 100
         }
         break
       case 4:
-        width = (window.innerWidth - 540) / 2
+        width = (window.innerWidth - 478) / 2
         height = window.innerHeight / 2 - 100
         break
       default:
