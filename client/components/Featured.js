@@ -39,10 +39,6 @@ export class Featured extends Component {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
     )
-    // const client = await TwitchClient.withCredentials(
-    //   process.env.TWITCH_CLIENT_ID,
-    //   process.env.TWITCH_CLIENT_SECRET
-    // )
 
     let topGames = await axios.get(
       'https://api.twitch.tv/helix/games/top?first=30',
