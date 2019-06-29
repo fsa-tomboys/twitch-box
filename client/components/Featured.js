@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
-import {Grid, Image, Card, Button} from 'semantic-ui-react'
-import TwitchClient from 'twitch'
+import {Grid, Image, Card, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 
 export class Featured extends Component {
@@ -9,11 +7,16 @@ export class Featured extends Component {
     super()
     this.state = {
       featuredVids: [],
+      topGames: [],
+      displayChannelsFromTopGames: [],
+      genre: [],
+      displayChannelsByGenre: [],
       selected: []
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
     this.resetState = this.resetState.bind(this)
+    this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
   }
   routeChange() {
     this.props.history.push({
@@ -27,54 +30,119 @@ export class Featured extends Component {
     })
   }
   async componentDidMount() {
-    const client = await TwitchClient.withCredentials(
-      'wpp8xoz167jt0vnmlmko398h4g8ydh',
-      process.env.TWITCH_SECRET
-    )
-    let snake = await axios.get(
-      'https://api.twitch.tv/kraken/streams/featured?limit=10',
+    // Left it here in case we need it in the future
+    // const client = await TwitchClient.withCredentials(
+    //   'wpp8xoz167jt0vnmlmko398h4g8ydh',
+    //   process.env.TWITCH_SECRET
+    // )
+    let featuredChannels = await axios.get(
+      'https://api.twitch.tv/kraken/streams/featured?limit=40',
       {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
     )
+
+    let topGames = await axios.get(
+      'https://api.twitch.tv/helix/games/top?first=30',
+      {
+        headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
+      }
+    )
+    let topGamesToDisplay = topGames.data.data
+
     this.setState({
-      featuredVids: snake.data.featured
+      featuredVids: featuredChannels.data.featured,
+      topGames: topGamesToDisplay
     })
   }
 
-  handleClick(element) {
+  handleClick(channelName) {
     let newArr = this.state.selected
-    if (newArr.includes(element.stream.channel.name)) {
-      newArr.splice(newArr.indexOf(element.stream.channel.name), 1)
+    if (newArr.includes(channelName)) {
+      newArr.splice(newArr.indexOf(channelName), 1)
     } else {
-      newArr.push(element.stream.channel.name)
+      newArr.push(channelName)
     }
 
     this.setState({
       selected: newArr
     })
-    console.log(this.state)
   }
+  async getChannelsForThisGame(event, {value}) {
+    let findGame = value.split(' ').join('+')
+
+    let channelsForThisGame = await axios.get(
+      `https://api.twitch.tv/kraken/streams?game=${findGame}`,
+      {
+        headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
+      }
+    )
+    this.setState({
+      displayChannelsFromTopGames: channelsForThisGame.data.streams
+    })
+  }
+
   render() {
     return (
       <div>
-        <br />
+        <h4>Top streamers</h4>
+        <Divider hidden />
         <Grid>
           {this.state.featuredVids.map(element => {
             return (
               <Image
+                size="small"
                 src={element.image}
                 className={
                   this.state.selected.includes(element.stream.channel.name)
                     ? 'selected'
                     : 'unselected'
                 }
-                onClick={() => this.handleClick(element)}
+                onClick={() => this.handleClick(element.stream.channel.name)}
               />
             )
           })}
         </Grid>
-        <br />
+        {/* Once selected from games go get the top 10 streams for selected games */}
+        <Divider hidden />
+        <Divider hidden />
+        <h4>Streamers by game</h4>
+        <Divider hidden />
+        <Divider hidden />
+        <Select
+          placeholder="Browse by Game"
+          onChange={this.getChannelsForThisGame}
+          options={this.state.topGames.map(game => ({
+            key: game.id,
+            text: game.name,
+            value: game.name
+          }))}
+        />
+        <Divider hidden />
+        {/* If a game is selected from dropdown, display top 25 streamers for that game */}
+        <Grid>
+          {!(this.state.displayChannelsFromTopGames.length === 0) ? (
+            this.state.displayChannelsFromTopGames.map(gameChannel => {
+              return (
+                <Image
+                  size="small"
+                  src={gameChannel.channel.logo}
+                  className={
+                    this.state.selected.includes(gameChannel.channel.name)
+                      ? 'selected'
+                      : 'unselected'
+                  }
+                  onClick={() => this.handleClick(gameChannel.channel.name)}
+                />
+              )
+            })
+          ) : (
+            <p />
+          )}
+        </Grid>
+        <Divider hidden />
+        <Divider hidden />
+        <Divider hidden />
         <div className="customize-form-buttons-box">
           <Button onClick={this.resetState}>Clear</Button>
           <Button onClick={this.routeChange}>Watch Streams</Button>
