@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, Image, Card, Button, Divider, Select} from 'semantic-ui-react'
+import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 
 export class Featured extends Component {
@@ -9,8 +9,6 @@ export class Featured extends Component {
       featuredVids: [],
       topGames: [],
       displayChannelsFromTopGames: [],
-      genre: [],
-      displayChannelsByGenre: [],
       selected: []
     }
     this.handleClick = this.handleClick.bind(this)
