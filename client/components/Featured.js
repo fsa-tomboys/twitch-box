@@ -101,7 +101,6 @@ export class Featured extends Component {
             )
           })}
         </Grid>
-        {/* Once selected from games go get the top 10 streams for selected games */}
         <Divider hidden />
         <Divider hidden />
         <h4>Streamers by game</h4>
@@ -117,7 +116,6 @@ export class Featured extends Component {
           }))}
         />
         <Divider hidden />
-        {/* If a game is selected from dropdown, display top 25 streamers for that game */}
         <Grid>
           {!(this.state.displayChannelsFromTopGames.length === 0) ? (
             this.state.displayChannelsFromTopGames.map(gameChannel => {
