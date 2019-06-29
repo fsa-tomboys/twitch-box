@@ -12,9 +12,7 @@ const MultistreamSidebar = props => {
         }
         size="tiny"
       >
-        {/* <Modal trigger={<Button>Edit</Button>} size="tiny"> */}
         <Modal.Header>Edit Streams</Modal.Header>
-
         <Modal.Description className="customize-form-box">
           {props.testArray.map(element => (
             <div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Select, Search, Button, Form, Checkbox} from 'semantic-ui-react'
+import {Select} from 'semantic-ui-react'
 
 export const Chat = props => {
   const {index, array, handleSelect} = props
@@ -17,7 +17,6 @@ export const Chat = props => {
         src={`https://www.twitch.tv/embed/${array[index]}/chat?darkpopout`}
         height={props.setHeight}
         width="350"
-        // theme="dark" not working
       />
       <Select
         placeholder="Select the Channel for Chat"
