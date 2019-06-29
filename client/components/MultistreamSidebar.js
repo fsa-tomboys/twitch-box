@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Header, Input, Modal, Form} from 'semantic-ui-react'
+import {Button, Input, Modal, Form} from 'semantic-ui-react'
 
 const MultistreamSidebar = props => {
   return (
