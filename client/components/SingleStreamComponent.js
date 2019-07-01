@@ -7,26 +7,32 @@ class SingleStreamComponent extends Component {
     let height
     let streamNumber = this.props.streamNum
     let totalStreams = this.props.totalNumber
+    if (streamNumber === 0) {
+      let element = document.getElementsByClassName('single-stream-outer')
+
+      console.log('Element', element.className)
+    }
     switch (totalStreams) {
       case 1:
-        width = window.innerWidth - 495
+        width = window.innerWidth - 473
         height = window.innerHeight - 140
+
         break
       case 2:
-        width = window.innerWidth - 495
+        width = window.innerWidth - 473
         height = window.innerHeight / 2 - 100
         break
       case 3:
         if (streamNumber === 0) {
-          width = window.innerWidth - 450
+          width = window.innerWidth - 473
           height = window.innerHeight / 2 - 100
         } else {
-          width = (window.innerWidth - 462) / 2
+          width = (window.innerWidth - 478) / 2
           height = window.innerHeight / 2 - 100
         }
         break
       case 4:
-        width = (window.innerWidth - 480) / 2
+        width = (window.innerWidth - 478) / 2
         height = window.innerHeight / 2 - 100
         break
       default:
@@ -38,6 +44,9 @@ class SingleStreamComponent extends Component {
       <div className="single-stream-outer">
         <div className="single-stream-overlay-menu">
           <div className="single-stream-overlay-icon-box">
+            <a className="single-stream-link" href="#">
+              <Icon name="arrow alternate circle up outline" size="large" />{' '}
+            </a>
             <a className="single-stream-link" href="#">
               <Icon name="user outline" size="large" />{' '}
             </a>
@@ -66,6 +75,7 @@ class SingleStreamComponent extends Component {
           scrolling="no"
           allow="autoplay; fullscreen"
           allowFullScreen=""
+          className=""
         />
       </div>
     )

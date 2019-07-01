@@ -168,5 +168,6 @@ form div {
   color: #6441a5;
 }
 .chat-container {
-  width: 350px;
+  width: 360px;
+  background: black;
 }
