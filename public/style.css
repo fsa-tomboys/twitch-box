@@ -167,3 +167,7 @@ form div {
 .sidebar-edit-btn:hover {
   color: #6441a5;
 }
+.chat-container {
+  width: 360px;
+  background: black;
+}
