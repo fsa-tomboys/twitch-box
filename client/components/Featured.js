@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
+import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
+import {connect} from 'react-redux'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
+import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
 
-export class Featured extends Component {
-  constructor() {
-    super()
+class Featured extends Component {
+  constructor(props) {
+    super(props)
     this.state = {
       featuredVids: [],
       topGames: [],
@@ -28,11 +31,6 @@ export class Featured extends Component {
     })
   }
   async componentDidMount() {
-    // Left it here in case we need it in the future
-    // const client = await TwitchClient.withCredentials(
-    //   'wpp8xoz167jt0vnmlmko398h4g8ydh',
-    //   process.env.TWITCH_SECRET
-    // )
     let featuredChannels = await axios.get(
       'https://api.twitch.tv/kraken/streams/featured?limit=40',
       {
@@ -52,6 +50,9 @@ export class Featured extends Component {
       featuredVids: featuredChannels.data.featured,
       topGames: topGamesToDisplay
     })
+
+    await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
+    await this.props.fetchInitialChannels(this.props.user.twitchId)
   }
 
   handleClick(channelName) {
@@ -81,8 +82,45 @@ export class Featured extends Component {
   }
 
   render() {
+    console.log('this.props.userTwitchInfo: ', this.props.userTwitchInfo)
+
     return (
       <div>
+        <div className="login-welcome-title">
+          <h3>Welcome, {this.props.user.name}</h3>
+        </div>
+        <h4>Your followed channels: </h4>
+        <div>
+          <Grid>
+            {this.props.userTwitchInfo.channels.length > 0 &&
+              this.props.userTwitchInfo.channels.map((ch, idx) => (
+                <div key={ch._data.channel._id}>
+                  <Image
+                    size="small"
+                    src={ch._data.channel.logo}
+                    className={
+                      this.state.selected.includes(ch._data.channel.name)
+                        ? 'selected'
+                        : 'unselected'
+                    }
+                    onClick={() => this.handleClick(ch._data.channel.name)}
+                  />
+                  {this.props.userTwitchInfo.isOnline[idx] ? (
+                    <div>
+                      <Button size="mini" color="green">
+                        Online
+                      </Button>
+                    </div>
+                  ) : (
+                    <div>
+                      <Button size="mini">Offline</Button>
+                    </div>
+                  )}
+                </div>
+              ))}
+          </Grid>
+        </div>
+        <Divider hidden />
         <h4>Top streamers</h4>
         <Divider hidden />
         <Grid>
@@ -147,3 +185,19 @@ export class Featured extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    userTwitchInfo: state.userTwitchInfo
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id)),
+    fetchInitialChannels: id => dispatch(fetchUserChannels(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Featured)

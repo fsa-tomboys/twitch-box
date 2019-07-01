@@ -82,6 +82,12 @@ form div {
   display: flex;
   margin: 0.2rem;
 }
+
+.login-welcome-title {
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem;
+}
 .main-layout-container {
   display: flex;
 }
