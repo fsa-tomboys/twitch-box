@@ -32,6 +32,13 @@ const User = db.define('user', {
   },
   twitchId: {
     type: Sequelize.STRING
+  },
+  // twitch access token
+  token: {
+    type: Sequelize.STRING
+  },
+  refreshToken: {
+    type: Sequelize.STRING
   }
 })
 
