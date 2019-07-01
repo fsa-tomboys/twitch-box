@@ -39,7 +39,7 @@ export class Customize extends React.Component {
     }
 
     this.props.history.push({
-      pathname: '/home',
+      pathname: '/home?list=' + arr.join('-'),
       state: {testArray: arr}
     })
     // arr is an array of strings to be passed to other component

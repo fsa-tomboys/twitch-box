@@ -18,7 +18,7 @@ export class Featured extends Component {
   }
   routeChange() {
     this.props.history.push({
-      pathname: '/home?list=' + this.state.selected.join(','),
+      pathname: '/home?list=' + this.state.selected.join('-'),
       state: {testArray: this.state.selected}
     })
   }
@@ -28,11 +28,6 @@ export class Featured extends Component {
     })
   }
   async componentDidMount() {
-    // Left it here in case we need it in the future
-    // const client = await TwitchClient.withCredentials(
-    //   'wpp8xoz167jt0vnmlmko398h4g8ydh',
-    //   process.env.TWITCH_SECRET
-    // )
     let featuredChannels = await axios.get(
       'https://api.twitch.tv/kraken/streams/featured?limit=40',
       {
@@ -67,7 +62,7 @@ export class Featured extends Component {
     })
   }
   async getChannelsForThisGame(event, {value}) {
-    let findGame = value.split(' ').join('+')
+    let findGame = value.split(' ').join(',')
 
     let channelsForThisGame = await axios.get(
       `https://api.twitch.tv/kraken/streams?game=${findGame}`,
