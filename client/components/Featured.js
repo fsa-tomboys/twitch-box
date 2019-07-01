@@ -51,15 +51,8 @@ class Featured extends Component {
       topGames: topGamesToDisplay
     })
 
-    let id = this.props.user.twitchId
-    // console.log('this.props.user: ', this.props.user)
-    // let id = '444085153'
-    // let theUser = await axios.get(`/api/usertwitchinfo/${id}`)
-    // console.log('theUser: ', theUser)
-    // let channels = await axios.get(`/api/usertwitchinfo/channels/${id}`)
-    // console.log('channels: ' ,channels)
-    await this.props.fetchInitialTwitchUser(id)
-    await this.props.fetchInitialChannels(id)
+    await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
+    await this.props.fetchInitialChannels(this.props.user.twitchId)
   }
 
   handleClick(channelName) {
@@ -93,6 +86,30 @@ class Featured extends Component {
 
     return (
       <div>
+        <div className="login-welcome-title">
+          <h3>Welcome, {this.props.user.name}</h3>
+        </div>
+        <h4>Your followed channels: </h4>
+        <div>
+          <Grid>
+            {this.props.userTwitchInfo.channels.length > 0 &&
+              this.props.userTwitchInfo.channels.map(ch => (
+                <div key={ch._data.channel._id}>
+                  <Image
+                    size="small"
+                    src={ch._data.channel.logo}
+                    className={
+                      this.state.selected.includes(ch._data.channel.name)
+                        ? 'selected'
+                        : 'unselected'
+                    }
+                    onClick={() => this.handleClick(ch._data.channel.name)}
+                  />
+                </div>
+              ))}
+          </Grid>
+        </div>
+        <Divider hidden />
         <h4>Top streamers</h4>
         <Divider hidden />
         <Grid>
