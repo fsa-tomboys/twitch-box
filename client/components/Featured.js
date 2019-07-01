@@ -71,7 +71,7 @@ class Featured extends Component {
     })
   }
   async getChannelsForThisGame(event, {value}) {
-    let findGame = value.split(' ').join(',')
+    let findGame = value.split(' ').join('+')
 
     let channelsForThisGame = await axios.get(
       `https://api.twitch.tv/kraken/streams?game=${findGame}`,
