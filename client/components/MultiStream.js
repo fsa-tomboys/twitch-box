@@ -64,6 +64,7 @@ export class MultiStream extends Component {
                 streamNum={index}
                 totalNumber={this.state.testArray.length}
                 key={index}
+                remove={this.remove}
               />
             ))}
           </div>

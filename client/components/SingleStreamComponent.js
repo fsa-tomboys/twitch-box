@@ -60,7 +60,11 @@ class SingleStreamComponent extends Component {
               <Icon name="refresh" size="large" />
             </a>
             <a className="single-stream-link" href="#">
-              <Icon name="window close" size="large" />
+              <Icon
+                name="window close"
+                size="large"
+                onClick={() => this.props.remove(this.props.name)}
+              />
             </a>
           </div>
         </div>
