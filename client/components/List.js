@@ -19,11 +19,13 @@ export class List extends Component {
     return this.state.streams[0] ? (
       <div>
         {this.state.streams.map(stream => (
-          <div key={stream.id}>{stream.link}</div>
+          <div key={stream.id}>
+            <Link to={stream.link}>{stream.link}</Link>
+          </div>
         ))}
       </div>
     ) : (
-      <div>Error Loading</div>
+      <div>List of streams are loading!</div>
     )
   }
 }

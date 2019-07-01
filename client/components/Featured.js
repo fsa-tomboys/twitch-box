@@ -22,7 +22,7 @@ export class Featured extends Component {
       state: {testArray: this.state.selected}
     })
     axios.post('/api/streams', {
-      link: 'localhost:8080/home?list=' + this.state.selected.join('-')
+      link: '/home?list=' + this.state.selected.join('-')
     })
   }
   resetState() {
