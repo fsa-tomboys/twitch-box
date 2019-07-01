@@ -32,7 +32,7 @@ class SingleStreamComponent extends Component {
         }
         break
       case 4:
-        width = (window.innerWidth - 478) / 2
+        width = (window.innerWidth - 490) / 2
         height = window.innerHeight / 2 - 100
         break
       default:
