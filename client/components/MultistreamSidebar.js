@@ -36,11 +36,17 @@ const MultistreamSidebar = props => {
           size="tiny"
         >
           <Modal.Header>
-            Send the link down below to your friends so they can get in on the
-            action!
+            Click the link below to copy it to your clipboard so you can share
+            it!
           </Modal.Header>
           <Modal.Description className="customize-form-box">
-            <h3>{window.location.href}</h3>
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href)
+              }}
+            >
+              {window.location.href}
+            </Button>
           </Modal.Description>
         </Modal>
       </div>
