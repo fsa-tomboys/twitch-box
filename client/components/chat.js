@@ -17,7 +17,6 @@ export const Chat = props => {
         src={`https://www.twitch.tv/embed/${array[index]}/chat`}
         height={props.setHeight}
         width="350"
-        // theme="dark" not working
       />
       <Select
         placeholder="Select the Channel for Chat"
