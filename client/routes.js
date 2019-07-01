@@ -9,7 +9,8 @@ import {
   MultiStream,
   Featured,
   Customize,
-  Chat
+  Chat,
+  List
 } from './components'
 
 import {me} from './store'
@@ -36,6 +37,7 @@ class Routes extends Component {
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />
+        <Route path="/list" component={List} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

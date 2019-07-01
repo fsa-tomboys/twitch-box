@@ -1,7 +1,5 @@
 import React from 'react'
-// import Navbar from './navbar'
-// import {createProduct, fetchProducts} from '../../store/products'
-// import {connect} from 'react-redux'
+
 import {Button, Form, Checkbox} from 'semantic-ui-react'
 
 export class Customize extends React.Component {
@@ -39,7 +37,7 @@ export class Customize extends React.Component {
     }
 
     this.props.history.push({
-      pathname: '/home',
+      pathname: '/home?list=' + arr.join('-'),
       state: {testArray: arr}
     })
     // arr is an array of strings to be passed to other component

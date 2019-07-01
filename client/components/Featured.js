@@ -21,8 +21,11 @@ class Featured extends Component {
   }
   routeChange() {
     this.props.history.push({
-      pathname: '/home?list=' + this.state.selected.join(','),
+      pathname: '/home?list=' + this.state.selected.join('-'),
       state: {testArray: this.state.selected}
+    })
+    axios.post('/api/streams', {
+      link: '/home?list=' + this.state.selected.join('-')
     })
   }
   resetState() {
@@ -68,7 +71,7 @@ class Featured extends Component {
     })
   }
   async getChannelsForThisGame(event, {value}) {
-    let findGame = value.split(' ').join('+')
+    let findGame = value.split(' ').join(',')
 
     let channelsForThisGame = await axios.get(
       `https://api.twitch.tv/kraken/streams?game=${findGame}`,

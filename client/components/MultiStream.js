@@ -32,12 +32,10 @@ export class MultiStream extends Component {
   }
   componentDidMount() {
     let queryStuff = queryString.parse(this.props.match.params.list)
-    // console.log('query stuff is here ', queryStuff)
     if (queryStuff.list === undefined) {
       queryStuff = queryString.parse(this.props.location.search)
-      // console.log('query thing changed ', queryStuff)
     }
-    let arrFromProps = queryStuff.list.split(',')
+    let arrFromProps = queryStuff.list.split('-')
     this.setState({
       testArray: arrFromProps || this.props.location.state.testArray
     })
