@@ -4,16 +4,22 @@ import axios from 'axios'
 
 const GET_TWITCH_USER = 'GET_TWITCH_USER'
 const GET_USER_CHANNELS = 'GET_USER_CHANNELS'
+const GET_CHANNELS_ONLINE_OFFLINE = 'GET_CHANNELS_ONLINE_OFFLINE'
 
 // initial states
 const initialState = {
   twitchUser: {},
-  channels: []
+  channels: [],
+  isOnline: []
 }
 
 // action creators
 const getTwitchUser = twitchUser => ({type: GET_TWITCH_USER, twitchUser})
 const getUserChannels = channels => ({type: GET_USER_CHANNELS, channels})
+const getChannelsOnOffLineStatus = statusArr => ({
+  type: GET_CHANNELS_ONLINE_OFFLINE,
+  statusArr
+})
 
 // thunk methods
 export const fetchTwitchUser = twitchUserId => {
@@ -36,7 +42,9 @@ export const fetchUserChannels = twitchUserId => {
         `/api/usertwitchinfo/channels/${twitchUserId}`
       )
       // format: array of objects
-      dispatch(getUserChannels(res.data))
+      // console.log('res.data of fetch channels: ', res.data)
+      dispatch(getUserChannels(res.data.channels))
+      dispatch(getChannelsOnOffLineStatus(res.data.isOnline))
     } catch (error) {
       console.log('Error inside thunk method fetchUserChannels: ', error)
     }
@@ -49,7 +57,9 @@ const twitchUserInfoReducer = function(state = initialState, action) {
     case GET_TWITCH_USER:
       return {...state, twitchUser: action.twitchUser}
     case GET_USER_CHANNELS:
-      return {...state, channels: action.channels.channels}
+      return {...state, channels: action.channels}
+    case GET_CHANNELS_ONLINE_OFFLINE:
+      return {...state, isOnline: action.statusArr}
     default:
       return state
   }

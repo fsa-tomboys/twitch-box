@@ -93,7 +93,7 @@ class Featured extends Component {
         <div>
           <Grid>
             {this.props.userTwitchInfo.channels.length > 0 &&
-              this.props.userTwitchInfo.channels.map(ch => (
+              this.props.userTwitchInfo.channels.map((ch, idx) => (
                 <div key={ch._data.channel._id}>
                   <Image
                     size="small"
@@ -105,6 +105,17 @@ class Featured extends Component {
                     }
                     onClick={() => this.handleClick(ch._data.channel.name)}
                   />
+                  {this.props.userTwitchInfo.isOnline[idx] ? (
+                    <div>
+                      <Button size="mini" color="green">
+                        Online
+                      </Button>
+                    </div>
+                  ) : (
+                    <div>
+                      <Button size="mini">Offline</Button>
+                    </div>
+                  )}
                 </div>
               ))}
           </Grid>
