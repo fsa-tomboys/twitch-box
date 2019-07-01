@@ -5,11 +5,7 @@ const MultistreamSidebar = props => {
   return (
     <div className="multistream-sidebar">
       <Modal
-        trigger={
-          <button className="sidebar-edit-btn">
-            <i className="fab fa-twitch" />
-          </button>
-        }
+        trigger={<Button className="sidebar-edit-btn">Edit stream</Button>}
         size="tiny"
       >
         <Modal.Header>Edit Streams</Modal.Header>
@@ -34,6 +30,20 @@ const MultistreamSidebar = props => {
           </Form>
         </Modal.Description>
       </Modal>
+      <div>
+        <Modal
+          trigger={<Button className="sidebar-edit-btn">Share stream </Button>}
+          size="tiny"
+        >
+          <Modal.Header>
+            Send the link down below to your friends so they can get in on the
+            action!
+          </Modal.Header>
+          <Modal.Description className="customize-form-box">
+            <h3>{window.location.href}</h3>
+          </Modal.Description>
+        </Modal>
+      </div>
     </div>
   )
 }
