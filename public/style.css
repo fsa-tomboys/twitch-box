@@ -88,6 +88,13 @@ form div {
   justify-content: center;
   margin: 0.2rem;
 }
+
+.login-link-twitch {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
 .main-layout-container {
   display: flex;
 }

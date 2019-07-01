@@ -1,7 +1,16 @@
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
-import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
+import {
+  Grid,
+  Image,
+  Button,
+  Divider,
+  Select,
+  Dimmer,
+  Segment,
+  Loader
+} from 'semantic-ui-react'
 import axios from 'axios'
 import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
 
@@ -95,7 +104,7 @@ class Featured extends Component {
         <h4>Your followed channels: </h4>
         <div>
           <Grid>
-            {this.props.userTwitchInfo.channels.length > 0 &&
+            {this.props.userTwitchInfo.channels.length > 0 ? (
               this.props.userTwitchInfo.channels.map((ch, idx) => (
                 <div key={ch._data.channel._id}>
                   <Image
@@ -120,7 +129,12 @@ class Featured extends Component {
                     </div>
                   )}
                 </div>
-              ))}
+              ))
+            ) : (
+              <div>
+                <Image src="/image/loading.gif" />
+              </div>
+            )}
           </Grid>
         </div>
         <Divider hidden />
