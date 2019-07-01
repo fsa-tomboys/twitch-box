@@ -62,9 +62,10 @@ class Featured extends Component {
       featuredVids: featuredChannels.data.featured,
       topGames: topGamesToDisplay
     })
-
-    await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
-    await this.props.fetchInitialChannels(this.props.user.twitchId)
+    if (this.props.isLoggedIn) {
+      await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
+      await this.props.fetchInitialChannels(this.props.user.twitchId)
+    }
   }
 
   handleClick(channelName) {
@@ -98,46 +99,55 @@ class Featured extends Component {
 
     return (
       <div>
-        <div className="login-welcome-title">
-          <h3>Welcome, {this.props.user.name}</h3>
-        </div>
-        <h4>Your followed channels: </h4>
         <div>
-          <Grid>
-            {this.props.userTwitchInfo.channels.length > 0 ? (
-              this.props.userTwitchInfo.channels.map((ch, idx) => (
-                <div key={ch._data.channel._id}>
-                  <Image
-                    size="small"
-                    src={ch._data.channel.logo}
-                    className={
-                      this.state.selected.includes(ch._data.channel.name)
-                        ? 'selected'
-                        : 'unselected'
-                    }
-                    onClick={() => this.handleClick(ch._data.channel.name)}
-                  />
-                  {this.props.userTwitchInfo.isOnline[idx] ? (
-                    <div>
-                      <Button size="mini" color="green">
-                        Online
-                      </Button>
-                    </div>
+          {this.props.isLoggedIn && (
+            <div>
+              <p className="login-welcome-title">
+                <h3>Welcome, {this.props.user.name}</h3>
+              </p>
+              <h4>Your followed channels: </h4>
+              <div>
+                <Grid>
+                  {this.props.userTwitchInfo.channels.length > 0 ? (
+                    this.props.userTwitchInfo.channels.map((ch, idx) => (
+                      <div key={ch._data.channel._id}>
+                        <Image
+                          size="small"
+                          src={ch._data.channel.logo}
+                          className={
+                            this.state.selected.includes(ch._data.channel.name)
+                              ? 'selected'
+                              : 'unselected'
+                          }
+                          onClick={() =>
+                            this.handleClick(ch._data.channel.name)
+                          }
+                        />
+                        {this.props.userTwitchInfo.isOnline[idx] ? (
+                          <div>
+                            <Button size="mini" color="green">
+                              Online
+                            </Button>
+                          </div>
+                        ) : (
+                          <div>
+                            <Button size="mini">Offline</Button>
+                          </div>
+                        )}
+                      </div>
+                    ))
                   ) : (
                     <div>
-                      <Button size="mini">Offline</Button>
+                      <Image src="/image/loading.gif" />
                     </div>
                   )}
-                </div>
-              ))
-            ) : (
-              <div>
-                <Image src="/image/loading.gif" />
+                </Grid>
               </div>
-            )}
-          </Grid>
+              <Divider hidden />
+            </div>
+          )}
         </div>
-        <Divider hidden />
+
         <h4>Top streamers</h4>
         <Divider hidden />
         <Grid>
@@ -205,6 +215,7 @@ class Featured extends Component {
 
 const mapStateToProps = state => {
   return {
+    isLoggedIn: !!state.user.id,
     user: state.user,
     userTwitchInfo: state.userTwitchInfo
   }
