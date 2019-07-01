@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
+import {Button, Card, Image} from 'semantic-ui-react'
 import axios from 'axios'
 
 export class List extends Component {
@@ -20,14 +21,20 @@ export class List extends Component {
       <div>
         {this.state.streams.map(stream => (
           <div key={stream.id}>
-            <Link to={stream.link}>
-              Channels:
-              {' ' +
-                stream.link
-                  .split('=')[1]
-                  .split('-')
-                  .join(', ')}
-            </Link>
+            <Card>
+              <Card.Content>
+                <Card.Header>Multistream {' ' + stream.id}</Card.Header>
+                <Card.Description>
+                  <Link to={stream.link}>
+                    {' ' +
+                      stream.link
+                        .split('=')[1]
+                        .split('-')
+                        .join(', ')}
+                  </Link>
+                </Card.Description>
+              </Card.Content>
+            </Card>
           </div>
         ))}
       </div>
