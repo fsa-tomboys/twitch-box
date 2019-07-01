@@ -7,9 +7,8 @@ import {
   Button,
   Divider,
   Select,
-  Dimmer,
-  Segment,
-  Loader
+  Modal,
+  Header
 } from 'semantic-ui-react'
 import axios from 'axios'
 import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
@@ -21,12 +20,15 @@ class Featured extends Component {
       featuredVids: [],
       topGames: [],
       displayChannelsFromTopGames: [],
-      selected: []
+      selected: [],
+      modalOpen: false
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
     this.resetState = this.resetState.bind(this)
     this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
+    this.handleOpen = this.handleOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
   routeChange() {
     this.props.history.push({
@@ -93,6 +95,9 @@ class Featured extends Component {
       displayChannelsFromTopGames: channelsForThisGame.data.streams
     })
   }
+  handleOpen = () => this.setState({modalOpen: true})
+
+  handleClose = () => this.setState({modalOpen: false})
 
   render() {
     console.log('this.props.userTwitchInfo: ', this.props.userTwitchInfo)
@@ -105,6 +110,44 @@ class Featured extends Component {
               <p className="login-welcome-title">
                 <h3>Welcome, {this.props.user.name}</h3>
               </p>
+              <Modal
+                trigger={
+                  <div className="login-welcome-title">
+                    <Button onClick={this.handleOpen}>View My Profile</Button>
+                  </div>
+                }
+                open={this.state.modalOpen}
+                onClose={this.handleClose}
+                // basic
+                // size='small'
+              >
+                <Header content={`Profile of ${this.props.user.name}:`} />
+                <Modal.Content image>
+                  <Image
+                    wrapped
+                    size="medium"
+                    src={this.props.userTwitchInfo.twitchUser.logo}
+                  />
+                  <Modal.Description>
+                    <p>Name: {this.props.userTwitchInfo.twitchUser.name}</p>
+                    <p>Twitch ID: {this.props.userTwitchInfo.twitchUser._id}</p>
+                    <p>Type: {this.props.userTwitchInfo.twitchUser.type}</p>
+                    <p>
+                      Created at:{' '}
+                      {this.props.userTwitchInfo.twitchUser.created_at}
+                    </p>
+                    <p>
+                      Updated at:{' '}
+                      {this.props.userTwitchInfo.twitchUser.updated_at}
+                    </p>
+                  </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color="green" onClick={this.handleClose} inverted>
+                    Close Profile
+                  </Button>
+                </Modal.Actions>
+              </Modal>
               <h4>Your followed channels: </h4>
               <div>
                 <Grid>

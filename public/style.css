@@ -86,7 +86,7 @@ form div {
 .login-welcome-title {
   display: flex;
   justify-content: center;
-  margin: 0.2rem;
+  padding: 1rem;
 }
 
 .login-link-twitch {
