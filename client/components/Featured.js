@@ -65,34 +65,6 @@ class Featured extends Component {
 
   render() {
     console.log('this.props.userTwitchInfo: ', this.props.userTwitchInfo)
-    // if (Object.keys(this.props.user).length !== 0) {
-    //   this.test(this.props.user.name)
-    // }
-    // id: 3, email: null, name: "taowang6000", googleId: null, twitchId: "444085153"
-    // profile from oauth:
-    //Profile:  {
-    //   provider: 'twitch',
-    //   id: '444085153',
-    //   username: 'taowang6000',
-    //   displayName: 'taowang6000',
-    //   email: 'tao.wang6000@gmail.com',
-    //   _raw: '{"display_name":"taowang6000","_id":"444085153","name":"taowang6000","type":"user","bio":null,"created_at":"2019-06-25T21:25:15.414034Z","updated_at":"2019-06-25T21:25:15.414034Z","logo":"https://static-cdn.jtvnw.net/user-default-pictures/27103734-3cda-44d6-a384-f2ab71e4bb85-profile_image-300x300.jpg","email":"tao.wang6000@gmail.com","email_verified":true,"partnered":false,"twitter_connected":false,"notifications":{"push":true,"email":true}}',
-    //   _json: {
-    //     display_name: 'taowang6000',
-    //     _id: '444085153',
-    //     name: 'taowang6000',
-    //     type: 'user',
-    //     bio: null,
-    //     created_at: '2019-06-25T21:25:15.414034Z',
-    //     updated_at: '2019-06-25T21:25:15.414034Z',
-    //     logo: 'https://static-cdn.jtvnw.net/user-default-pictures/27103734-3cda-44d6-a384-f2ab71e4bb85-profile_image-300x300.jpg',
-    //     email: 'tao.wang6000@gmail.com',
-    //     email_verified: true,
-    //     partnered: false,
-    //     twitter_connected: false,
-    //     notifications: { push: true, email: true }
-    //   }
-    // }
 
     return (
       <div>

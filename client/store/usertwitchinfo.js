@@ -49,7 +49,7 @@ const twitchUserInfoReducer = function(state = initialState, action) {
     case GET_TWITCH_USER:
       return {...state, twitchUser: action.twitchUser}
     case GET_USER_CHANNELS:
-      return {...state, channels: action.channels}
+      return {...state, channels: action.channels.channels}
     default:
       return state
   }
