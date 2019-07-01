@@ -1,7 +1,5 @@
 import React from 'react'
-// import Navbar from './navbar'
-// import {createProduct, fetchProducts} from '../../store/products'
-// import {connect} from 'react-redux'
+
 import {Button, Form, Checkbox} from 'semantic-ui-react'
 
 export class Customize extends React.Component {
