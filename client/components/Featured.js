@@ -12,16 +12,30 @@ import {
 } from 'semantic-ui-react'
 import axios from 'axios'
 import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
+import RandomMultistream from './RandomMultiStream'
+import {ECONNABORTED} from 'constants'
+
+function randomNumerGenerator(maxNum) {
+  let randNums = []
+  while (randNums.length < maxNum) {
+    let num = Math.floor(Math.random() * 20) + 1
+    if (randNums.indexOf(num) === -1) {
+      randNums.push(num)
+    }
+  }
+  return randNums
+}
 
 class Featured extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      featuredVids: [],
+      testArray: [],
       topGames: [],
       displayChannelsFromTopGames: [],
       selected: [],
-      modalOpen: false
+      modalOpen: false,
+      randomChannels: []
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
@@ -29,6 +43,7 @@ class Featured extends Component {
     this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
+    this.goToRandomMultistream = this.goToRandomMultistream.bind(this)
   }
   routeChange() {
     this.props.history.push({
@@ -38,6 +53,18 @@ class Featured extends Component {
     axios.post('/api/multistreams', {
       link: '/home?list=' + this.state.selected.join('-')
     })
+
+    // console.log('button clicked',this.state)
+  }
+  goToRandomMultistream() {
+    let newRandomStream = randomNumerGenerator(3)
+
+    newRandomStream.map(channelNum =>
+      this.state.selected.push(
+        this.state.testArray[channelNum].stream.channel.name
+      )
+    )
+    this.routeChange()
   }
   resetState() {
     this.setState({
@@ -61,8 +88,9 @@ class Featured extends Component {
     let topGamesToDisplay = topGames.data.data
 
     this.setState({
-      featuredVids: featuredChannels.data.featured,
-      topGames: topGamesToDisplay
+      testArray: featuredChannels.data.featured,
+      topGames: topGamesToDisplay,
+      randomChannels: randomNumerGenerator(5)
     })
     if (this.props.isLoggedIn) {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
@@ -83,7 +111,7 @@ class Featured extends Component {
     })
   }
   async getChannelsForThisGame(event, {value}) {
-    let findGame = value.split(' ').join(',')
+    let findGame = value.split(' ').join('+')
 
     let channelsForThisGame = await axios.get(
       `https://api.twitch.tv/kraken/streams?game=${findGame}`,
@@ -100,7 +128,10 @@ class Featured extends Component {
   handleClose = () => this.setState({modalOpen: false})
 
   render() {
-    console.log('this.props.userTwitchInfo: ', this.props.userTwitchInfo)
+    let windowWidth = window.innerWidth
+
+    let randStreamWidth = Math.floor((windowWidth - windowWidth * 0.5) / 5)
+    let randStreamHeight = randStreamWidth * 1.5
 
     return (
       <div>
@@ -190,11 +221,10 @@ class Featured extends Component {
             </div>
           )}
         </div>
-
         <h4>Top streamers</h4>
         <Divider hidden />
         <Grid>
-          {this.state.featuredVids.map(element => {
+          {this.state.testArray.map(element => {
             return (
               <Image
                 size="small"
