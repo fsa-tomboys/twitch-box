@@ -1,32 +1,70 @@
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
-import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
+import {
+  Grid,
+  Image,
+  Button,
+  Divider,
+  Select,
+  Modal,
+  Header
+} from 'semantic-ui-react'
 import axios from 'axios'
 import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
+import RandomMultistream from './RandomMultiStream'
+import {ECONNABORTED} from 'constants'
+
+function randomNumerGenerator(maxNum) {
+  let randNums = []
+  while (randNums.length < maxNum) {
+    let num = Math.floor(Math.random() * 20) + 1
+    if (randNums.indexOf(num) === -1) {
+      randNums.push(num)
+    }
+  }
+  return randNums
+}
 
 class Featured extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      featuredVids: [],
+      testArray: [],
       topGames: [],
       displayChannelsFromTopGames: [],
-      selected: []
+      selected: [],
+      modalOpen: false,
+      randomChannels: []
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
     this.resetState = this.resetState.bind(this)
     this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
+    this.handleOpen = this.handleOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+    this.goToRandomMultistream = this.goToRandomMultistream.bind(this)
   }
   routeChange() {
     this.props.history.push({
       pathname: '/home?list=' + this.state.selected.join('-'),
       state: {testArray: this.state.selected}
     })
-    axios.post('/api/streams', {
+    axios.post('/api/multistreams', {
       link: '/home?list=' + this.state.selected.join('-')
     })
+
+    // console.log('button clicked',this.state)
+  }
+  goToRandomMultistream() {
+    let newRandomStream = randomNumerGenerator(3)
+
+    newRandomStream.map(channelNum =>
+      this.state.selected.push(
+        this.state.testArray[channelNum].stream.channel.name
+      )
+    )
+    this.routeChange()
   }
   resetState() {
     this.setState({
@@ -50,12 +88,14 @@ class Featured extends Component {
     let topGamesToDisplay = topGames.data.data
 
     this.setState({
-      featuredVids: featuredChannels.data.featured,
-      topGames: topGamesToDisplay
+      testArray: featuredChannels.data.featured,
+      topGames: topGamesToDisplay,
+      randomChannels: randomNumerGenerator(5)
     })
-
-    await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
-    await this.props.fetchInitialChannels(this.props.user.twitchId)
+    if (this.props.isLoggedIn) {
+      await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
+      await this.props.fetchInitialChannels(this.props.user.twitchId)
+    }
   }
 
   handleClick(channelName) {
@@ -71,7 +111,7 @@ class Featured extends Component {
     })
   }
   async getChannelsForThisGame(event, {value}) {
-    let findGame = value.split(' ').join(',')
+    let findGame = value.split(' ').join('+')
 
     let channelsForThisGame = await axios.get(
       `https://api.twitch.tv/kraken/streams?game=${findGame}`,
@@ -83,51 +123,108 @@ class Featured extends Component {
       displayChannelsFromTopGames: channelsForThisGame.data.streams
     })
   }
+  handleOpen = () => this.setState({modalOpen: true})
+
+  handleClose = () => this.setState({modalOpen: false})
 
   render() {
-    console.log('this.props.userTwitchInfo: ', this.props.userTwitchInfo)
+    let windowWidth = window.innerWidth
+
+    let randStreamWidth = Math.floor((windowWidth - windowWidth * 0.5) / 5)
+    let randStreamHeight = randStreamWidth * 1.5
 
     return (
       <div>
-        <div className="login-welcome-title">
-          <h3>Welcome, {this.props.user.name}</h3>
-        </div>
-        <h4>Your followed channels: </h4>
         <div>
-          <Grid>
-            {this.props.userTwitchInfo.channels.length > 0 &&
-              this.props.userTwitchInfo.channels.map((ch, idx) => (
-                <div key={ch._data.channel._id}>
+          {this.props.isLoggedIn && (
+            <div>
+              <p className="login-welcome-title">
+                <h3>Welcome, {this.props.user.name}</h3>
+              </p>
+              <Modal
+                trigger={
+                  <div className="login-user-selfview-menu">
+                    <Button onClick={this.handleOpen}>View My Profile</Button>
+                  </div>
+                }
+                open={this.state.modalOpen}
+                onClose={this.handleClose}
+                // basic
+                // size='small'
+              >
+                <Header content={`Profile of ${this.props.user.name}:`} />
+                <Modal.Content image>
                   <Image
-                    size="small"
-                    src={ch._data.channel.logo}
-                    className={
-                      this.state.selected.includes(ch._data.channel.name)
-                        ? 'selected'
-                        : 'unselected'
-                    }
-                    onClick={() => this.handleClick(ch._data.channel.name)}
+                    wrapped
+                    size="medium"
+                    src={this.props.userTwitchInfo.twitchUser.logo}
                   />
-                  {this.props.userTwitchInfo.isOnline[idx] ? (
-                    <div>
-                      <Button size="mini" color="green">
-                        Online
-                      </Button>
-                    </div>
+                  <Modal.Description>
+                    <p>Name: {this.props.userTwitchInfo.twitchUser.name}</p>
+                    <p>Twitch ID: {this.props.userTwitchInfo.twitchUser._id}</p>
+                    <p>Type: {this.props.userTwitchInfo.twitchUser.type}</p>
+                    <p>
+                      Created at:{' '}
+                      {this.props.userTwitchInfo.twitchUser.created_at}
+                    </p>
+                    <p>
+                      Updated at:{' '}
+                      {this.props.userTwitchInfo.twitchUser.updated_at}
+                    </p>
+                  </Modal.Description>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color="green" onClick={this.handleClose} inverted>
+                    Close Profile
+                  </Button>
+                </Modal.Actions>
+              </Modal>
+              <h4>Your followed channels: </h4>
+              <div>
+                <Grid>
+                  {this.props.userTwitchInfo.channels.length > 0 ? (
+                    this.props.userTwitchInfo.channels.map((ch, idx) => (
+                      <div key={ch._data.channel._id}>
+                        <Image
+                          size="small"
+                          src={ch._data.channel.logo}
+                          className={
+                            this.state.selected.includes(ch._data.channel.name)
+                              ? 'selected'
+                              : 'unselected'
+                          }
+                          onClick={() =>
+                            this.handleClick(ch._data.channel.name)
+                          }
+                        />
+                        {this.props.userTwitchInfo.isOnline[idx] ? (
+                          <div>
+                            <Button size="mini" color="green">
+                              Online
+                            </Button>
+                          </div>
+                        ) : (
+                          <div>
+                            <Button size="mini">Offline</Button>
+                          </div>
+                        )}
+                      </div>
+                    ))
                   ) : (
                     <div>
-                      <Button size="mini">Offline</Button>
+                      <Image src="/image/loading.gif" />
                     </div>
                   )}
-                </div>
-              ))}
-          </Grid>
+                </Grid>
+              </div>
+              <Divider hidden />
+            </div>
+          )}
         </div>
-        <Divider hidden />
         <h4>Top streamers</h4>
         <Divider hidden />
         <Grid>
-          {this.state.featuredVids.map(element => {
+          {this.state.testArray.map(element => {
             return (
               <Image
                 size="small"
@@ -191,6 +288,7 @@ class Featured extends Component {
 
 const mapStateToProps = state => {
   return {
+    isLoggedIn: !!state.user.id,
     user: state.user,
     userTwitchInfo: state.userTwitchInfo
   }

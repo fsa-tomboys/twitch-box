@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Multistream} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -15,3 +15,5 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.post('/association/:userId/:multistreamId')

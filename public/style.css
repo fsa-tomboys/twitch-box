@@ -86,8 +86,20 @@ form div {
 .login-welcome-title {
   display: flex;
   justify-content: center;
-  margin: 0.2rem;
+  padding: 1rem;
 }
+
+.login-user-selfview-menu {
+  display: flex;
+  justify-content: center;
+}
+
+.login-link-twitch {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
 .main-layout-container {
   display: flex;
 }
@@ -176,4 +188,17 @@ form div {
 .chat-container {
   width: 360px;
   background: black;
+}
+
+.landing-main-container {
+  max-width: 90%;
+  margin: auto;
+  justify-content: center;
+}
+.random-single-stream-outer {
+  justify-content: center;
+}
+
+.followed-channels-container {
+  justify-content: justify;
 }
