@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Input, Modal, Form} from 'semantic-ui-react'
+import {Button, Input, Modal, Form, Label} from 'semantic-ui-react'
 
 const MultistreamSidebar = props => {
   return (
@@ -36,17 +36,11 @@ const MultistreamSidebar = props => {
           size="tiny"
         >
           <Modal.Header>
-            Click the link below to copy it to your clipboard so you can share
+            Copy the link below and share it with your friends! so you can share
             it!
           </Modal.Header>
           <Modal.Description className="customize-form-box">
-            <Button
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href)
-              }}
-            >
-              {window.location.href}
-            </Button>
+            <Label>{window.location.href}</Label>
           </Modal.Description>
         </Modal>
       </div>
