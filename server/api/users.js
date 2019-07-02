@@ -16,4 +16,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/association/:userId/:multistreamId')
+router.post('/association/:userId/:multistreamId', async (req, res, next) => {
+  try {
+    let theMultistream = await Multistream.findByPk(req.params.multistreamId)
+    let theUser = await User.findByPk(req.params.userId)
+    await theUser.addMultistream(theMultistream)
+    let userToReturn = await User.findByPk(req.params.userId, {
+      include: [Multistream]
+    })
+    res.json(userToReturn)
+  } catch (error) {
+    next(error)
+  }
+})
