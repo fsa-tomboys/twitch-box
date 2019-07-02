@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-  background: #6441a5;
 }
 
 a {
@@ -89,15 +88,8 @@ form div {
   justify-content: center;
   margin: 0.2rem;
 }
-
-.main-layout-inner {
+.main-layout-container {
   display: flex;
-}
-
-.landing-main-container {
-  max-width: 90%;
-  margin: auto;
-  justify-content: center;
 }
 .all-streams-container {
   display: flex;
@@ -151,11 +143,9 @@ form div {
 
 .selected {
   opacity: 0.4;
-  padding: 0;
 }
 .unselected {
   opacity: 1;
-  padding: 0;
 }
 
 .single-stream-overlay-icon-box {
@@ -187,12 +177,16 @@ form div {
   width: 360px;
   background: black;
 }
-.random-single-stream-outer {
-  display: flex;
+
+.landing-main-container {
+  max-width: 90%;
   margin: auto;
   justify-content: center;
 }
-.random-single-stream-inner {
-  /* border: 2px solid black; */
-  margin: 0;
+.random-single-stream-outer {
+  justify-content: center;
+}
+
+.followed-channels-container {
+  justify-content: justify;
 }

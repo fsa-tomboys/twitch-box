@@ -5,6 +5,7 @@ import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
 import RandomMultistream from './RandomMultiStream'
+import {ECONNABORTED} from 'constants'
 
 function randomNumerGenerator(maxNum) {
   let randNums = []
@@ -21,7 +22,7 @@ class Featured extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      featuredVids: [],
+      testArray: [],
       topGames: [],
       displayChannelsFromTopGames: [],
       selected: [],
@@ -31,6 +32,7 @@ class Featured extends Component {
     this.routeChange = this.routeChange.bind(this)
     this.resetState = this.resetState.bind(this)
     this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
+    this.goToRandomMultistream = this.goToRandomMultistream.bind(this)
   }
   routeChange() {
     this.props.history.push({
@@ -40,6 +42,18 @@ class Featured extends Component {
     axios.post('/api/streams', {
       link: '/home?list=' + this.state.selected.join('-')
     })
+
+    // console.log('button clicked',this.state)
+  }
+  goToRandomMultistream() {
+    let newRandomStream = randomNumerGenerator(3)
+
+    newRandomStream.map(channelNum =>
+      this.state.selected.push(
+        this.state.testArray[channelNum].stream.channel.name
+      )
+    )
+    this.routeChange()
   }
   resetState() {
     this.setState({
@@ -63,14 +77,13 @@ class Featured extends Component {
     let topGamesToDisplay = topGames.data.data
 
     this.setState({
-      featuredVids: featuredChannels.data.featured,
-      topGames: topGamesToDisplay
+      testArray: featuredChannels.data.featured,
+      topGames: topGamesToDisplay,
+      randomChannels: randomNumerGenerator(5)
     })
 
     await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
     await this.props.fetchInitialChannels(this.props.user.twitchId)
-
-    this.setState({randomChannels: randomNumerGenerator(5)})
   }
 
   handleClick(channelName) {
@@ -111,7 +124,7 @@ class Featured extends Component {
           <h3>Welcome, {this.props.user.name}!</h3>
         </div>
         <h4>Your followed channels: </h4>
-        <div>
+        <div className="followed-channels-container">
           <Grid>
             {this.props.userTwitchInfo.channels.length > 0 &&
               this.props.userTwitchInfo.channels.map((ch, idx) => (
@@ -128,13 +141,11 @@ class Featured extends Component {
                   />
                   {this.props.userTwitchInfo.isOnline[idx] ? (
                     <div>
-                      <Button size="mini" color="green">
-                        Online
-                      </Button>
+                      <span>Live</span>
                     </div>
                   ) : (
                     <div>
-                      <Button size="mini">Offline</Button>
+                      <span>Offline</span>
                     </div>
                   )}
                 </div>
@@ -149,10 +160,8 @@ class Featured extends Component {
               this.state.randomChannels.map((channelNum, index) => {
                 return (
                   <RandomMultistream
-                    name={
-                      this.state.featuredVids[channelNum].stream.channel.name
-                    }
-                    key={this.state.featuredVids[channelNum]._id}
+                    name={this.state.testArray[channelNum].stream.channel.name}
+                    key={this.state.testArray[channelNum]._id}
                     index={index}
                     width={randStreamWidth}
                     height={randStreamHeight}
@@ -164,11 +173,13 @@ class Featured extends Component {
             )}
           </Grid>
         </div>
-        <Button primary>Take me to random multistream</Button>
+        <Button primary onClick={this.goToRandomMultistream}>
+          Go to random multistream
+        </Button>
         <h4>Top streamers</h4>
         <Divider hidden />
         <Grid>
-          {this.state.featuredVids.map(element => {
+          {this.state.testArray.map(element => {
             return (
               <Image
                 size="small"
