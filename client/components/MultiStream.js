@@ -45,6 +45,7 @@ export class MultiStream extends Component {
     let index = this.state.testArray.indexOf(evt.target.textContent)
     this.setState({index})
   }
+
   render() {
     return (
       <div>
@@ -56,7 +57,6 @@ export class MultiStream extends Component {
               addStream={this.addStream}
             />
           )}
-
           <div className="all-streams-container">
             {this.state.testArray.map((element, index) => (
               <SingleStreamComponent
@@ -64,6 +64,8 @@ export class MultiStream extends Component {
                 streamNum={index}
                 totalNumber={this.state.testArray.length}
                 key={index}
+                handleSelect={this.handleSelect}
+                remove={this.remove}
               />
             ))}
           </div>
