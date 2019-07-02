@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
+import RandomMultistream from './RandomMultiStream'
 
 function randomNumerGenerator(maxNum) {
   let randNums = []
