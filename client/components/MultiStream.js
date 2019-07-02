@@ -64,7 +64,6 @@ export class MultiStream extends Component {
               addStream={this.addStream}
             />
           )}
-
           <div className="all-streams-container">
             {this.state.testArray.map((element, index) => (
               <SingleStreamComponent
@@ -73,6 +72,8 @@ export class MultiStream extends Component {
                 totalNumber={this.state.testArray.length}
                 handleChatClick={this.handleChatClick}
                 key={index}
+                handleSelect={this.handleSelect}
+                remove={this.remove}
               />
             ))}
           </div>

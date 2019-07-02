@@ -49,7 +49,13 @@ class SingleStreamComponent extends Component {
               <Icon name="arrow alternate circle up outline" size="large" />{' '}
             </a>
             <a className="single-stream-link" href="#">
-              <Icon name="user outline" size="large" />{' '}
+              <Icon
+                name="user outline"
+                size="large"
+                onClick={() => {
+                  window.open(`https://twitch.tv/${this.props.name}`)
+                }}
+              />{' '}
             </a>
             <a className="single-stream-link" href="#">
               <Icon name="sound" size="large" />
@@ -65,7 +71,11 @@ class SingleStreamComponent extends Component {
               <Icon name="refresh" size="large" />
             </a>
             <a className="single-stream-link" href="#">
-              <Icon name="window close" size="large" />
+              <Icon
+                name="window close"
+                size="large"
+                onClick={() => this.props.remove(this.props.name)}
+              />
             </a>
           </div>
         </div>

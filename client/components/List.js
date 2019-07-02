@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
-import {Button, Card, Image} from 'semantic-ui-react'
+import {Button, Card, Image, Search} from 'semantic-ui-react'
 import axios from 'axios'
+import {MultiStream} from './Multistream'
 
 export class List extends Component {
   constructor() {
@@ -16,9 +17,11 @@ export class List extends Component {
       streams: fetchedStreams.data
     })
   }
+
   render() {
     return this.state.streams[0] ? (
       <div>
+        <div />
         {this.state.streams.map(stream => (
           <div key={stream.id}>
             <Card>

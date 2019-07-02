@@ -14,7 +14,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <div className="nav-function-items">
               <Link to="/featured">Featured Streams</Link>
               <Link to="/customize">Customize Streams</Link>
-              <Link to="/list">View Created Multistreams</Link>
+              <Link to="/list">View Created Streams</Link>
             </div>
             <span className="top-header">
               <h1>TWITCH BOX</h1>
