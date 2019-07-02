@@ -2,7 +2,7 @@ const router = require('express').Router()
 module.exports = router
 
 router.use('/users', require('./users'))
-router.use('/streams', require('./multistreams'))
+router.use('/multistreams', require('./multistreams'))
 router.use('/usertwitchinfo', require('./usertwitchinfo'))
 
 router.use((req, res, next) => {

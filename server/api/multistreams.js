@@ -11,6 +11,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
 router.post('/', async (req, res, next) => {
   try {
     let newStream = await Multistream.create(req.body)

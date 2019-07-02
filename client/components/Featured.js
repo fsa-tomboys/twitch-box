@@ -35,7 +35,7 @@ class Featured extends Component {
       pathname: '/home?list=' + this.state.selected.join('-'),
       state: {testArray: this.state.selected}
     })
-    axios.post('/api/streams', {
+    axios.post('/api/multistreams', {
       link: '/home?list=' + this.state.selected.join('-')
     })
   }
@@ -112,7 +112,7 @@ class Featured extends Component {
               </p>
               <Modal
                 trigger={
-                  <div className="login-welcome-title">
+                  <div className="login-user-selfview-menu">
                     <Button onClick={this.handleOpen}>View My Profile</Button>
                   </div>
                 }
