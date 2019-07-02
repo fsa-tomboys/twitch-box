@@ -57,7 +57,6 @@ export class MultiStream extends Component {
               addStream={this.addStream}
             />
           )}
-
           <div className="all-streams-container">
             {this.state.testArray.map((element, index) => (
               <SingleStreamComponent
