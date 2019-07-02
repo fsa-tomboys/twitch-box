@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {Multistream} = require('../db/models')
-module.exports = router
 
 // GET /api/multistreams
 router.get('/', async (req, res, next) => {
@@ -43,3 +42,18 @@ router.put('/:multistreamId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.delete('/:multistreamId', async (req, res, next) => {
+  try {
+    await Multistream.destroy({
+      where: {
+        id: req.params.multistreamId
+      }
+    })
+    res.status(204).end()
+  } catch (error) {
+    next(error)
+  }
+})
+
+module.exports = router

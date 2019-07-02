@@ -13,6 +13,7 @@ export class MultiStream extends Component {
     this.handleSelect = this.handleSelect.bind(this)
     this.remove = this.remove.bind(this)
     this.addStream = this.addStream.bind(this)
+    this.handleChatClick = this.handleChatClick.bind(this)
   }
   remove(element) {
     let arr = this.state.testArray
@@ -45,6 +46,13 @@ export class MultiStream extends Component {
     let index = this.state.testArray.indexOf(evt.target.textContent)
     this.setState({index})
   }
+
+  handleChatClick(name) {
+    console.log('name: ', name)
+    let index = this.state.testArray.indexOf(name)
+    this.setState({index})
+  }
+
   render() {
     return (
       <div>
@@ -63,6 +71,7 @@ export class MultiStream extends Component {
                 name={element}
                 streamNum={index}
                 totalNumber={this.state.testArray.length}
+                handleChatClick={this.handleChatClick}
                 key={index}
               />
             ))}
