@@ -48,3 +48,11 @@ router.get('/channels/:userId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.post('/clip', async (req, res, next) => {
+  try {
+    res.json('hi this is a test')
+  } catch (err) {
+    next(err)
+  }
+})

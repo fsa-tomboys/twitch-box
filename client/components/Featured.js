@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
+import TwitchClient from 'twitch'
 import {
   Grid,
   Image,
