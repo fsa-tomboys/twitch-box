@@ -7,6 +7,7 @@ class SingleStreamComponent extends Component {
     let height
     let streamNumber = this.props.streamNum
     let totalStreams = this.props.totalNumber
+    let handleChatClick = this.props.handleChatClick
     if (streamNumber === 0) {
       let element = document.getElementsByClassName('single-stream-outer')
 
@@ -59,7 +60,11 @@ class SingleStreamComponent extends Component {
             <a className="single-stream-link" href="#">
               <Icon name="sound" size="large" />
             </a>
-            <a className="single-stream-link" href="#">
+            <a
+              className="single-stream-link"
+              href="#"
+              onClick={() => handleChatClick(this.props.name)}
+            >
               <Icon name="chat" size="large" />
             </a>
             <a className="single-stream-link" href="#">
