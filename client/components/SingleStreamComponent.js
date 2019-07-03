@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Icon} from 'semantic-ui-react'
-
+import socket from '../socket'
 class SingleStreamComponent extends Component {
   render() {
     let width
@@ -40,7 +40,7 @@ class SingleStreamComponent extends Component {
         console.log('There must be an error.')
         break
     }
-
+    const uniqueCanvas = this.props.name + '-canvas'
     return (
       <div className="single-stream-outer">
         <div className="single-stream-overlay-menu">
@@ -67,7 +67,11 @@ class SingleStreamComponent extends Component {
             >
               <Icon name="chat" size="large" />
             </a>
-            <a className="single-stream-link" href="#">
+            <a
+              className="single-stream-link"
+              href="#"
+              // onClick={() => socket.emit('displayCanvas', uniqueCanvas)}
+            >
               <Icon name="refresh" size="large" />
             </a>
             <a className="single-stream-link" href="#">
@@ -80,6 +84,7 @@ class SingleStreamComponent extends Component {
           </div>
         </div>
 
+        <div />
         <iframe
           src={`https://player.twitch.tv/?allowfullscreen&channel=${
             this.props.name

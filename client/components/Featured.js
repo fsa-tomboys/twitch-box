@@ -10,7 +10,6 @@ import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
-import TwitchClient from 'twitch'
 
 function randomNumerGenerator(maxNum) {
   let randNums = []
@@ -35,7 +34,7 @@ class Featured extends Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
-    this.resetState = this.resetState.bind(this)
+    this.resetSelected = this.resetSelected.bind(this)
     this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
     this.goToRandomMultistream = this.goToRandomMultistream.bind(this)
   }
@@ -53,16 +52,18 @@ class Featured extends Component {
     }
   }
   goToRandomMultistream() {
-    let newRandomStream = randomNumerGenerator(3)
+    // let newRandomStreamNames = []
 
-    newRandomStream.map(channelNum =>
+    this.state.randomChannels.map(channelNum =>
       this.state.selected.push(
         this.state.testArray[channelNum].stream.channel.name
       )
     )
+    console.log('Random ', this.state.selected)
     this.routeChange()
+    this.resetSelected()
   }
-  resetState() {
+  resetSelected() {
     this.setState({
       selected: []
     })
@@ -86,7 +87,7 @@ class Featured extends Component {
     this.setState({
       testArray: featuredChannels.data.featured,
       topGames: topGamesToDisplay,
-      randomChannels: randomNumerGenerator(5)
+      randomChannels: randomNumerGenerator(4)
     })
     if (this.props.isLoggedIn) {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
@@ -179,6 +180,14 @@ class Featured extends Component {
             </div>
           )}
         </div>
+        <Divider hidden />
+        <Divider hidden />
+
+        <Button primary onClick={this.goToRandomMultistream}>
+          Go to random multistream
+        </Button>
+        <Divider hidden />
+
         <h4>Top streamers</h4>
         <Divider hidden />
         <Grid>
@@ -236,7 +245,7 @@ class Featured extends Component {
         <Divider hidden />
         <Divider hidden />
         <div className="customize-form-buttons-box">
-          <Button onClick={this.resetState}>Clear</Button>
+          <Button onClick={this.resetSelected}>Clear</Button>
           <Button onClick={this.routeChange}>Watch Streams</Button>
         </div>
       </div>
