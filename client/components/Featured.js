@@ -10,7 +10,6 @@ import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
-import TwitchClient from 'twitch'
 
 function randomNumerGenerator(maxNum) {
   let randNums = []
