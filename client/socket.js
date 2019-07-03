@@ -1,6 +1,4 @@
 import io from 'socket.io-client'
-import {SSL_OP_NO_TICKET} from 'constants'
-import {UniqueConstraintError} from 'sequelize/types'
 
 const socket = io(window.location.origin)
 

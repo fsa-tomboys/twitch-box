@@ -84,7 +84,7 @@ class SingleStreamComponent extends Component {
           </div>
         </div>
 
-        <div position="relative">
+        <div>
           <iframe
             src={`https://player.twitch.tv/?allowfullscreen&channel=${
               this.props.name
