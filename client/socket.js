@@ -5,8 +5,10 @@ const socket = io(window.location.origin)
 socket.on('connect', () => {
   console.log('Connected!')
 })
-socket.on('displayCanvas', uniqueCanvas => {
+socket.on('showCanvas', uniqueCanvas => {
+  console.log('canvas is here', uniqueCanvas)
   const canvas = document.getElementById(uniqueCanvas)
+  console.log(canvas)
   const ctx = canvas.getContext('2d')
 
   ctx.fillStyle = 'green'
