@@ -1,19 +1,14 @@
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
-import {
-  Grid,
-  Image,
-  Button,
-  Divider,
-  Select,
-  Modal,
-  Header
-} from 'semantic-ui-react'
+import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
+import {createMultistream, fetchMultistreams} from '../store/multistreams'
+import {createUserMultistreamAssociation} from '../store/users'
 import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
+import ProfileModal from './modals/profileModal'
 
 function randomNumerGenerator(maxNum) {
   let randNums = []
@@ -34,27 +29,26 @@ class Featured extends Component {
       topGames: [],
       displayChannelsFromTopGames: [],
       selected: [],
-      modalOpen: false,
       randomChannels: []
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
     this.resetState = this.resetState.bind(this)
     this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
-    this.handleOpen = this.handleOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this)
     this.goToRandomMultistream = this.goToRandomMultistream.bind(this)
   }
-  routeChange() {
+  async routeChange() {
     this.props.history.push({
       pathname: '/home?list=' + this.state.selected.join('-'),
       state: {testArray: this.state.selected}
     })
-    axios.post('/api/multistreams', {
-      link: '/home?list=' + this.state.selected.join('-')
-    })
-
-    // console.log('button clicked',this.state)
+    // For a logged in user, save the multistream into database
+    if (isLoggedIn) {
+      await this.props.addMultistream({
+        link: '/home?list=' + this.state.selected.join('-'),
+        userId: this.props.user.id
+      })
+    }
   }
   goToRandomMultistream() {
     let newRandomStream = randomNumerGenerator(3)
@@ -95,6 +89,7 @@ class Featured extends Component {
     if (this.props.isLoggedIn) {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
       await this.props.fetchInitialChannels(this.props.user.twitchId)
+      await this.props.fetchInitialMs(this.props.user.id)
     }
   }
 
@@ -123,9 +118,6 @@ class Featured extends Component {
       displayChannelsFromTopGames: channelsForThisGame.data.streams
     })
   }
-  handleOpen = () => this.setState({modalOpen: true})
-
-  handleClose = () => this.setState({modalOpen: false})
 
   render() {
     let windowWidth = window.innerWidth
@@ -138,47 +130,10 @@ class Featured extends Component {
         <div>
           {this.props.isLoggedIn && (
             <div>
-              <p className="login-welcome-title">
+              <div className="login-welcome-title">
                 <h3>Welcome, {this.props.user.name}</h3>
-              </p>
-              <Modal
-                trigger={
-                  <div className="login-user-selfview-menu">
-                    <Button onClick={this.handleOpen}>View My Profile</Button>
-                  </div>
-                }
-                open={this.state.modalOpen}
-                onClose={this.handleClose}
-                // basic
-                // size='small'
-              >
-                <Header content={`Profile of ${this.props.user.name}:`} />
-                <Modal.Content image>
-                  <Image
-                    wrapped
-                    size="medium"
-                    src={this.props.userTwitchInfo.twitchUser.logo}
-                  />
-                  <Modal.Description>
-                    <p>Name: {this.props.userTwitchInfo.twitchUser.name}</p>
-                    <p>Twitch ID: {this.props.userTwitchInfo.twitchUser._id}</p>
-                    <p>Type: {this.props.userTwitchInfo.twitchUser.type}</p>
-                    <p>
-                      Created at:{' '}
-                      {this.props.userTwitchInfo.twitchUser.created_at}
-                    </p>
-                    <p>
-                      Updated at:{' '}
-                      {this.props.userTwitchInfo.twitchUser.updated_at}
-                    </p>
-                  </Modal.Description>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button color="green" onClick={this.handleClose} inverted>
-                    Close Profile
-                  </Button>
-                </Modal.Actions>
-              </Modal>
+              </div>
+              <ProfileModal />
               <h4>Your followed channels: </h4>
               <div>
                 <Grid>
@@ -290,14 +245,19 @@ const mapStateToProps = state => {
   return {
     isLoggedIn: !!state.user.id,
     user: state.user,
-    userTwitchInfo: state.userTwitchInfo
+    userTwitchInfo: state.userTwitchInfo,
+    multistreams: state.multistreams
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id)),
-    fetchInitialChannels: id => dispatch(fetchUserChannels(id))
+    fetchInitialChannels: id => dispatch(fetchUserChannels(id)),
+    fetchInitialMs: userId => dispatch(fetchMultistreams(userId)),
+    addMultistream: ms => dispatch(createMultistream(ms)),
+    associateUserMs: (userId, msId) =>
+      dispatch(createUserMultistreamAssociation(userId, msId))
   }
 }
 

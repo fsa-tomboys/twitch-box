@@ -7,8 +7,8 @@ const Multistream = require('./multistream')
  *
  *    BlogPost.belongsTo(User)
  */
-User.belongsToMany(Multistream, {through: 'User_Multistream'})
-Multistream.belongsToMany(User, {through: 'User_Multistream'})
+User.hasMany(Multistream)
+Multistream.belongsTo(User)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
