@@ -9,7 +9,7 @@ router.get('/:userId', async (req, res, next) => {
         userId: req.params.userId
       }
     })
-    console.log(streams)
+    // console.log(streams)
     res.json(streams)
   } catch (err) {
     next(err)
