@@ -3,8 +3,21 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const NavbarComponent = ({handleClick, isLoggedIn}) => (
   <div>
     <nav>
       <div>
@@ -63,12 +76,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(NavbarComponent)
 
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
+NavbarComponent.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

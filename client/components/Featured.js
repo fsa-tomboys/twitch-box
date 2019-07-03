@@ -135,8 +135,7 @@ class Featured extends Component {
               <div className="login-welcome-title">
                 <h3>Welcome, {this.props.user.name}</h3>
               </div>
-              <ProfileModal />
-              <MultistreamModal />
+              <ProfileModal /> <MultistreamModal />
               <h4>Your followed channels: </h4>
               <div>
                 <Grid>
