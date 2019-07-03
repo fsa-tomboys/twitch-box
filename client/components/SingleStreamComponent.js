@@ -70,7 +70,7 @@ class SingleStreamComponent extends Component {
             <a
               className="single-stream-link"
               href="#"
-              onClick={() => socket.emit('displayCanvas', uniqueCanvas)}
+              // onClick={() => socket.emit('displayCanvas', uniqueCanvas)}
             >
               <Icon name="refresh" size="large" />
             </a>
@@ -84,20 +84,19 @@ class SingleStreamComponent extends Component {
           </div>
         </div>
 
-        <div>
-          <iframe
-            src={`https://player.twitch.tv/?allowfullscreen&channel=${
-              this.props.name
-            }`}
-            width={width}
-            height={height}
-            frameBorder="0"
-            scrolling="no"
-            allow="autoplay; fullscreen"
-            allowFullScreen=""
-            className=""
-          />
-        </div>
+        <div />
+        <iframe
+          src={`https://player.twitch.tv/?allowfullscreen&channel=${
+            this.props.name
+          }`}
+          width={width}
+          height={height}
+          frameBorder="0"
+          scrolling="no"
+          allow="autoplay; fullscreen"
+          allowFullScreen=""
+          className=""
+        />
       </div>
     )
   }

@@ -6,12 +6,7 @@ socket.on('connect', () => {
   console.log('Connected!')
 })
 socket.on('showCanvas', uniqueCanvas => {
-  console.log('canvas is here', uniqueCanvas)
   const canvas = document.getElementById(uniqueCanvas)
-  console.log(canvas)
-  const ctx = canvas.getContext('2d')
-
-  ctx.fillStyle = 'green'
-  ctx.fillRect(10, 10, 150, 100)
+  canvas.textContent = Number(canvas.textContent) + 1
 })
 export default socket
