@@ -103,13 +103,6 @@ class Featured extends Component {
       newArr.push(channelName)
     }
 
-    const client = await TwitchClient.withCredentials(
-      'bmeab5l8jv7arn07ucv4zywa22qrl9',
-      this.props.user.token
-    )
-    const clipId = await client.helix.clips.createClip({channelId: '125328655'})
-    console.log('clipId: ', clipId)
-
     this.setState({
       selected: newArr
     })
