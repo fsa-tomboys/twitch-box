@@ -12,7 +12,7 @@ export class List extends Component {
     }
   }
   async componentDidMount() {
-    let fetchedStreams = await axios.get('/api/streams')
+    let fetchedStreams = await axios.get('/api/multistreams')
     this.setState({
       streams: fetchedStreams.data
     })

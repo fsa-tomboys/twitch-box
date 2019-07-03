@@ -11,7 +11,7 @@ if (!process.env.TWITCH_CLIENT_ID || !process.env.TWITCH_CLIENT_SECRET) {
     clientID: process.env.TWITCH_CLIENT_ID,
     clientSecret: process.env.TWITCH_CLIENT_SECRET,
     callbackURL: process.env.TWITCH_CALLBACK,
-    scope: ['user_read', 'channel_read']
+    scope: ['user_read', 'channel_read', 'clips:edit']
   }
 
   const strategy = new twitchStrategy(
