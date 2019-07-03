@@ -9,6 +9,8 @@ import {createUserMultistreamAssociation} from '../store/users'
 import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
 import ProfileModal from './modals/profileModal'
+import MultistreamModal from './modals/multistreamModal'
+import TwitchClient from 'twitch'
 
 function randomNumerGenerator(maxNum) {
   let randNums = []
@@ -43,7 +45,7 @@ class Featured extends Component {
       state: {testArray: this.state.selected}
     })
     // For a logged in user, save the multistream into database
-    if (isLoggedIn) {
+    if (this.props.isLoggedIn) {
       await this.props.addMultistream({
         link: '/home?list=' + this.state.selected.join('-'),
         userId: this.props.user.id
@@ -93,7 +95,7 @@ class Featured extends Component {
     }
   }
 
-  handleClick(channelName) {
+  async handleClick(channelName) {
     let newArr = this.state.selected
     if (newArr.includes(channelName)) {
       newArr.splice(newArr.indexOf(channelName), 1)
@@ -134,6 +136,7 @@ class Featured extends Component {
                 <h3>Welcome, {this.props.user.name}</h3>
               </div>
               <ProfileModal />
+              <MultistreamModal />
               <h4>Your followed channels: </h4>
               <div>
                 <Grid>
