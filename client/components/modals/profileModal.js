@@ -13,7 +13,6 @@ class ProfileModal extends React.Component {
   handleClose = () => this.setState({modalOpen: false})
 
   render() {
-    console.log('steping into profile modal: ')
     return (
       <Modal
         trigger={

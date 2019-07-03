@@ -5,11 +5,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import userTwitchInfo from './usertwitchinfo'
 import multistreams from './multistreams'
+import users from './users'
 
 const reducer = combineReducers({
   user,
   userTwitchInfo,
-  multistreams
+  multistreams,
+  users
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -20,3 +22,4 @@ export default store
 export * from './user'
 export * from './usertwitchinfo'
 export * from './multistreams'
+export * from './users'

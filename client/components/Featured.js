@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
+import {createMultistream, fetchMultistreams} from '../store/multistreams'
+import {createUserMultistreamAssociation} from '../store/users'
 import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
 import ProfileModal from './modals/profileModal'
@@ -35,16 +37,18 @@ class Featured extends Component {
     this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
     this.goToRandomMultistream = this.goToRandomMultistream.bind(this)
   }
-  routeChange() {
+  async routeChange() {
     this.props.history.push({
       pathname: '/home?list=' + this.state.selected.join('-'),
       state: {testArray: this.state.selected}
     })
-    axios.post('/api/multistreams', {
-      link: '/home?list=' + this.state.selected.join('-')
-    })
-
-    // console.log('button clicked',this.state)
+    // For a logged in user, save the multistream into database
+    if (isLoggedIn) {
+      await this.props.addMultistream({
+        link: '/home?list=' + this.state.selected.join('-'),
+        userId: this.props.user.id
+      })
+    }
   }
   goToRandomMultistream() {
     let newRandomStream = randomNumerGenerator(3)
@@ -85,6 +89,7 @@ class Featured extends Component {
     if (this.props.isLoggedIn) {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
       await this.props.fetchInitialChannels(this.props.user.twitchId)
+      await this.props.fetchInitialMs(this.props.user.id)
     }
   }
 
@@ -240,14 +245,19 @@ const mapStateToProps = state => {
   return {
     isLoggedIn: !!state.user.id,
     user: state.user,
-    userTwitchInfo: state.userTwitchInfo
+    userTwitchInfo: state.userTwitchInfo,
+    multistreams: state.multistreams
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id)),
-    fetchInitialChannels: id => dispatch(fetchUserChannels(id))
+    fetchInitialChannels: id => dispatch(fetchUserChannels(id)),
+    fetchInitialMs: userId => dispatch(fetchMultistreams(userId)),
+    addMultistream: ms => dispatch(createMultistream(ms)),
+    associateUserMs: (userId, msId) =>
+      dispatch(createUserMultistreamAssociation(userId, msId))
   }
 }
 

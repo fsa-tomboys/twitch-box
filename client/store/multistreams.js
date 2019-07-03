@@ -32,10 +32,12 @@ export const updateMultistream = multistream => ({
 })
 
 // define thunk method
-export const fetchMultistreams = () => {
+export const fetchMultistreams = userId => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/api/multistreams')
+      console.log('userId: ', userId)
+      const {data} = await axios.get(`/api/multistreams/${userId}`)
+      console.log('ms data: ', data)
       dispatch(setMultiStreams(data))
     } catch (error) {
       console.log('Error inside thunk method fetchMultistreams: ', error)
