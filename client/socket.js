@@ -6,6 +6,6 @@ socket.on('connect', () => {
   console.log('Connected!')
 })
 socket.on('clicked', () => {
-  console.log('item was clicked')
+  console.log(window.location.href)
 })
 export default socket
