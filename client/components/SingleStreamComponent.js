@@ -40,7 +40,7 @@ class SingleStreamComponent extends Component {
         console.log('There must be an error.')
         break
     }
-
+    const uniqueCanvas = this.props.name + '-canvas'
     return (
       <div className="single-stream-outer">
         <div className="single-stream-overlay-menu">
@@ -70,7 +70,7 @@ class SingleStreamComponent extends Component {
             <a
               className="single-stream-link"
               href="#"
-              onClick={() => socket.emit('onClick')}
+              onClick={() => socket.emit('onClick', uniqueCanvas)}
             >
               <Icon name="refresh" size="large" />
             </a>
@@ -83,7 +83,7 @@ class SingleStreamComponent extends Component {
             </a>
           </div>
         </div>
-
+        <canvas id={this.props.name + '-canvas'} />
         <iframe
           src={`https://player.twitch.tv/?allowfullscreen&channel=${
             this.props.name
