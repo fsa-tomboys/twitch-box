@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Icon} from 'semantic-ui-react'
-
+import socket from '../socket'
 class SingleStreamComponent extends Component {
   render() {
     let width
@@ -67,7 +67,11 @@ class SingleStreamComponent extends Component {
             >
               <Icon name="chat" size="large" />
             </a>
-            <a className="single-stream-link" href="#">
+            <a
+              className="single-stream-link"
+              href="#"
+              onClick={() => socket.emit('onClick')}
+            >
               <Icon name="refresh" size="large" />
             </a>
             <a className="single-stream-link" href="#">

@@ -10,7 +10,7 @@ import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
-import socket from '../socket'
+
 function randomNumerGenerator(maxNum) {
   let randNums = []
   while (randNums.length < maxNum) {
@@ -101,7 +101,7 @@ class Featured extends Component {
     } else {
       newArr.push(channelName)
     }
-    socket.emit('onClick')
+
     this.setState({
       selected: newArr
     })
