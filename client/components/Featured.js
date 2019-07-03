@@ -103,14 +103,19 @@ class Featured extends Component {
     }
   }
 
-  handleClick(channelName) {
+  async handleClick(channelName) {
     let newArr = this.state.selected
     if (newArr.includes(channelName)) {
       newArr.splice(newArr.indexOf(channelName), 1)
     } else {
       newArr.push(channelName)
     }
-
+    // const client = await TwitchClient.withCredentials(
+    //   'bmeab5l8jv7arn07ucv4zywa22qrl9',
+    //   'vq0l7cszgmuvs86ce9uirwwfcc2u7c'
+    // )
+    // const clipId = await client.helix.clips.createClip({channelId: '31239503'})
+    // console.log(clipId)
     this.setState({
       selected: newArr
     })
