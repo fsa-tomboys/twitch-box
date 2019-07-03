@@ -1,12 +1,15 @@
 const router = require('express').Router()
 const {Multistream} = require('../db/models')
-module.exports = router
 
 // GET /api/multistreams
-router.get('/', async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   try {
-    const streams = await Multistream.findAll({})
-    console.log(streams)
+    const streams = await Multistream.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    // console.log(streams)
     res.json(streams)
   } catch (err) {
     next(err)
@@ -43,3 +46,18 @@ router.put('/:multistreamId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.delete('/:multistreamId', async (req, res, next) => {
+  try {
+    await Multistream.destroy({
+      where: {
+        id: req.params.multistreamId
+      }
+    })
+    res.status(204).end()
+  } catch (error) {
+    next(error)
+  }
+})
+
+module.exports = router
