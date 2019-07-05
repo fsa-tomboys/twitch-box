@@ -42,6 +42,7 @@ class Routes extends Component {
         {this.props.location.search.includes('name') && (
           <Route path="/widget" component={Widget} />
         )}
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
