@@ -39,7 +39,6 @@ export class MultiStream extends Component {
     this.setState({
       testArray: newArr
     })
-    console.log('new array, ', newArr)
     this.props.history.push({
       pathname: '/home?list=' + newArr.join('-')
     })
@@ -93,7 +92,7 @@ export class MultiStream extends Component {
 
   render() {
     this.getChannelId(this.state.testArray)
-    console.log(this.props)
+
     return (
       <div>
         <div className="main-layout-container">

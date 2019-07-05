@@ -30,7 +30,6 @@ class MultistreamSidebar extends Component {
   }
   // console.log('sidebar props ', props)
   render() {
-    console.log('props in sidebar', this.props)
     return (
       <div className="multistream-sidebar">
         <Modal
@@ -88,7 +87,6 @@ class MultistreamSidebar extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('STATE', state)
   return {
     userTwitchInfo: state.user
   }
