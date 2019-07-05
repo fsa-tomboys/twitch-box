@@ -14,6 +14,7 @@ import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
+import CustomizeModal from './modals/customizeModal'
 
 function randomNumerGenerator(maxNum) {
   let randNums = []
@@ -135,11 +136,30 @@ class Featured extends Component {
     return (
       <div>
         <div>
+          {this.props.isLoggedIn ? (
+            <div className="login-welcome-title">
+              <h3>Welcome {this.props.user.name}, select to watch</h3>
+            </div>
+          ) : (
+            <div className="login-welcome-title">
+              <h3>Welcome visitor, select to watch</h3>
+            </div>
+          )}
+          <div className="customize-form-buttons-box">
+            <Button onClick={this.resetSelected}>Clear</Button>
+            <Button
+              onClick={this.routeChange}
+              disabled={this.state.selected.length === 0}
+            >
+              Watch Streams
+            </Button>
+          </div>
+          <Button primary onClick={this.goToRandomMultistream}>
+            Random multistream
+          </Button>
+          <CustomizeModal />
           {this.props.isLoggedIn && (
             <div>
-              <div className="login-welcome-title">
-                <h3>Welcome, {this.props.user.name}</h3>
-              </div>
               <h4>Your followed channels: </h4>
               <div>
                 <Grid>
@@ -182,12 +202,6 @@ class Featured extends Component {
             </div>
           )}
         </div>
-        <Divider hidden />
-        <Divider hidden />
-
-        <Button primary onClick={this.goToRandomMultistream}>
-          Go to random multistream
-        </Button>
         <Divider hidden />
 
         <h4>Top streamers</h4>
@@ -243,13 +257,6 @@ class Featured extends Component {
             <p />
           )}
         </Grid>
-        <Divider hidden />
-        <Divider hidden />
-        <Divider hidden />
-        <div className="customize-form-buttons-box">
-          <Button onClick={this.resetSelected}>Clear</Button>
-          <Button onClick={this.routeChange}>Watch Streams</Button>
-        </div>
       </div>
     )
   }
