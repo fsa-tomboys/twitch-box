@@ -70,7 +70,7 @@ class SingleStreamComponent extends Component {
               href="#"
               onClick={() => socket.emit('displayCanvas', uniqueCanvas)}
             >
-              <Icon name="refresh" size="large" />
+              <Icon name="thumbs up outline" size="large" />
             </a>
             <a className="single-stream-link" href="#">
               <Icon
