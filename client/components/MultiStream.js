@@ -5,7 +5,7 @@ import MultistreamSidebar from './MultistreamSidebar'
 import queryString from 'query-string'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
-
+import TimeMe from 'timeme.js'
 export class MultiStream extends Component {
   constructor() {
     super()
@@ -71,6 +71,10 @@ export class MultiStream extends Component {
     this.setState({
       testArray: arrFromProps || this.props.location.state.testArray
     })
+    TimeMe.initialize({
+      currentPageName: 'my-home-page', // current page
+      idleTimeoutInSeconds: 30 // seconds
+    })
   }
 
   handleSelect(evt) {
@@ -81,6 +85,10 @@ export class MultiStream extends Component {
   handleChatClick(name) {
     let index = this.state.testArray.indexOf(name)
     this.setState({index})
+    console.log(
+      'somewhere over the rainbow',
+      TimeMe.getTimeOnCurrentPageInSeconds()
+    )
   }
 
   render() {

@@ -72,6 +72,7 @@
     "semantic-ui-react": "^0.87.2",
     "sequelize": "^5.3.1",
     "socket.io": "^2.2.0",
+    "timeme.js": "^2.0.3",
     "twitch": "^2.2.8",
     "ws": "^7.0.1"
   },
