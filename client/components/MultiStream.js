@@ -28,12 +28,20 @@ export class MultiStream extends Component {
     this.setState({
       testArray: arr
     })
+    this.props.history.push({
+      pathname: '/home?list=' + this.state.testArray.join('-')
+    })
   }
   addStream(event) {
     let arr = this.state.testArray
     let newArr = arr.concat(event.target.newStream.value)
+
     this.setState({
       testArray: newArr
+    })
+    console.log('new array, ', newArr)
+    this.props.history.push({
+      pathname: '/home?list=' + newArr.join('-')
     })
   }
 
