@@ -7,6 +7,8 @@ socket.on('connect', () => {
 })
 socket.on('showCanvas', uniqueCanvas => {
   const canvas = document.getElementById(uniqueCanvas)
-  canvas.textContent = Number(canvas.textContent) + 1
+  const ctx = canvas.getContext('2d')
+  ctx.fillStyle = 'green'
+  ctx.fillRect(20, 10, 150, 100)
 })
 export default socket
