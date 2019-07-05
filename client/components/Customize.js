@@ -1,5 +1,5 @@
 import React from 'react'
-
+import history from '../history'
 import {Button, Form, Checkbox} from 'semantic-ui-react'
 
 export class Customize extends React.Component {
@@ -23,7 +23,7 @@ export class Customize extends React.Component {
 
   handleChange(evt) {
     // console.log('evt.target.name: ', evt.target.name)
-    console.log('evt.target.value: ', evt.target.value)
+    // console.log('evt.target.value: ', evt.target.value)
     this.setState({[evt.target.name]: evt.target.value})
   }
 
@@ -35,8 +35,9 @@ export class Customize extends React.Component {
         arr.push(this.state[key])
       }
     }
-
-    this.props.history.push({
+    console.log('arr: ', arr)
+    console.log('history: ', history)
+    history.push({
       pathname: '/home?list=' + arr.join('-'),
       state: {testArray: arr}
     })

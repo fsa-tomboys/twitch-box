@@ -10,6 +10,12 @@ export const Chat = props => {
   }))
   return (
     <div className="chat-container">
+      <Select
+        placeholder={array[index]}
+        options={options}
+        onChange={evt => handleSelect(evt)}
+      />
+
       <iframe
         frameBorder="0"
         scrolling="yes"
@@ -25,12 +31,6 @@ export const Chat = props => {
       ))}
       </select>
       </div> */}
-
-      <Select
-        placeholder="Select the Channel for Chat"
-        options={options}
-        onChange={evt => handleSelect(evt)}
-      />
     </div>
   )
 }
