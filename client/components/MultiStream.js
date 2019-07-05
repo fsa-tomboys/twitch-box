@@ -3,6 +3,7 @@ import SingleStreamComponent from './SingleStreamComponent'
 import {Chat} from './chat'
 import MultistreamSidebar from './MultistreamSidebar'
 import queryString from 'query-string'
+import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 export class MultiStream extends Component {
   constructor() {
     super()
@@ -57,6 +58,8 @@ export class MultiStream extends Component {
     return (
       <div>
         <div className="main-layout-container">
+          {/* <div className="multistream-sidebar-wrapper" > */}
+          <div className="create-clip-button" />
           {this.state.testArray.length > 0 && (
             <MultistreamSidebar
               testArray={this.state.testArray}
@@ -64,6 +67,7 @@ export class MultiStream extends Component {
               addStream={this.addStream}
             />
           )}
+          {/* </div> */}
           <div className="all-streams-container">
             {this.state.testArray.map((element, index) => (
               <SingleStreamComponent
