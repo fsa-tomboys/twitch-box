@@ -10,7 +10,7 @@ socket.on('showCanvas', uniqueCanvas => {
   const ctx = canvas.getContext('2d')
   let base_image = new Image()
   base_image.src =
-    'https://upload.wikimedia.org/wikipedia/commons/e/ef/Thumbs_up_font_awesome.svg'
+    'https://upload.wikimedia.org/wikipedia/commons/1/14/Sun_symbol_yellow.svg'
   base_image.onload = function() {
     ctx.drawImage(base_image, 0, 0)
   }
