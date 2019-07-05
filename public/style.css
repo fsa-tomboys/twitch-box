@@ -153,12 +153,15 @@ form div {
   position: relative;
   float: right;
 }
+.multistream-sidebar-wrapper {
+  width: 150px;
+}
 
 .multistream-sidebar {
   position: relative;
   height: 100hw;
   background: black;
-  width: 150px;
+  width: 140px;
 }
 
 .sidebar-edit-btn {

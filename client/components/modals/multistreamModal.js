@@ -17,7 +17,7 @@ class MultistreamModal extends React.Component {
       <Modal
         trigger={
           <div className="login-user-selfview-menu">
-            <Button onClick={this.handleOpen}>Multistream History</Button>
+            <p onClick={this.handleOpen}>Multistream History</p>
           </div>
         }
         open={this.state.modalOpen}

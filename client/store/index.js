@@ -6,12 +6,14 @@ import user from './user'
 import userTwitchInfo from './usertwitchinfo'
 import multistreams from './multistreams'
 import users from './users'
+import clip from './clip'
 
 const reducer = combineReducers({
   user,
   userTwitchInfo,
   multistreams,
-  users
+  users,
+  clip
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -23,3 +25,4 @@ export * from './user'
 export * from './usertwitchinfo'
 export * from './multistreams'
 export * from './users'
+export * from './clip'

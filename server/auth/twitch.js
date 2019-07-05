@@ -28,7 +28,7 @@ if (!process.env.TWITCH_CLIENT_ID || !process.env.TWITCH_CLIENT_SECRET) {
         let theUser = await User.findOne({
           where: {twitchId: profile.id}
         })
-        console.log('theUser: ', theUser)
+        // console.log('theUser: ', theUser)
         if (!theUser) {
           theUser = await User.create({
             name,
@@ -37,7 +37,7 @@ if (!process.env.TWITCH_CLIENT_ID || !process.env.TWITCH_CLIENT_SECRET) {
             twitchId: profile.id
           })
         }
-        console.log('theUser: ', theUser)
+        // console.log('theUser: ', theUser)
         let user = await theUser.update({
           name,
           token,

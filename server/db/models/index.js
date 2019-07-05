@@ -1,4 +1,5 @@
 const User = require('./user')
+const Clip = require('./clip')
 const Multistream = require('./multistream')
 
 /**
@@ -9,6 +10,9 @@ const Multistream = require('./multistream')
  */
 User.hasMany(Multistream)
 Multistream.belongsTo(User)
+
+User.hasMany(Clip)
+Clip.belongsTo(User)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -17,5 +21,6 @@ Multistream.belongsTo(User)
  */
 module.exports = {
   User,
-  Multistream
+  Multistream,
+  Clip
 }
