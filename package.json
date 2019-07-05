@@ -55,6 +55,7 @@
     "passport-twitch": "^1.0.3",
     "pg": "^7.9.0",
     "pg-hstore": "^2.3.2",
+    "pixi.js": "^5.0.4",
     "prop-types": "^15.7.2",
     "query-string": "^6.8.1",
     "react": "^16.8.6",
