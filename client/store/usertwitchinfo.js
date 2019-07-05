@@ -44,9 +44,26 @@ export const fetchUserChannels = twitchUserId => {
       // format: array of objects
       // console.log('res.data of fetch channels: ', res.data)
       dispatch(getUserChannels(res.data.channels))
-      dispatch(getChannelsOnOffLineStatus(res.data.isOnline))
+      const initialArr = new Array(res.data.channels.length).fill(false)
+      dispatch(getChannelsOnOffLineStatus(initialArr))
     } catch (error) {
       console.log('Error inside thunk method fetchUserChannels: ', error)
+    }
+  }
+}
+
+// check streams one by one, set online or offline label for each stream
+export const fetchChannelsStreamsStatus = channels => {
+  return async dispatch => {
+    try {
+      // console.log('channels before fetch status: ', channels)
+      const {data} = await axios.post(
+        `/api/usertwitchinfo/channels/streams`,
+        channels
+      )
+      dispatch(getChannelsOnOffLineStatus(data))
+    } catch (error) {
+      console.log('Error inside thunk method fetchChannelStreamStatus: ', error)
     }
   }
 }
