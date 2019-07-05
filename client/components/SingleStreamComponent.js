@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Icon} from 'semantic-ui-react'
 import socket from '../socket'
-class SingleStreamComponent extends React.Component {
+class SingleStreamComponent extends Component {
   render() {
     let width
     let height
@@ -31,6 +31,10 @@ class SingleStreamComponent extends React.Component {
           width = (window.innerWidth - 478) / 2
           height = window.innerHeight / 2 - 100
         }
+        break
+      case 4:
+        width = (window.innerWidth - 490) / 2
+        height = window.innerHeight / 2 - 100
         break
       default:
         console.log('There must be an error.')
@@ -84,19 +88,6 @@ class SingleStreamComponent extends React.Component {
         <iframe
           src={`https://player.twitch.tv/?allowfullscreen&channel=${
             this.props.name
-          }`}
-          width={width}
-          height={height}
-          frameBorder="0"
-          scrolling="no"
-          allow="autoplay; fullscreen"
-          allowFullScreen=""
-          className=""
-        />
-
-        <iframe
-          src={`https://player.twitch.tv/?allowfullscreen&channel=${
-            props.name
           }`}
           width={width}
           height={height}
