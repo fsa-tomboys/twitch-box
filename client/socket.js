@@ -8,7 +8,11 @@ socket.on('connect', () => {
 socket.on('showCanvas', uniqueCanvas => {
   const canvas = document.getElementById(uniqueCanvas)
   const ctx = canvas.getContext('2d')
-  ctx.fillStyle = 'green'
-  ctx.fillRect(20, 10, 150, 100)
+  let base_image = new Image()
+  base_image.src =
+    'https://upload.wikimedia.org/wikipedia/commons/e/ef/Thumbs_up_font_awesome.svg'
+  base_image.onload = function() {
+    ctx.drawImage(base_image, 0, 0)
+  }
 })
 export default socket
