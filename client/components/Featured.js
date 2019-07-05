@@ -59,7 +59,6 @@ class Featured extends Component {
         this.state.testArray[channelNum].stream.channel.name
       )
     )
-    console.log('Random ', this.state.selected)
     this.routeChange()
     this.resetSelected()
   }

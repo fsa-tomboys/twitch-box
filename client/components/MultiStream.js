@@ -4,17 +4,21 @@ import {Chat} from './chat'
 import MultistreamSidebar from './MultistreamSidebar'
 import queryString from 'query-string'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
+import axios from 'axios'
+
 export class MultiStream extends Component {
   constructor() {
     super()
     this.state = {
       testArray: [],
-      index: 0
+      index: 0,
+      channelIds: []
     }
     this.handleSelect = this.handleSelect.bind(this)
     this.remove = this.remove.bind(this)
     this.addStream = this.addStream.bind(this)
     this.handleChatClick = this.handleChatClick.bind(this)
+    this.getChannelId = this.getChannelId.bind(this)
   }
   remove(element) {
     let arr = this.state.testArray
@@ -32,12 +36,30 @@ export class MultiStream extends Component {
       testArray: newArr
     })
   }
+
+  async getChannelId(channelsArray) {
+    let allChannelIdArray = []
+    // console.log(channelsArray)
+    for (let i = 0; i < channelsArray.length; i++) {
+      let currentChannelIds = await axios.get(
+        `https://api.twitch.tv/helix/users?login=${channelsArray[i]}`,
+        {
+          headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
+        }
+      )
+      allChannelIdArray.push(currentChannelIds.data.data[0].id)
+    }
+    this.setState({
+      channelIds: allChannelIdArray
+    })
+  }
   componentDidMount() {
     let queryStuff = queryString.parse(this.props.match.params.list)
     if (queryStuff.list === undefined) {
       queryStuff = queryString.parse(this.props.location.search)
     }
     let arrFromProps = queryStuff.list.split('-')
+
     this.setState({
       testArray: arrFromProps || this.props.location.state.testArray
     })
@@ -49,22 +71,22 @@ export class MultiStream extends Component {
   }
 
   handleChatClick(name) {
-    console.log('name: ', name)
     let index = this.state.testArray.indexOf(name)
     this.setState({index})
   }
 
   render() {
+    this.getChannelId(this.state.testArray)
+    console.log(this.props)
     return (
       <div>
         <div className="main-layout-container">
-          {/* <div className="multistream-sidebar-wrapper" > */}
-          <div className="create-clip-button" />
           {this.state.testArray.length > 0 && (
             <MultistreamSidebar
               testArray={this.state.testArray}
               remove={this.remove}
               addStream={this.addStream}
+              channelIds={this.state.channelIds}
             />
           )}
           {/* </div> */}
