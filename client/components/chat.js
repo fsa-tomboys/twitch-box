@@ -24,13 +24,6 @@ export const Chat = props => {
         height={props.setHeight}
         width="360"
       />
-      {/* <div className="custom-select">
-        <select >
-      {options.map(item => (
-      <option key={item.key} value={item.value} text={item.text} onChange={evt => handleSelect(evt)}>Select the Channel for Chat</option>
-      ))}
-      </select>
-      </div> */}
     </div>
   )
 }
