@@ -10,8 +10,6 @@ class SingleStreamComponent extends Component {
     let handleChatClick = this.props.handleChatClick
     if (streamNumber === 0) {
       let element = document.getElementsByClassName('single-stream-outer')
-
-      console.log('Element', element.className)
     }
     switch (totalStreams) {
       case 1:

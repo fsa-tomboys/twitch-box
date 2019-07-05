@@ -13,14 +13,13 @@ export class Widget extends Component {
   }
   componentDidMount() {
     let queryStuff = queryString.parse(this.props.location.search)
-    console.log('here is a thing: ', queryStuff)
+
     this.setState({name: queryStuff.name})
   }
 
   render() {
-    console.log('i am the props, ', this.props)
     let uniqueCanvas = this.state.name + '-canvas'
-    console.log('name is here: ', uniqueCanvas)
+
     return (
       <div className="single-stream-outer">
         <div className="single-stream-overlay-menu" />
@@ -32,12 +31,7 @@ export class Widget extends Component {
         >
           Yes!
         </button>
-        <button
-          type="button"
-          onClick={() => socket.emit('animation', uniqueCanvas)}
-        >
-          No!
-        </button>
+
         <div />
       </div>
     )
