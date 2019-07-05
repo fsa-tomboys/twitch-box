@@ -17,7 +17,7 @@ class ProfileModal extends React.Component {
       <Modal
         trigger={
           <div className="login-user-selfview-menu">
-            <Button onClick={this.handleOpen}>View My Profile</Button>
+            <p onClick={this.handleOpen}>View My Profile</p>
           </div>
         }
         open={this.state.modalOpen}
