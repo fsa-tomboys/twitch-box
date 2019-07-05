@@ -44,6 +44,19 @@ form div {
   font-size: 2.5em;
 }
 
+.nav-link-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  height: 90px;
+}
+.nav-login-items,
+.nav-function-items {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
+}
+
 .customize-form-box {
   display: flex;
   flex-direction: column;
@@ -153,15 +166,12 @@ form div {
   position: relative;
   float: right;
 }
-.multistream-sidebar-wrapper {
-  width: 150px;
-}
 
 .multistream-sidebar {
   position: relative;
   height: 100hw;
   background: black;
-  width: 140px;
+  width: 150px;
 }
 
 .sidebar-edit-btn {

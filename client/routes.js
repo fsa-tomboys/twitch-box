@@ -10,7 +10,8 @@ import {
   Featured,
   Customize,
   Chat,
-  List
+  List,
+  Widget
 } from './components'
 
 import {me} from './store'
@@ -25,7 +26,7 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-
+    console.log('props are here: ', this.props)
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -37,7 +38,11 @@ class Routes extends Component {
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />
-        <Route path="/list" component={List} />
+        {/* <Route path="/list" component={List} /> */}
+        {this.props.location.search.includes('name') && (
+          <Route path="/widget" component={Widget} />
+        )}
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

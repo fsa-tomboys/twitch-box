@@ -35,9 +35,7 @@ export const updateMultistream = multistream => ({
 export const fetchMultistreams = userId => {
   return async dispatch => {
     try {
-      console.log('userId: ', userId)
       const {data} = await axios.get(`/api/multistreams/${userId}`)
-      console.log('ms data: ', data)
       dispatch(setMultiStreams(data))
     } catch (error) {
       console.log('Error inside thunk method fetchMultistreams: ', error)

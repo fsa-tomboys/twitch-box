@@ -3,46 +3,59 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {Menu, Dropdown} from 'semantic-ui-react'
+import ProfileModal from './modals/profileModal'
+import MultistreamModal from './modals/multistreamModal'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <nav>
-      <div>
-        {isLoggedIn ? (
-          <div className="nav-link-container">
-            {/* The navbar will show these links after you log in */}
-            <div className="nav-function-items">
-              <Link to="/featured">Featured Streams</Link>
-              <Link to="/customize">Customize Streams</Link>
-              <Link to="/list">View Created Streams</Link>
-            </div>
-            <span className="top-header">
-              <h1>TWITCH BOX</h1>
-            </span>
-            <div className="nav-login-items">
-              <a href="#" onClick={handleClick}>
-                Logout
-              </a>
-            </div>
-          </div>
-        ) : (
-          <div className="nav-link-container">
-            {/* The navbar will show these links before you log in */}
-            <div className="nav-function-items">
-              <Link to="/featured">Featured Streams</Link>
-              <Link to="/customize">Customize Streams</Link>
-            </div>
-            <span className="top-header">
-              <h1>TWITCH BOX</h1>
-            </span>
-            <div className="nav-login-items">
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
+    {isLoggedIn ? (
+      <Menu size="massive" inverted>
+        <Menu.Item as={Link} to="/featured">
+          Featured Streams
+        </Menu.Item>
+        <Menu.Item as={Link} to="/customize">
+          Customize Streams
+        </Menu.Item>
+        <Menu.Item as={Link} to="/list">
+          View Created Streams
+        </Menu.Item>
+        <span className="top-header">
+          <h1>TWITCH BOX</h1>
+        </span>
+        <Menu.Menu position="right">
+          <Dropdown item text="View My Info">
+            <Dropdown.Menu>
+              <Dropdown.Item>
+                <ProfileModal />
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <MultistreamModal />
+              </Dropdown.Item>
+              {/* <Dropdown.Item>My Clips</Dropdown.Item> */}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Menu.Menu>
+        <Menu.Item as={Link} to="#" onClick={handleClick}>
+          Logout
+        </Menu.Item>
+      </Menu>
+    ) : (
+      <Menu size="massive" inverted>
+        <Menu.Item as={Link} to="/featured">
+          Featured Streams
+        </Menu.Item>
+        <Menu.Item as={Link} to="/customize">
+          Customize Streams
+        </Menu.Item>
+        <span className="top-header">
+          <h1>TWITCH BOX</h1>
+        </span>
+        <Menu.Item as={Link} to="/login" position="right">
+          Login
+        </Menu.Item>
+      </Menu>
+    )}
   </div>
 )
 

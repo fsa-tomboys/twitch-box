@@ -3,7 +3,11 @@ import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
-import {fetchTwitchUser, fetchUserChannels} from '../store/usertwitchinfo'
+import {
+  fetchTwitchUser,
+  fetchUserChannels,
+  fetchChannelsStreamsStatus
+} from '../store/usertwitchinfo'
 import {createMultistream, fetchMultistreams} from '../store/multistreams'
 import {createUserMultistreamAssociation} from '../store/users'
 import RandomMultistream from './RandomMultiStream'
@@ -91,6 +95,7 @@ class Featured extends Component {
     if (this.props.isLoggedIn) {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
       await this.props.fetchInitialChannels(this.props.user.twitchId)
+      await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
       await this.props.fetchInitialMs(this.props.user.id)
     }
   }
@@ -135,8 +140,6 @@ class Featured extends Component {
               <div className="login-welcome-title">
                 <h3>Welcome, {this.props.user.name}</h3>
               </div>
-              <ProfileModal />
-              <MultistreamModal />
               <h4>Your followed channels: </h4>
               <div>
                 <Grid>
@@ -268,7 +271,9 @@ const mapDispatchToProps = dispatch => {
     fetchInitialMs: userId => dispatch(fetchMultistreams(userId)),
     addMultistream: ms => dispatch(createMultistream(ms)),
     associateUserMs: (userId, msId) =>
-      dispatch(createUserMultistreamAssociation(userId, msId))
+      dispatch(createUserMultistreamAssociation(userId, msId)),
+    fetchChannelsStatus: channels =>
+      dispatch(fetchChannelsStreamsStatus(channels))
   }
 }
 

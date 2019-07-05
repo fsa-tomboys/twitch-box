@@ -8,7 +8,6 @@ export const Chat = props => {
     text: elem,
     value: elem
   }))
-
   return (
     <div className="chat-container">
       <iframe
