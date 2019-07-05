@@ -57,18 +57,18 @@ router.post('/channels/streams', async (req, res, next) => {
       process.env.TWITCH_CLIENT_ID,
       process.env.TWITCH_CLIENT_SECRET
     )
-    console.log('req.body: ', req.body)
+    // console.log('req.body: ', req.body)
     let channels = req.body
     let isOnline = []
     for (let channel of channels) {
       let theStream = await client.kraken.streams.getStreamByChannel(
         channel._data.channel._id
       )
-      console.log('theStream: ', theStream)
+      // console.log('theStream: ', theStream)
       if (theStream) isOnline.push(true)
       else isOnline.push(false)
     }
-    console.log('isAlive array: ', isOnline)
+    // console.log('isAlive array: ', isOnline)
     res.json(isOnline)
   } catch (error) {
     next(error)

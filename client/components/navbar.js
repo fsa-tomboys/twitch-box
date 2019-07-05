@@ -32,7 +32,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Dropdown.Item>
                 <MultistreamModal />
               </Dropdown.Item>
-              <Dropdown.Item>My Clips</Dropdown.Item>
+              {/* <Dropdown.Item>My Clips</Dropdown.Item> */}
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Menu>
