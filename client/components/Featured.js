@@ -9,6 +9,7 @@ import {
   fetchChannelsStreamsStatus
 } from '../store/usertwitchinfo'
 import {createMultistream, fetchMultistreams} from '../store/multistreams'
+import {fetchClips} from '../store/clip'
 import {createUserMultistreamAssociation} from '../store/users'
 import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
@@ -98,6 +99,7 @@ class Featured extends Component {
       await this.props.fetchInitialChannels(this.props.user.twitchId)
       await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
       await this.props.fetchInitialMs(this.props.user.id)
+      await this.props.fetchInitialClips(this.props.user.id)
     }
   }
 
@@ -267,7 +269,8 @@ const mapStateToProps = state => {
     isLoggedIn: !!state.user.id,
     user: state.user,
     userTwitchInfo: state.userTwitchInfo,
-    multistreams: state.multistreams
+    multistreams: state.multistreams,
+    clips: state.clip
   }
 }
 
@@ -276,6 +279,7 @@ const mapDispatchToProps = dispatch => {
     fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id)),
     fetchInitialChannels: id => dispatch(fetchUserChannels(id)),
     fetchInitialMs: userId => dispatch(fetchMultistreams(userId)),
+    fetchInitialClips: userId => dispatch(fetchClips(userId)),
     addMultistream: ms => dispatch(createMultistream(ms)),
     associateUserMs: (userId, msId) =>
       dispatch(createUserMultistreamAssociation(userId, msId)),

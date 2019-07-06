@@ -53,7 +53,7 @@ class MultistreamSidebar extends Component {
       // console.log(clipId)
     }
     // let clipName = clipNamePopup()
-    console.log('CLIP ', clipArray)
+    // console.log('CLIP ', clipArray)
     await this.props.addClip(
       clipArray.join(','),
       this.props.userTwitchInfo.id,
@@ -63,15 +63,15 @@ class MultistreamSidebar extends Component {
 
   handleOpen() {
     this.setState({modalOpen: true})
-    console.log('Opened')
+    // console.log('Opened')
   }
   handleClose() {
     this.setState({modalOpen: false})
-    console.log('Closed')
+    // console.log('Closed')
   }
   // console.log('sidebar props ', props)
   render() {
-    console.log('PROPS IN SIDEBAR: ', this.props)
+    // console.log('PROPS IN SIDEBAR: ', this.props)
     return (
       <div className="multistream-sidebar">
         <Modal

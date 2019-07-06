@@ -21,7 +21,7 @@ class MyClipsModal extends React.Component {
   // }
 
   render() {
-    console.log(this.props)
+    console.log('In my clips modal', this.props)
     return (
       <Modal
         trigger={
