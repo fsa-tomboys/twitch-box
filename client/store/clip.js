@@ -16,11 +16,15 @@ export const addClip = clip => ({
 
 // define thunk method
 
-export const createClip = (clip, id) => {
-  console.log('id in reducer', id)
+export const createClip = (clip, id, name) => {
   return async dispatch => {
     try {
-      const res = await axios.post('/api/clip', {newClip: clip, userId: id})
+      const res = await axios.post('/api/clip', {
+        newClip: clip,
+        userId: id,
+        clipName: name
+      })
+      console.log(res.data)
       dispatch(addClip(res.data))
     } catch (error) {
       console.log('Error inside thunk method addClip: ', error)
@@ -32,6 +36,7 @@ export const createClip = (clip, id) => {
 const clipReducer = function(state = initialState, action) {
   switch (action.type) {
     case ADD_CLIP:
+      console.log(action.clip)
       return [...state, action.clip]
     default:
       return state

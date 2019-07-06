@@ -77,7 +77,7 @@ export class MultiStream extends Component {
 
   render() {
     this.getChannelId(this.state.testArray)
-    console.log(this.props)
+
     return (
       <div>
         <div className="main-layout-container">

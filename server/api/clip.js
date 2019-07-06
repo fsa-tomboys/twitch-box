@@ -7,7 +7,8 @@ router.post('/', async (req, res, next) => {
   try {
     let newClip = await Clip.create({
       clips: req.body.newClip,
-      userId: req.body.userId
+      userId: req.body.userId,
+      name: req.body.clipName
     })
     console.log('backend in clip ', newClip)
     res.json(newClip)
