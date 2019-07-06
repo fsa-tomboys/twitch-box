@@ -258,3 +258,34 @@ form div {
 .channel-offline {
   color: black;
 }
+.featured-streams-icons {
+  position: relative;
+  margin: 10px;
+  margin-bottom: 30px;
+}
+
+.featured-streams-icons .featured-streams-icons-tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.featured-streams-icons:hover .featured-streams-icons-tooltiptext {
+  visibility: visible;
+}
+.unselected:hover,
+.selected:hover {
+  cursor: pointer;
+}
+.featured-streams-icon-channelName {
+  font-weight: bolder;
+  color: navy;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
@@ -26,6 +27,20 @@ function randomNumerGenerator(maxNum) {
     }
   }
   return randNums
+}
+function convertFollowers(num) {
+  if (num < 1000) {
+    return String(num)
+  } else if (num / 1000 > 1000 && num / 1000 < 1000000) {
+    return String((num / 1000000).toFixed(2)) + 'm'
+  } else {
+    return String(Math.round(num / 1000)) + 'k'
+  }
+}
+
+function processStreamDescription(streamText) {
+  let result = streamText.slice(3).split('</p>')
+  return result
 }
 
 class Featured extends Component {
@@ -80,6 +95,7 @@ class Featured extends Component {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
     )
+    console.log('FEATURED: ', featuredChannels)
 
     let topGames = await axios.get(
       'https://api.twitch.tv/helix/games/top?first=30',
@@ -223,21 +239,36 @@ class Featured extends Component {
           </div>
           <Divider hidden />
 
-          <h4>Top streamers</h4>
+          <h4>Featured Streams</h4>
           <Divider hidden />
           <Grid>
             {this.state.testArray.map(element => {
               return (
-                <Image
-                  size="small"
-                  src={element.image}
-                  className={
-                    this.state.selected.includes(element.stream.channel.name)
-                      ? 'selected'
-                      : 'unselected'
-                  }
-                  onClick={() => this.handleClick(element.stream.channel.name)}
-                />
+                <div className="featured-streams-icons">
+                  <span className="featured-streams-icon-channelName">
+                    {element.stream.channel.name}
+                  </span>
+                  <Image
+                    size="small"
+                    // src={element.stream.preview.small}
+                    src={element.image}
+                    className={
+                      this.state.selected.includes(element.stream.channel.name)
+                        ? 'selected'
+                        : 'unselected'
+                    }
+                    onClick={() =>
+                      this.handleClick(element.stream.channel.name)
+                    }
+                  />
+                  <span>
+                    {convertFollowers(element.stream.channel.followers)}{' '}
+                    followers
+                  </span>
+                  <span className="featured-streams-icons-tooltiptext">
+                    {processStreamDescription(element.text)}
+                  </span>
+                </div>
               )
             })}
           </Grid>
