@@ -10,6 +10,12 @@ export const Chat = props => {
   }))
   return (
     <div className="chat-container">
+      <Select
+        placeholder={array[index]}
+        options={options}
+        onChange={evt => handleSelect(evt)}
+      />
+
       <iframe
         frameBorder="0"
         scrolling="yes"
@@ -17,19 +23,6 @@ export const Chat = props => {
         src={`https://www.twitch.tv/embed/${array[index]}/chat?darkpopout`}
         height={props.setHeight}
         width="360"
-      />
-      {/* <div className="custom-select">
-        <select >
-      {options.map(item => (
-      <option key={item.key} value={item.value} text={item.text} onChange={evt => handleSelect(evt)}>Select the Channel for Chat</option>
-      ))}
-      </select>
-      </div> */}
-
-      <Select
-        placeholder="Select the Channel for Chat"
-        options={options}
-        onChange={evt => handleSelect(evt)}
       />
     </div>
   )

@@ -15,12 +15,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <Menu.Item as={Link} to="/featured">
           Featured Streams
         </Menu.Item>
-        <Menu.Item as={Link} to="/customize">
-          Customize Streams
-        </Menu.Item>
-        <Menu.Item as={Link} to="/list">
-          View Created Streams
-        </Menu.Item>
         <span className="top-header">
           <h1>TWITCH BOX</h1>
         </span>
@@ -48,9 +42,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       <Menu size="massive" inverted>
         <Menu.Item as={Link} to="/featured">
           Featured Streams
-        </Menu.Item>
-        <Menu.Item as={Link} to="/customize">
-          Customize Streams
         </Menu.Item>
         <span className="top-header">
           <h1>TWITCH BOX</h1>
