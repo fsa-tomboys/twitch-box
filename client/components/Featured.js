@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
-import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
+import {Grid, Image, Button, Divider, Select, Icon} from 'semantic-ui-react'
 import axios from 'axios'
 import {
   fetchTwitchUser,
@@ -138,9 +138,18 @@ class Featured extends Component {
     return (
       <div className="main-layout-wrapper-featured">
         <div className="sidebar-featured">
+          <div className="featured-sidebar-icon">
+            {/* <Icon name="game" size="huge"/> */}
+          </div>
           <a className="featured-sidebar-link">Featured Streams</a>
+          <a className="featured-sidebar-link">Find stream by Name</a>
           <a className="featured-sidebar-link">Channels You follow</a>
-          <a className="featured-sidebar-link">Go to random Multistream</a>
+          <a
+            className="featured-sidebar-link"
+            onClick={this.goToRandomMultistream}
+          >
+            Go to random Multistream
+          </a>
           <a className="featured-sidebar-link">My History</a>
           <a className="featured-sidebar-link">My clips</a>
         </div>
@@ -164,13 +173,13 @@ class Featured extends Component {
                 Watch Streams
               </Button>
             </div>
-            <Button primary onClick={this.goToRandomMultistream}>
+            {/* <Button primary onClick={this.goToRandomMultistream}>
               Random multistream
-            </Button>
+            </Button> */}
             <CustomizeModal />
             {this.props.isLoggedIn && (
               <div>
-                <h4>Your followed channels: </h4>
+                <h4>Channels you follw: </h4>
                 <div>
                   <Grid>
                     {this.props.userTwitchInfo.channels.length > 0 ? (
@@ -192,13 +201,11 @@ class Featured extends Component {
                           />
                           {this.props.userTwitchInfo.isOnline[idx] ? (
                             <div>
-                              <Button size="mini" color="green">
-                                Online
-                              </Button>
+                              <span className="channel-online">Live</span>
                             </div>
                           ) : (
                             <div>
-                              <Button size="mini">Offline</Button>
+                              <span className="channel-offline">Offline</span>
                             </div>
                           )}
                         </div>

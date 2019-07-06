@@ -242,3 +242,19 @@ form div {
   cursor: pointer;
   background: #ececed;
 }
+
+.featured-sidebar-icon {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  padding: 10px;
+  /* padding-top:30px; */
+  text-align: center;
+}
+.channel-online {
+  color: red;
+  font-style: bold;
+}
+.channel-offline {
+  color: black;
+}

@@ -30,7 +30,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Dropdown.Item>
                 <MyClipsModal />
               </Dropdown.Item>
-              {/* <Dropdown.Item>My Clips</Dropdown.Item> */}
+              <Dropdown.Item>My Clips</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Menu>
