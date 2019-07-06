@@ -11,7 +11,8 @@ import {
   Customize,
   Chat,
   List,
-  Widget
+  Widget,
+  ViewClipsComponent
 } from './components'
 
 import {me} from './store'
@@ -34,6 +35,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={MultiStream} />
         <Route path="/home:list" component={MultiStream} />
+        <Route path="/clips:list" component={ViewClipsComponent} />
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />

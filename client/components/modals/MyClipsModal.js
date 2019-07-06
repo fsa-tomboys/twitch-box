@@ -1,6 +1,7 @@
 import React from 'react'
 import {Button, Header, Image, Modal, List} from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 
 class MyClipsModal extends React.Component {
   constructor() {
@@ -11,17 +12,30 @@ class MyClipsModal extends React.Component {
     }
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
+    this.routeChange = this.routeChange.bind(this)
   }
   handleOpen = () => this.setState({modalOpen: true})
   handleClose = () => this.setState({modalOpen: false})
-  // componentDidMount() {
-  //   this.setState({
-  //     clips: this.props.clips
-  //   })
-  // }
+
+  componentDidMount() {
+    this.setState({
+      clips: this.props.clips
+    })
+  }
+  routeChange(elem) {
+    // console.log('EVENT', elem)
+    let clipArray = elem.clips
+    // console.log('this.props ',clipArray.split(',').join('-'))
+    this.props.history.push({
+      pathname: '/clips?list=' + clipArray.split(',').join('-')
+    })
+    this.setState({
+      clips: elem.clips.split(',')
+    })
+  }
 
   render() {
-    console.log('In my clips modal', this.props)
+    // console.log('In my clips modal', this.props)
     return (
       <Modal
         trigger={
@@ -46,7 +60,14 @@ class MyClipsModal extends React.Component {
               {this.props.clips.map(elem => (
                 <List.Item key={elem.id}>
                   <span>
-                    Clip Name: {elem.name} created on {elem.createdAt}
+                    <a
+                      onClick={() => {
+                        this.routeChange(elem)
+                      }}
+                    >
+                      Clip Name: {elem.name} created on{' '}
+                      {elem.createdAt.slice(0, 9)}
+                    </a>
                   </span>
                 </List.Item>
               ))}
@@ -71,4 +92,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(MyClipsModal)
+export default withRouter(connect(mapStateToProps)(MyClipsModal))
