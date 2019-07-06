@@ -9,7 +9,7 @@ import MultistreamModal from './modals/multistreamModal'
 import MyClipsModal from './modals/myClipsModal'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
+  <div className="navbar">
     {isLoggedIn ? (
       <Menu size="massive" inverted>
         <Menu.Item as={Link} to="/featured">

@@ -136,129 +136,140 @@ class Featured extends Component {
     let randStreamHeight = randStreamWidth * 1.5
 
     return (
-      <div>
-        <div>
-          {this.props.isLoggedIn ? (
-            <div className="login-welcome-title">
-              <h3>Welcome {this.props.user.name}, select to watch</h3>
-            </div>
-          ) : (
-            <div className="login-welcome-title">
-              <h3>Welcome visitor, select to watch</h3>
-            </div>
-          )}
-          <div className="customize-form-buttons-box">
-            <Button onClick={this.resetSelected}>Clear</Button>
-            <Button
-              onClick={this.routeChange}
-              disabled={this.state.selected.length === 0}
-            >
-              Watch Streams
-            </Button>
-          </div>
-          <Button primary onClick={this.goToRandomMultistream}>
-            Random multistream
-          </Button>
-          <CustomizeModal />
-          {this.props.isLoggedIn && (
-            <div>
-              <h4>Your followed channels: </h4>
-              <div>
-                <Grid>
-                  {this.props.userTwitchInfo.channels.length > 0 ? (
-                    this.props.userTwitchInfo.channels.map((ch, idx) => (
-                      <div key={ch._data.channel._id}>
-                        <Image
-                          size="small"
-                          src={ch._data.channel.logo}
-                          className={
-                            this.state.selected.includes(ch._data.channel.name)
-                              ? 'selected'
-                              : 'unselected'
-                          }
-                          onClick={() =>
-                            this.handleClick(ch._data.channel.name)
-                          }
-                        />
-                        {this.props.userTwitchInfo.isOnline[idx] ? (
-                          <div>
-                            <Button size="mini" color="green">
-                              Online
-                            </Button>
-                          </div>
-                        ) : (
-                          <div>
-                            <Button size="mini">Offline</Button>
-                          </div>
-                        )}
-                      </div>
-                    ))
-                  ) : (
-                    <div>
-                      <Image src="/image/loading.gif" />
-                    </div>
-                  )}
-                </Grid>
-              </div>
-              <Divider hidden />
-            </div>
-          )}
+      <div className="main-layout-wrapper-featured">
+        <div className="sidebar-featured">
+          <a className="featured-sidebar-link">Featured Streams</a>
+          <a className="featured-sidebar-link">Channels You follow</a>
+          <a className="featured-sidebar-link">Go to random Multistream</a>
+          <a className="featured-sidebar-link">My History</a>
+          <a className="featured-sidebar-link">My clips</a>
         </div>
-        <Divider hidden />
+        <div className="main-inner-featured">
+          <div>
+            {this.props.isLoggedIn ? (
+              <div className="login-welcome-title">
+                <h3>Welcome {this.props.user.name}, select to watch</h3>
+              </div>
+            ) : (
+              <div className="login-welcome-title">
+                <h3>Welcome visitor, select to watch</h3>
+              </div>
+            )}
+            <div className="customize-form-buttons-box">
+              <Button onClick={this.resetSelected}>Clear</Button>
+              <Button
+                onClick={this.routeChange}
+                disabled={this.state.selected.length === 0}
+              >
+                Watch Streams
+              </Button>
+            </div>
+            <Button primary onClick={this.goToRandomMultistream}>
+              Random multistream
+            </Button>
+            <CustomizeModal />
+            {this.props.isLoggedIn && (
+              <div>
+                <h4>Your followed channels: </h4>
+                <div>
+                  <Grid>
+                    {this.props.userTwitchInfo.channels.length > 0 ? (
+                      this.props.userTwitchInfo.channels.map((ch, idx) => (
+                        <div key={ch._data.channel._id}>
+                          <Image
+                            size="small"
+                            src={ch._data.channel.logo}
+                            className={
+                              this.state.selected.includes(
+                                ch._data.channel.name
+                              )
+                                ? 'selected'
+                                : 'unselected'
+                            }
+                            onClick={() =>
+                              this.handleClick(ch._data.channel.name)
+                            }
+                          />
+                          {this.props.userTwitchInfo.isOnline[idx] ? (
+                            <div>
+                              <Button size="mini" color="green">
+                                Online
+                              </Button>
+                            </div>
+                          ) : (
+                            <div>
+                              <Button size="mini">Offline</Button>
+                            </div>
+                          )}
+                        </div>
+                      ))
+                    ) : (
+                      <div>
+                        <Image src="/image/loading.gif" />
+                      </div>
+                    )}
+                  </Grid>
+                </div>
+                <Divider hidden />
+              </div>
+            )}
+          </div>
+          <Divider hidden />
 
-        <h4>Top streamers</h4>
-        <Divider hidden />
-        <Grid>
-          {this.state.testArray.map(element => {
-            return (
-              <Image
-                size="small"
-                src={element.image}
-                className={
-                  this.state.selected.includes(element.stream.channel.name)
-                    ? 'selected'
-                    : 'unselected'
-                }
-                onClick={() => this.handleClick(element.stream.channel.name)}
-              />
-            )
-          })}
-        </Grid>
-        <Divider hidden />
-        <Divider hidden />
-        <h4>Streamers by game</h4>
-        <Divider hidden />
-        <Divider hidden />
-        <Select
-          placeholder="Browse by Game"
-          onChange={this.getChannelsForThisGame}
-          options={this.state.topGames.map(game => ({
-            key: game.id,
-            text: game.name,
-            value: game.name
-          }))}
-        />
-        <Divider hidden />
-        <Grid>
-          {!(this.state.displayChannelsFromTopGames.length === 0) ? (
-            this.state.displayChannelsFromTopGames.map(gameChannel => {
+          <h4>Top streamers</h4>
+          <Divider hidden />
+          <Grid>
+            {this.state.testArray.map(element => {
               return (
                 <Image
                   size="small"
-                  src={gameChannel.channel.logo}
+                  src={element.image}
                   className={
-                    this.state.selected.includes(gameChannel.channel.name)
+                    this.state.selected.includes(element.stream.channel.name)
                       ? 'selected'
                       : 'unselected'
                   }
-                  onClick={() => this.handleClick(gameChannel.channel.name)}
+                  onClick={() => this.handleClick(element.stream.channel.name)}
                 />
               )
-            })
-          ) : (
-            <p />
-          )}
-        </Grid>
+            })}
+          </Grid>
+          <Divider hidden />
+          <Divider hidden />
+          <h4>Streamers by game</h4>
+          <Divider hidden />
+          <Divider hidden />
+          <Select
+            placeholder="Browse by Game"
+            onChange={this.getChannelsForThisGame}
+            options={this.state.topGames.map(game => ({
+              key: game.id,
+              text: game.name,
+              value: game.name
+            }))}
+          />
+          <Divider hidden />
+          <Grid>
+            {!(this.state.displayChannelsFromTopGames.length === 0) ? (
+              this.state.displayChannelsFromTopGames.map(gameChannel => {
+                return (
+                  <Image
+                    size="small"
+                    src={gameChannel.channel.logo}
+                    className={
+                      this.state.selected.includes(gameChannel.channel.name)
+                        ? 'selected'
+                        : 'unselected'
+                    }
+                    onClick={() => this.handleClick(gameChannel.channel.name)}
+                  />
+                )
+              })
+            ) : (
+              <p />
+            )}
+          </Grid>
+        </div>
       </div>
     )
   }
