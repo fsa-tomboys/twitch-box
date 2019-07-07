@@ -87,10 +87,7 @@ export class MultiStream extends Component {
     this.setState({index})
   }
   getTime() {
-    console.log(
-      'somewhere over the rainbow',
-      TimeMe.getTimeOnCurrentPageInSeconds()
-    )
+    return TimeMe.getTimeOnCurrentPageInSeconds()
   }
 
   render() {
