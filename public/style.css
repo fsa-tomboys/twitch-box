@@ -207,3 +207,9 @@ form div {
   background: #ff1c68;
   transform-origin: 50% 50%;
 }
+.single-clip-outer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 80%;
+  margin: 0 auto;
+}

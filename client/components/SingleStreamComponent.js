@@ -8,9 +8,10 @@ class SingleStreamComponent extends Component {
     let streamNumber = this.props.streamNum
     let totalStreams = this.props.totalNumber
     let handleChatClick = this.props.handleChatClick
-    if (streamNumber === 0) {
-      let element = document.getElementsByClassName('single-stream-outer')
-    }
+
+    // if (streamNumber === 0) {
+    //   let element = document.getElementsByClassName('single-stream-outer')
+    // }
     switch (totalStreams) {
       case 1:
         width = window.innerWidth - 473
