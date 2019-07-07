@@ -88,14 +88,14 @@ class Featured extends Component {
   }
   async componentDidMount() {
     let featuredChannels = await axios.get(
-      'https://api.twitch.tv/kraken/streams/featured?limit=25',
+      'https://api.twitch.tv/kraken/streams/featured?limit=15',
       {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
     )
-
+    // console.log('featured: ', featuredChannels)
     let topGames = await axios.get(
-      'https://api.twitch.tv/helix/games/top?first=20',
+      'https://api.twitch.tv/helix/games/top?first=10',
       {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
@@ -128,7 +128,7 @@ class Featured extends Component {
       selected: newArr
     })
   }
-  async getChannelsForThisGame(value) {
+  async getChannelsForThisGame(event, {value}) {
     let findGame = value.split(' ').join('+')
 
     let channelsForThisGame = await axios.get(
@@ -140,13 +140,48 @@ class Featured extends Component {
     this.setState({
       displayChannelsFromTopGames: channelsForThisGame.data.streams
     })
+    console.log(
+      'channels for this game: ',
+      this.state.displayChannelsFromTopGames
+    )
   }
 
   render() {
-    console.log('PROPS', this.props)
+    // console.log('PROPS', this.props)
     return (
       <div className="main-layout-wrapper-featured">
         <div className="sidebar-featured">
+          <div>
+            {this.props.isLoggedIn ? (
+              <div className="login-welcome-title">
+                <h4>
+                  Welcome{' '}
+                  <span className="username-featured">
+                    {this.props.user.name}
+                  </span>, click any channel to add to multistream.
+                </h4>
+              </div>
+            ) : (
+              <div className="login-welcome-title">
+                <h3>
+                  Welcome visitor, click any channel to add to multistream.
+                </h3>
+              </div>
+            )}
+            <div className="customize-form-buttons-box">
+              <Button onClick={this.resetSelected}>Clear</Button>
+              <Button
+                color="purple"
+                onClick={this.routeChange}
+                disabled={this.state.selected.length === 0}
+              >
+                Watch Streams
+              </Button>
+            </div>
+            {/* <Button primary onClick={this.goToRandomMultistream}>
+              Random multistream
+            </Button> */}
+          </div>
           <a
             className="featured-sidebar-link"
             onClick={this.goToRandomMultistream}
@@ -155,52 +190,55 @@ class Featured extends Component {
           </a>
           <CustomizeModal />
 
+          <h4>Channels you follw: </h4>
+          <Divider hidden />
           {this.props.isLoggedIn && (
             <div className="followed-channels-wrapper">
               <Divider />
-              <h4>Channels you follw: </h4>
-              <Divider hidden />
               <div>
                 <Grid>
                   {this.props.userTwitchInfo.channels.length > 0 ? (
                     this.props.userTwitchInfo.channels.map((ch, idx) => (
-                      <div
-                        // className="followed-channels-icons"
-                        key={ch._data.channel._id}
-                        className={
-                          this.state.selected.includes(ch._data.channel.name)
-                            ? 'selected'
-                            : 'unselected'
-                        }
-                        onClick={() => this.handleClick(ch._data.channel.name)}
-                      >
-                        <Image
-                          // size="tiny"
-                          avatar
-                          src={ch._data.channel.logo}
-                          // className={
-                          //   this.state.selected.includes(
-                          //     ch._data.channel.name
-                          //     )
-                          //     ? 'selected'
-                          //     : 'unselected'
-                          //   }
-                          // onClick={() =>
-                          //   this.handleClick(ch._data.channel.name)
-                          // }
-                        />
-                        <span className="followed-channels-icon-channelName">
-                          {ch._data.channel.name}
-                        </span>
-                        {this.props.userTwitchInfo.isOnline[idx] ? (
-                          <div>
-                            <span className="channel-online">Live</span>
-                          </div>
-                        ) : (
-                          <div>
-                            <span className="channel-offline">Offline</span>
-                          </div>
-                        )}
+                      <div className="followed-single-channel-wrapper">
+                        <div
+                          // className="followed-channels-icons"
+                          key={ch._data.channel._id}
+                          className={
+                            this.state.selected.includes(ch._data.channel.name)
+                              ? 'selected'
+                              : 'unselected'
+                          }
+                          onClick={() =>
+                            this.handleClick(ch._data.channel.name)
+                          }
+                        >
+                          <Image
+                            size="mini"
+                            src={ch._data.channel.logo}
+                            // className={
+                            //   this.state.selected.includes(
+                            //     ch._data.channel.name
+                            //     )
+                            //     ? 'selected'
+                            //     : 'unselected'
+                            //   }
+                            // onClick={() =>
+                            //   this.handleClick(ch._data.channel.name)
+                            // }
+                          />
+                          <span className="followed-channels-icon-channelName">
+                            {ch._data.channel.name}
+                          </span>
+                          {this.props.userTwitchInfo.isOnline[idx] ? (
+                            <div className="channel-online">
+                              <span>Live</span>
+                            </div>
+                          ) : (
+                            <div className="channel-offline">
+                              <span>Offline</span>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     ))
                   ) : (
@@ -215,8 +253,17 @@ class Featured extends Component {
           <Divider />
           <h4>Channels by top games: </h4>
           <Divider hidden />
+          <Select
+            placeholder="Browse by Game"
+            onChange={this.getChannelsForThisGame}
+            options={this.state.topGames.map(game => ({
+              key: game.id,
+              text: game.name,
+              value: game.name
+            }))}
+          />
 
-          <ul>
+          {/* <ul>
             {this.state.topGames.map(game => (
               <a
                 className="top-games-link"
@@ -227,10 +274,10 @@ class Featured extends Component {
                 <li> {game.name}</li>
               </a>
             ))}
-          </ul>
+          </ul> */}
         </div>
         <div className="main-inner-featured">
-          <div>
+          {/* <div>
             {this.props.isLoggedIn ? (
               <div className="login-welcome-title">
                 <h4>
@@ -261,7 +308,7 @@ class Featured extends Component {
             {/* <Button primary onClick={this.goToRandomMultistream}>
               Random multistream
             </Button> */}
-          </div>
+          {/* </div> */}
           <Divider regular />
 
           <h4>Featured Channels</h4>
@@ -273,9 +320,9 @@ class Featured extends Component {
                     {element.stream.channel.name}
                   </span>
                   <Image
-                    size="tiny"
+                    // size="tiny"
                     // src={element.stream.preview.small}
-                    src={element.image}
+                    src={element.stream.preview.medium}
                     className={
                       this.state.selected.includes(element.stream.channel.name)
                         ? 'selected'
@@ -297,7 +344,7 @@ class Featured extends Component {
             })}
           </Grid>
           <Divider hidden />
-          <Divider hidden />
+          <Divider />
           <h4>Streamers by game</h4>
           <Divider hidden />
           <Divider hidden />
@@ -316,8 +363,9 @@ class Featured extends Component {
               this.state.displayChannelsFromTopGames.map(gameChannel => {
                 return (
                   <Image
-                    size="tiny"
-                    src={gameChannel.channel.logo}
+                    // size="tiny"
+                    // src={gameChannel.channel.logo}
+                    src={gameChannel.preview.medium}
                     className={
                       this.state.selected.includes(gameChannel.channel.name)
                         ? 'selected'
