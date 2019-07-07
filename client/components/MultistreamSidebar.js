@@ -135,6 +135,13 @@ class MultistreamSidebar extends Component {
             </Form>
           </Modal.Description>
         </Modal>
+        <Button
+          onClick={() => {
+            this.props.getTime()
+          }}
+        >
+          Get Time
+        </Button>
       </div>
     )
   }
