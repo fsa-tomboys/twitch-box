@@ -201,3 +201,9 @@ form div {
   border: 1px solid;
   opacity: 0.4;
 }
+.box {
+  width: 100px;
+  height: 100px;
+  background: #ff1c68;
+  transform-origin: 50% 50%;
+}

@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {Icon} from 'semantic-ui-react'
 import socket from '../socket'
 import queryString from 'query-string'
-import * as PIXI from 'pixi.js'
 
+// var SSCD = require('sscd').sscd
 export class Widget extends Component {
   constructor() {
     super()
@@ -18,6 +18,7 @@ export class Widget extends Component {
   }
 
   render() {
+    // var world = new SSCD.World()
     let uniqueCanvas = this.state.name + '-canvas'
 
     return (
@@ -27,7 +28,9 @@ export class Widget extends Component {
         <h3>{this.state.name}</h3>
         <button
           type="button"
-          onClick={() => socket.emit('displayCanvas', uniqueCanvas)}
+          onClick={() => {
+            socket.emit('displayCanvas', uniqueCanvas)
+          }}
         >
           Yes!
         </button>
