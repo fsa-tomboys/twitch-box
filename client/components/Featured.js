@@ -88,12 +88,12 @@ class Featured extends Component {
   }
   async componentDidMount() {
     let featuredChannels = await axios.get(
-      'https://api.twitch.tv/kraken/streams/featured?limit=15',
+      'https://api.twitch.tv/kraken/streams/featured?limit=25',
       {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
     )
-    console.log('featured: ', featuredChannels)
+    // console.log('featured: ', featuredChannels)
     let topGames = await axios.get(
       'https://api.twitch.tv/helix/games/top?first=10',
       {
@@ -114,6 +114,7 @@ class Featured extends Component {
       await this.props.fetchInitialMs(this.props.user.id)
       await this.props.fetchInitialClips(this.props.user.id)
     }
+    console.log('state ', this.state)
   }
 
   async handleClick(channelName) {
@@ -178,16 +179,16 @@ class Featured extends Component {
                 Watch Streams
               </Button>
             </div>
-            {/* <Button primary onClick={this.goToRandomMultistream}>
+            <Button primary onClick={this.goToRandomMultistream}>
               Random multistream
-            </Button> */}
+            </Button>
           </div>
-          <a
+          {/* <a
             className="featured-sidebar-link"
             onClick={this.goToRandomMultistream}
           >
             Go to random Multistream
-          </a>
+          </a> */}
           <CustomizeModal />
           <h4>Channels you follw: </h4>
           <Divider hidden />
@@ -251,7 +252,10 @@ class Featured extends Component {
         <div className="main-inner-featured">
           <Divider regular />
 
-          <h4>Featured Channels</h4>
+          <span className="featured-channels-header">
+            <h4>Featured Channels</h4>
+          </span>
+          <Divider regular />
           <Grid>
             {this.state.testArray.map(element => {
               return (
@@ -293,7 +297,7 @@ class Featured extends Component {
           <Divider hidden />
           <Divider />
           <span className="browse-by-game-header">
-            <h4>Browse channels by game: </h4>
+            <h4>Browse channels by game </h4>
           </span>
           <Divider hidden />
           <div className="browse-by-game-selection">
@@ -308,8 +312,6 @@ class Featured extends Component {
             />
           </div>
           <Divider />
-          <h4>Streamers by game</h4>
-          <Divider hidden />
           <Grid>
             {!(this.state.displayChannelsFromTopGames.length === 0) ? (
               this.state.displayChannelsFromTopGames.map(gameChannel => {

@@ -559,7 +559,8 @@ li {
   left: -30px;
   /* float: left; */
 }
-.browse-by-game-header h4 {
+.browse-by-game-header h4,
+.featured-channels-header h4 {
   color: black;
 }
 .by-game-channels-followers {
