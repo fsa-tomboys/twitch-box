@@ -505,22 +505,36 @@ li {
   margin-left: 20px;
   margin-bottom: 50px;
 }
-.fetaured-stream-description-box {
+.fetaured-stream-description-box,
+.by-game-stream-description-box {
   display: flex;
   width: 100%;
   height: 50px;
 }
+
 .featured-channels-watching {
   display: inline-block;
   position: relative;
   width: 90px;
   height: 21px;
-  top: -27px;
+  top: -177px;
   color: white;
   font-weight: bolder;
   background: red;
   border-radius: 3px;
-  left: 133px;
+  left: 130px;
+}
+.by-game-channels-watching {
+  display: inline-block;
+  position: relative;
+  width: 90px;
+  height: 21px;
+  top: -177px;
+  color: white;
+  font-weight: bolder;
+  background: red;
+  border-radius: 3px;
+  left: 130px;
 }
 
 .featured-channels-followers {
@@ -535,6 +549,20 @@ li {
   /* display: inline-block; */
   position: relative;
   width: 150px;
-  left: -70px;
+  left: -10px;
   /* float: left; */
+}
+.by-game-channels-game {
+  /* display: inline-block; */
+  position: relative;
+  width: 150px;
+  left: -30px;
+  /* float: left; */
+}
+.browse-by-game-header h4 {
+  color: black;
+}
+.by-game-channels-followers {
+  position: relative;
+  left: 7px;
 }

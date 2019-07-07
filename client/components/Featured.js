@@ -292,7 +292,9 @@ class Featured extends Component {
           </Grid>
           <Divider hidden />
           <Divider />
-          <h4>Browse channels by game: </h4>
+          <span className="browse-by-game-header">
+            <h4>Browse channels by game: </h4>
+          </span>
           <Divider hidden />
           <div className="browse-by-game-selection">
             <Select
@@ -307,8 +309,6 @@ class Featured extends Component {
           </div>
           <Divider />
           <h4>Streamers by game</h4>
-          <Divider hidden />
-          <Divider hidden />
           <Divider hidden />
           <Grid>
             {!(this.state.displayChannelsFromTopGames.length === 0) ? (
@@ -327,13 +327,21 @@ class Featured extends Component {
                       }
                       onClick={() => this.handleClick(gameChannel.channel.name)}
                     />
-                    <span className="by-game-channels-followers">
-                      {convertFollowers(gameChannel.channel.followers)}{' '}
-                      followers
-                    </span>
-                    {/* <span className="by-game-streams-icons-tooltiptext">
+                    <div className="by-game-stream-description-box">
+                      <span className="by-game-channels-followers">
+                        {convertFollowers(gameChannel.channel.followers)}{' '}
+                        followers
+                      </span>
+                      <span className="by-game-channels-watching">
+                        {convertFollowers(gameChannel.viewers)} viewers
+                      </span>
+                      <span className="by-game-channels-game">
+                        Game: {gameChannel.game}
+                      </span>
+                      {/* <span className="by-game-streams-icons-tooltiptext">
                     {processStreamDescription(element.text)}
                   </span> */}
+                    </div>
                   </div>
                 )
               })
