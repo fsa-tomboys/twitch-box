@@ -6,6 +6,7 @@ import {logout} from '../store'
 import {Menu, Dropdown} from 'semantic-ui-react'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
+import MyClipsModal from './modals/myClipsModal'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -25,6 +26,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               </Dropdown.Item>
               <Dropdown.Item>
                 <MultistreamModal />
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <MyClipsModal />
               </Dropdown.Item>
               {/* <Dropdown.Item>My Clips</Dropdown.Item> */}
             </Dropdown.Menu>

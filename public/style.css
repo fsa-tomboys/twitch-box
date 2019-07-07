@@ -201,3 +201,9 @@ form div {
   border: 1px solid;
   opacity: 0.4;
 }
+.single-clip-outer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 80%;
+  margin: 0 auto;
+}

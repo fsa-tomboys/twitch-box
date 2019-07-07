@@ -11,7 +11,8 @@ import {
   Customize,
   Chat,
   List,
-  Widget
+  Widget,
+  ViewClipsComponent
 } from './components'
 
 import {me} from './store'
@@ -26,7 +27,6 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-    console.log('props are here: ', this.props)
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -35,6 +35,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={MultiStream} />
         <Route path="/home:list" component={MultiStream} />
+        <Route path="/clips:list" component={ViewClipsComponent} />
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />
