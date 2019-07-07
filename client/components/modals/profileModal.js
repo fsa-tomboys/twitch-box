@@ -13,8 +13,13 @@ class ProfileModal extends React.Component {
   handleClose = () => this.setState({modalOpen: false})
 
   render() {
+    let dateCreated
+    if (this.props.userTwitchInfo.twitchUser.created_at) {
+      dateCreated = this.props.userTwitchInfo.twitchUser.created_at.slice(0, 10)
+    }
     return (
       <Modal
+        size="tiny"
         trigger={
           <div className="login-user-selfview-menu">
             <p onClick={this.handleOpen}>View My Profile</p>
@@ -29,15 +34,15 @@ class ProfileModal extends React.Component {
         <Modal.Content image>
           <Image
             wrapped
-            size="medium"
+            size="tiny"
             src={this.props.userTwitchInfo.twitchUser.logo}
           />
           <Modal.Description>
             <p>Name: {this.props.userTwitchInfo.twitchUser.name}</p>
             <p>Twitch ID: {this.props.userTwitchInfo.twitchUser._id}</p>
             <p>Type: {this.props.userTwitchInfo.twitchUser.type}</p>
-            <p>Created at: {this.props.userTwitchInfo.twitchUser.created_at}</p>
-            <p>Updated at: {this.props.userTwitchInfo.twitchUser.updated_at}</p>
+            <p>Member since {dateCreated}</p>
+            {/* <p>Updated at: {this.props.userTwitchInfo.twitchUser.updated_at}</p> */}
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>

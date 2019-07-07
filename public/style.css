@@ -4,6 +4,7 @@ body {
 
 a {
   text-decoration: none;
+  color: white;
 }
 
 label {
@@ -18,7 +19,7 @@ nav {
   position: absolute;
   left: 0;
   right: 0;
-  height: 92px;
+  /* height: 92px; */
 }
 
 nav a {
@@ -29,6 +30,15 @@ nav a {
 
 nav a:hover {
   color: #6441a5;
+}
+.navbar-home-icon {
+  background: black;
+  padding-left: 30px;
+  padding-top: 30px;
+}
+.profile-dropdown {
+  background: black;
+  text-align: left;
 }
 
 form div {
@@ -85,13 +95,58 @@ form div {
 
 .login-user-selfview-menu {
   display: flex;
-  justify-content: center;
 }
 
 .login-link-twitch {
   display: flex;
+  font-size: 1.5rem;
   justify-content: center;
-  margin: 1rem;
+  /* border: 1px solid black; */
+  /* background: yellow; */
+  height: 400px;
+  width: 100%;
+}
+.login-link-twitch-text-box {
+  display: inline-block;
+  text-align: center;
+  color: black;
+  width: 100%;
+  height: 50px;
+  padding-top: 15px;
+  background: #6441a5;
+  margin: auto;
+}
+.login-link-twitch-text-box:hover {
+  cursor: pointer;
+}
+.welcome-text-login {
+  line-height: 10rem;
+}
+.login-signup-box {
+  align-self: flex-end;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  /* border: 1px solid black; */
+}
+.sign-up-twitch {
+  color: #6441a5;
+}
+.sign-up-twitch:hover {
+  cursor: pointer;
+}
+.sign-up-question {
+  /* line-height: 3rem; */
+  font-size: 1rem;
+}
+
+.login-link-twitch-text-itself {
+  color: white;
+  width: 100%;
+}
+
+.login-link-twitch-text-itself:hover {
+  color: white;
 }
 
 .main-layout-container {
@@ -145,13 +200,6 @@ form div {
   opacity: 1;
   z-index: 1;
   color: white;
-}
-
-.selected {
-  opacity: 0.4;
-}
-.unselected {
-  opacity: 1;
 }
 
 .single-stream-overlay-icon-box {
@@ -218,8 +266,9 @@ form div {
   left: 0;
   top: 85px;
   bottom: 0;
-  width: 260px;
+  width: 300px;
   background: #fafafa;
+  /* padding: 25px;ˆ */
 }
 .main-inner-featured {
   position: absolute;
@@ -227,16 +276,16 @@ form div {
   top: 92px;
   right: 0;
   bottom: 0;
-  padding-left: 5%;
-  padding-right: 10%;
+  padding-left: 2%;
+  padding-right: 8%;
 }
 .featured-sidebar-link {
   display: block;
   width: 100%;
-  height: 4rem;
-  padding: 20px;
+  height: 3rem;
+  /* padding: 20px; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 .featured-sidebar-link:hover {
   cursor: pointer;
@@ -252,6 +301,7 @@ form div {
   text-align: center;
 }
 .channel-online {
+  font-weight: bolder;
   color: red;
   font-style: bold;
 }
@@ -261,14 +311,15 @@ form div {
 .featured-streams-icons {
   position: relative;
   margin: 10px;
-  margin-bottom: 30px;
+  text-align: center;
+  /* margin-bottom: 30px; */
 }
 
 .featured-streams-icons .featured-streams-icons-tooltiptext {
   visibility: hidden;
   width: 200px;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -285,7 +336,54 @@ form div {
 .selected:hover {
   cursor: pointer;
 }
-.featured-streams-icon-channelName {
+.featured-streams-icon-channelName,
+.followed-channels-icon-channelName {
   font-weight: bolder;
   color: navy;
+}
+.followed-channels-icons,
+.unselected,
+.selected {
+  /* padding: 5px; */
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 65px;
+  margin: auto;
+}
+.followed-channels-wrapper .unselected {
+  text-align: center;
+  width: 140px;
+}
+.followed-channels-wrapper .selected {
+  text-align: center;
+  width: 140px;
+}
+
+.selected {
+  opacity: 0.6;
+  border: 3px solid green;
+  margin-left: 5px;
+}
+.unselected {
+  opacity: 1;
+  margin-left: 5px;
+}
+
+.followed-channels-wrapper {
+  align-items: center;
+}
+.username-featured {
+  color: purple;
+  /* font-size: 1.6rem; */
+}
+.logout-dropdown {
+  font-weight: bolder;
+}
+.top-games-link {
+}
+.top-games-link:hover {
+  cursor: pointer;
+}
+li {
+  list-style: none;
 }
