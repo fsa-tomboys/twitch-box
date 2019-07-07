@@ -2,6 +2,10 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  overflow-y: scroll;
+}
+h4 {
+  color: white;
 }
 
 a {
@@ -81,8 +85,11 @@ form div {
 }
 
 .customize-form-buttons-box {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .customize-form-button {
@@ -274,6 +281,7 @@ form div {
   background: black;
   z-index: 1; /* Stay on top */
   overflow-x: hidden;
+  overflow-y: scroll;
   /* Disable horizontal scroll  */
   /* padding: 25px;ˆ */
 }
@@ -323,15 +331,41 @@ form div {
   font-size: 1.2rem;
 } */
 
-.featured-streams-icons {
+.featured-streams-icons,
+.streams-by-game {
   position: relative;
   margin: 10px;
   text-align: center;
   /* margin-bottom: 30px; */
 }
+.featured-streams-icons .selected,
+.streams-by-game .selected {
+  position: relative;
+  /* margin: 10px; */
+  text-align: center;
+  /* opacity: 0.8; */
+  padding: 0;
+  border: 4px solid #6441a5;
+  /* margin-bottom: 30px; */
+}
 
+.featured-streams-icons .unselected {
+  position: relative;
+  /* margin: 10px; */
+  text-align: center;
+  padding: 0;
+  /* margin-bottom: 30px; */
+}
+
+.streams-by-game .unselected {
+  position: relative;
+  /* margin: 10px; */
+  text-align: center;
+  padding: 0;
+}
 /* .featured-streams-icons  */
-.featured-streams-icons-tooltiptext {
+.featured-streams-icons-tooltiptext,
+.by-game-streams-icons-tooltiptext {
   visibility: hidden;
   width: 200px;
   background-color: black;
@@ -348,6 +382,10 @@ form div {
 .featured-streams-icons:hover .featured-streams-icons-tooltiptext {
   visibility: visible;
 }
+
+.by-game-streams-icons:hover .by-game-streams-icons-tooltiptext {
+  visibility: visible;
+}
 .unselected:hover,
 .selected:hover {
   cursor: pointer;
@@ -361,6 +399,10 @@ form div {
   vertical-align: top;
 }
 .featured-streams-icon-channelName {
+  font-weight: bolder;
+  color: navy;
+}
+.streams-by-game-icon-channelName {
   font-weight: bolder;
   color: navy;
 }
@@ -457,4 +499,42 @@ li {
 .followed-single-channel-wrapper .unselected:hover,
 .followed-single-channel-wrapper .selected:hover {
   background: #181721;
+}
+
+.browse-by-game-selection {
+  margin-left: 20px;
+  margin-bottom: 50px;
+}
+.fetaured-stream-description-box {
+  display: flex;
+  width: 100%;
+  height: 50px;
+}
+.featured-channels-watching {
+  display: inline-block;
+  position: relative;
+  width: 90px;
+  height: 21px;
+  top: -27px;
+  color: white;
+  font-weight: bolder;
+  background: red;
+  border-radius: 3px;
+  left: 133px;
+}
+
+.featured-channels-followers {
+  /* float: left;
+   */
+  position: relative;
+  top: 0;
+  left: 7px;
+}
+
+.featured-channels-game {
+  /* display: inline-block; */
+  position: relative;
+  width: 150px;
+  left: -70px;
+  /* float: left; */
 }
