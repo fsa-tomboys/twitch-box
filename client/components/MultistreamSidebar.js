@@ -158,6 +158,7 @@ class MultistreamSidebar extends Component {
             </Label>
           </Modal.Description>
         </Modal>
+        <Button>Show/hide Chat</Button>
       </div>
     )
   }

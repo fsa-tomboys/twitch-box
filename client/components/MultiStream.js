@@ -44,6 +44,7 @@ export class MultiStream extends Component {
       pathname: '/home?list=' + newArr.join('-')
     })
   }
+  toggleChat() {}
 
   async getChannelId(channelsArray) {
     let allChannelIdArray = []
