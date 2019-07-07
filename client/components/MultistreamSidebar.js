@@ -81,6 +81,13 @@ class MultistreamSidebar extends Component {
         >
           Record Clip
         </Button>
+        <Button
+          onClick={() => {
+            this.props.getTime()
+          }}
+        >
+          Get Time
+        </Button>
       </div>
     )
   }

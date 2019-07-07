@@ -19,6 +19,7 @@ export class MultiStream extends Component {
     this.addStream = this.addStream.bind(this)
     this.handleChatClick = this.handleChatClick.bind(this)
     this.getChannelId = this.getChannelId.bind(this)
+    this.getTime = this.getTime.bind(this)
   }
   remove(element) {
     let arr = this.state.testArray
@@ -84,6 +85,8 @@ export class MultiStream extends Component {
   handleChatClick(name) {
     let index = this.state.testArray.indexOf(name)
     this.setState({index})
+  }
+  getTime() {
     console.log(
       'somewhere over the rainbow',
       TimeMe.getTimeOnCurrentPageInSeconds()
@@ -102,6 +105,7 @@ export class MultiStream extends Component {
               remove={this.remove}
               addStream={this.addStream}
               channelIds={this.state.channelIds}
+              getTime={this.getTime}
             />
           )}
           {/* </div> */}
