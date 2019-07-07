@@ -12,8 +12,6 @@ import {createMultistream, fetchMultistreams} from '../store/multistreams'
 import {createUserMultistreamAssociation} from '../store/users'
 import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
-import ProfileModal from './modals/profileModal'
-import MultistreamModal from './modals/multistreamModal'
 import CustomizeModal from './modals/customizeModal'
 
 function randomNumerGenerator(maxNum) {
@@ -35,7 +33,8 @@ class Featured extends Component {
       topGames: [],
       displayChannelsFromTopGames: [],
       selected: [],
-      randomChannels: []
+      randomChannels: [],
+      followedStreams: []
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
@@ -95,9 +94,23 @@ class Featured extends Component {
     })
     if (this.props.isLoggedIn) {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
-      await this.props.fetchInitialChannels(this.props.user.twitchId)
-      await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
+      // await this.props.fetchInitialChannels(this.props.user.twitchId)
+      // await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
       await this.props.fetchInitialMs(this.props.user.id)
+      await this.props.fetchInitialMs(this.props.user.id)
+      let theStreams = await axios.get(
+        'https://api.twitch.tv/kraken/streams/followed',
+        {
+          headers: {
+            Accept: 'application/vnd.twitchtv.v5+json',
+            'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh',
+            Authorization: `OAuth ${this.props.user.token}`
+          }
+        }
+      )
+      this.setState({
+        followedStreams: theStreams.data.streams
+      })
     }
   }
 
@@ -160,41 +173,26 @@ class Featured extends Component {
           <CustomizeModal />
           {this.props.isLoggedIn && (
             <div>
-              <h4>Your followed channels: </h4>
+              <h4>Your followed channels(ONLINE): </h4>
               <div>
                 <Grid>
-                  {this.props.userTwitchInfo.channels.length > 0 ? (
-                    this.props.userTwitchInfo.channels.map((ch, idx) => (
-                      <div key={ch._data.channel._id}>
+                  {this.state.followedStreams.length > 0 ? (
+                    this.state.followedStreams.map(stream => (
+                      <div key={stream.channel._id}>
                         <Image
                           size="small"
-                          src={ch._data.channel.logo}
+                          src={stream.channel.logo}
                           className={
-                            this.state.selected.includes(ch._data.channel.name)
+                            this.state.selected.includes(stream.channel.name)
                               ? 'selected'
                               : 'unselected'
                           }
-                          onClick={() =>
-                            this.handleClick(ch._data.channel.name)
-                          }
+                          onClick={() => this.handleClick(stream.channel.name)}
                         />
-                        {this.props.userTwitchInfo.isOnline[idx] ? (
-                          <div>
-                            <Button size="mini" color="green">
-                              Online
-                            </Button>
-                          </div>
-                        ) : (
-                          <div>
-                            <Button size="mini">Offline</Button>
-                          </div>
-                        )}
                       </div>
                     ))
                   ) : (
-                    <div>
-                      <Image src="/image/loading.gif" />
-                    </div>
+                    <div>{/* <Image src="/image/loading.gif" /> */}</div>
                   )}
                 </Grid>
               </div>
