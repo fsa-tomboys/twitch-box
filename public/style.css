@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -13,7 +15,7 @@ label {
 
 nav {
   /* background-color: #242525; */
-  background: black;
+  background: #181721;
 }
 .navbar {
   position: fixed;
@@ -33,7 +35,7 @@ nav a:hover {
   color: #6441a5;
 }
 .navbar-home-icon {
-  background: black;
+  background: #181721;
   padding-left: 30px;
   padding-top: 30px;
 }
@@ -53,7 +55,7 @@ form div {
   color: #5a5d5c;
   color: #c9cfce;
   padding: 1rem;
-  background: black;
+  background: #181721;
   width: 80rem;
 }
 
@@ -248,14 +250,14 @@ form div {
 .followed-channels-container {
   justify-content: justify;
 }
-.canvases {
+/* .canvases {
   width: 100%;
   top: 20%;
   left: 6%;
   height: 40%;
   border: 1px solid;
   opacity: 0.4;
-}
+} */
 .single-clip-outer {
   display: flex;
   flex-wrap: wrap;
@@ -266,12 +268,13 @@ form div {
   position: fixed;
   height: 100%;
   left: 0;
-  top: 92px;
+  top: 69px;
   bottom: 0;
-  width: 260px;
-  background: #fafafa;
+  width: 240px;
+  background: black;
   z-index: 1; /* Stay on top */
-  /* overflow-x: hidden; Disable horizontal scroll */
+  overflow-x: hidden;
+  /* Disable horizontal scroll  */
   /* padding: 25px;ˆ */
 }
 .main-inner-featured {
@@ -310,15 +313,15 @@ form div {
   font-style: bold;
 }
 .channel-offline {
-  color: black;
+  color: #bababa;
 }
-.channel-online,
+/* .channel-online,
 .channel-offline {
   position: relative;
   left: 100px;
   bottom: 20px;
   font-size: 1.2rem;
-}
+} */
 
 .featured-streams-icons {
   position: relative;
@@ -350,26 +353,28 @@ form div {
   cursor: pointer;
 }
 .followed-channels-icon-channelName {
-  position: absolute;
-  left: 10px;
+  position: relative;
+  left: 44px;
+  bottom: 34px;
   font-weight: bolder;
-  color: navy;
+  color: #c9edeb;
+  vertical-align: top;
 }
 .featured-streams-icon-channelName {
   font-weight: bolder;
   color: navy;
 }
-.followed-channels-icon-channelName {
+/* .followed-channels-icon-channelName {
   position: absolute;
-}
+} */
 .followed-channels-icons,
 .unselected,
 .selected {
   /* padding: 5px; */
   /* border: 1px solid red; */
-  /* width: 100%;
-  height: 65px;
-  margin: auto; */
+  /* width: 100%; */
+  /* height: 65px; */
+  /* margin: auto; */
 }
 .followed-channels-wrapper .unselected {
   /* text-align: center; */
@@ -380,17 +385,19 @@ form div {
   /* width: 140px; */
 }
 .followed-single-channel-wrapper {
-  width: 260px;
-  margin-left: 10px;
+  width: 240px;
+  height: 60px;
+  /* margin: 10px; */
 }
 
 .selected {
-  opacity: 0.6;
-  border: 3px solid green;
+  /* opacity: 0.6; */
+  /* border: 3px solid green; */
   padding: 5px;
-  /* margin-left: 5px; */
+  margin-left: 5px;
   /* width: 100%; */
 }
+
 .unselected {
   opacity: 1;
   margin-left: 5px;
@@ -400,6 +407,7 @@ form div {
 
 .followed-channels-wrapper {
   display: flex;
+  /* background: #2F2C40; */
   /* align-items: center; */
 }
 .username-featured {
@@ -419,8 +427,34 @@ li {
 }
 
 .selected .channel-online,
-.selected .channel-offline {
+.selected .channel-offline,
+.channel-online,
+.channel-offline {
   position: relative;
-  left: 100px;
-  bottom: 20px;
+  left: 166px;
+  bottom: 41px;
+  font-size: 1.1rem;
+}
+
+.unselected .followed-channels-followers,
+.selected .followed-channels-followers {
+  /* position: relative;
+  left: 9px;
+  bottom: 14px; */
+  color: #c9edeb;
+}
+.followed-single-channel-wrapper .unselected {
+  /* display: flex; */
+
+  width: 240px;
+  background: black;
+}
+.followed-single-channel-wrapper .selected {
+  width: 240px;
+  background: #181721;
+}
+
+.followed-single-channel-wrapper .unselected:hover,
+.followed-single-channel-wrapper .selected:hover {
+  background: #181721;
 }

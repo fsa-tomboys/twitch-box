@@ -147,7 +147,7 @@ class Featured extends Component {
   }
 
   render() {
-    // console.log('PROPS', this.props)
+    console.log('PROPS', this.props)
     return (
       <div className="main-layout-wrapper-featured">
         <div className="sidebar-featured">
@@ -189,7 +189,6 @@ class Featured extends Component {
             Go to random Multistream
           </a>
           <CustomizeModal />
-
           <h4>Channels you follw: </h4>
           <Divider hidden />
           {this.props.isLoggedIn && (
@@ -226,9 +225,15 @@ class Featured extends Component {
                             //   this.handleClick(ch._data.channel.name)
                             // }
                           />
+
                           <span className="followed-channels-icon-channelName">
                             {ch._data.channel.name}
                           </span>
+                          {/* <span className="followed-channels-followers">
+                            {convertFollowers(ch._data.channel.followers)}
+                            followers
+                          </span> */}
+
                           {this.props.userTwitchInfo.isOnline[idx] ? (
                             <div className="channel-online">
                               <span>Live</span>
@@ -262,7 +267,10 @@ class Featured extends Component {
               value: game.name
             }))}
           />
-
+          <Divider hidden />
+          <Divider hidden />
+          <Divider hidden />
+          <Divider hidden />
           {/* <ul>
             {this.state.topGames.map(game => (
               <a
@@ -332,7 +340,7 @@ class Featured extends Component {
                       this.handleClick(element.stream.channel.name)
                     }
                   />
-                  <span>
+                  <span className="featured-channels-followers">
                     {convertFollowers(element.stream.channel.followers)}{' '}
                     followers
                   </span>
