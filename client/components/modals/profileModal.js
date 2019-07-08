@@ -1,6 +1,7 @@
 import React from 'react'
 import {Button, Header, Image, Modal} from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import {fetchTwitchUser} from '../../store/usertwitchinfo'
 
 class ProfileModal extends React.Component {
   constructor() {
@@ -13,6 +14,9 @@ class ProfileModal extends React.Component {
   handleClose = () => this.setState({modalOpen: false})
 
   render() {
+    if (Object.keys(this.props.userTwitchInfo.twitchUser).length === 0) {
+      this.props.fetchInitialTwitchUser(this.props.user.twitchId)
+    }
     let dateCreated
     if (this.props.userTwitchInfo.twitchUser.created_at) {
       dateCreated = this.props.userTwitchInfo.twitchUser.created_at.slice(0, 10)
@@ -64,4 +68,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ProfileModal)
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileModal)
