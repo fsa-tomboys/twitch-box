@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import SingleClipComponent from './SingleClipComponent'
+import Navbar from './navbar'
 // import {Chat} from './chat'
 // import MultistreamSidebar from './MultistreamSidebar'
 import queryString from 'query-string'
@@ -29,6 +30,7 @@ export class ViewClipsComponent extends Component {
     let length = this.state.clipsArray.length
     return (
       <div className="single-clip-outer">
+        <Navbar pos="navbar" />
         {this.state.clipsArray.map((element, index) => (
           <SingleClipComponent
             source={element}

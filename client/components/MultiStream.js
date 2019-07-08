@@ -95,6 +95,7 @@ export class MultiStream extends Component {
   render() {
     this.getChannelId(this.state.testArray)
 
+    console.log('checking PROPS in multistream :', this.props)
     return (
       <div>
         <Navbar pos="navbar" />
