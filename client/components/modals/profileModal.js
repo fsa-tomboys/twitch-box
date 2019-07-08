@@ -30,7 +30,8 @@ class ProfileModal extends React.Component {
         // basic
         // size='small'
       >
-        <Header content={`Profile of ${this.props.user.name}:`} />
+        {/* <Header content={`Profile of ${this.props.user.name}:`} /> */}
+        <Header content="My profile" />
         <Modal.Content image>
           <Image
             wrapped

@@ -26,7 +26,7 @@ class MultistreamModal extends React.Component {
         // basic
         // size='small'
       >
-        <Header content="Multistreams I have watched:" />
+        <Header content="My multistreams" />
         <Modal.Content image>
           <Image
             wrapped

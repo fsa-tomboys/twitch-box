@@ -48,7 +48,7 @@ class MyClipsModal extends React.Component {
         // basic
         // size='small'
       >
-        <Header content="My clips:" />
+        <Header content="My clips" />
         <Modal.Content image>
           <Image
             wrapped
