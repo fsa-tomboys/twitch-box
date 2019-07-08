@@ -39,6 +39,7 @@ class Routes extends Component {
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />
+        <Route path="/" component={Featured} />
         {/* <Route path="/list" component={List} /> */}
         {this.props.location.search.includes('name') && (
           <Route path="/widget" component={Widget} />
