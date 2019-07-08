@@ -28,7 +28,8 @@ class MultistreamSidebar extends Component {
     super()
     this.state = {
       userTwitchInfo: [],
-      modalOpen: false
+      modalOpen: false,
+      time: 0
     }
 
     this.createMultistreamClip = this.createMultistreamClip.bind(this)
@@ -135,6 +136,29 @@ class MultistreamSidebar extends Component {
             </Form>
           </Modal.Description>
         </Modal>
+        <Modal
+          trigger={
+            <Button
+              className="sidebar-edit-btn"
+              onClick={() => {
+                let currentTime = this.props.getTime()
+                this.setState({
+                  time: currentTime
+                })
+              }}
+            >
+              Get Time{' '}
+            </Button>
+          }
+          size="tiny"
+        >
+          <Modal.Description className="customize-form-box">
+            <Label>
+              Seconds watched of this multistream: {this.state.time}
+            </Label>
+          </Modal.Description>
+        </Modal>
+        <Button>Show/hide Chat</Button>
       </div>
     )
   }

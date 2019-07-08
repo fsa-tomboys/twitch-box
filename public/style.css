@@ -23,6 +23,7 @@ nav {
 }
 .navbar {
   position: fixed;
+
   left: 0;
   right: 0;
   z-index: 1;
@@ -264,13 +265,19 @@ form div {
   height: 40%;
   border: 1px solid;
   opacity: 0.4;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background: #ff1c68;
+  transform-origin: 50% 50%;
+}
 } */
-.single-clip-outer {
-  display: flex;
+/* display: flex;
   flex-wrap: wrap;
   max-width: 80%;
   margin: 0 auto;
-}
+} */
 .sidebar-featured {
   position: fixed;
   height: 100%;
