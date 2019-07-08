@@ -23,17 +23,7 @@ export class Widget extends Component {
 
     return (
       <div className="single-stream-outer">
-        <div className="single-stream-overlay-menu" />
         <canvas id={uniqueCanvas} width="300" height="300" />
-        <h3>{this.state.name}</h3>
-        <button
-          type="button"
-          onClick={() => {
-            socket.emit('displayCanvas', uniqueCanvas)
-          }}
-        >
-          Yes!
-        </button>
 
         <div />
       </div>
