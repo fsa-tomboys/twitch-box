@@ -13,11 +13,12 @@ class MultistreamModal extends React.Component {
   handleClose = () => this.setState({modalOpen: false})
 
   render() {
+    console.log('')
     return (
       <Modal
         trigger={
           <div className="login-user-selfview-menu">
-            <p onClick={this.handleOpen}>Multistream History</p>
+            <p onClick={this.handleOpen}>Multistream history</p>
           </div>
         }
         open={this.state.modalOpen}
@@ -25,7 +26,7 @@ class MultistreamModal extends React.Component {
         // basic
         // size='small'
       >
-        <Header content={`Multistream history of ${this.props.user.name}:`} />
+        <Header content="Multistreams I have watched:" />
         <Modal.Content image>
           <Image
             wrapped
@@ -36,7 +37,14 @@ class MultistreamModal extends React.Component {
             <List>
               {this.props.multistreams.map(elem => (
                 <List.Item key={elem.id}>
-                  <a href={elem.link}>{elem.link}</a>
+                  <a href={elem.link}>
+                    {' '}
+                    {' - '}{' '}
+                    {elem.link
+                      .slice(11, -1)
+                      .split('-')
+                      .join(',')}
+                  </a>
                 </List.Item>
               ))}
             </List>
@@ -44,7 +52,7 @@ class MultistreamModal extends React.Component {
         </Modal.Content>
         <Modal.Actions>
           <Button color="green" onClick={this.handleClose} inverted>
-            Close Multistream History
+            Close
           </Button>
         </Modal.Actions>
       </Modal>
