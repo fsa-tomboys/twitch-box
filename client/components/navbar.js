@@ -18,11 +18,11 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
         <span className="navbar-home-icon">
           <a href="/featured">
             {' '}
-            <Icon color="purple" name="home" size="large" />
+            <Icon color="grey" name="home" size="huge" />
           </a>
         </span>
         <span className="top-header">
-          <h1>TWITCH BOX</h1>
+          <h1>twitch box</h1>
         </span>
 
         <Dropdown item text="View My Info">
