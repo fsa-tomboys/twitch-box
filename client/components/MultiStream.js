@@ -6,6 +6,7 @@ import queryString from 'query-string'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import TimeMe from 'timeme.js'
+import Navbar from './navbar'
 export class MultiStream extends Component {
   constructor() {
     super()
@@ -96,6 +97,7 @@ export class MultiStream extends Component {
 
     return (
       <div>
+        <Navbar pos="navbar" />
         <div className="main-layout-container">
           {this.state.testArray.length > 0 && (
             <MultistreamSidebar
