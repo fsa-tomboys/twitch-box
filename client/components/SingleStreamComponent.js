@@ -56,9 +56,6 @@ class SingleStreamComponent extends Component {
                 }}
               />{' '}
             </a>
-            <a className="single-stream-link" href="#">
-              <Icon name="sound" size="large" />
-            </a>
             <a
               className="single-stream-link"
               href="#"
@@ -69,9 +66,16 @@ class SingleStreamComponent extends Component {
             <a
               className="single-stream-link"
               href="#"
-              onClick={() => socket.emit('displayCanvas', uniqueCanvas)}
+              onClick={() => socket.emit('addThumb', uniqueCanvas)}
             >
               <Icon name="thumbs up outline" size="large" />
+            </a>
+            <a
+              className="single-stream-link"
+              href="#"
+              onClick={() => socket.emit('addHeart', uniqueCanvas)}
+            >
+              <Icon name="heart" size="large" />
             </a>
             <a className="single-stream-link" href="#">
               <Icon
