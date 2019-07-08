@@ -19,7 +19,9 @@ class CustomizeModal extends React.Component {
         size="mini"
         trigger={
           <div>
-            <Button onClick={this.handleOpen}>Add by stream name</Button>
+            <Button onClick={this.handleOpen} inverted size="small">
+              Add streams by name
+            </Button>
           </div>
         }
         open={this.state.modalOpen}
