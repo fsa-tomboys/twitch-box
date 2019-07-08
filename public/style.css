@@ -265,7 +265,6 @@ form div {
   height: 40%;
   border: 1px solid;
   opacity: 0.4;
-<<<<<<< HEAD
 }
 .box {
   width: 100px;
@@ -273,14 +272,12 @@ form div {
   background: #ff1c68;
   transform-origin: 50% 50%;
 }
-=======
 } */
->>>>>>>a787a633db05357b17ce6be4ea2b917b31fce46a .single-clip-outer {
-  display: flex;
+/* display: flex;
   flex-wrap: wrap;
   max-width: 80%;
   margin: 0 auto;
-}
+} */
 .sidebar-featured {
   position: fixed;
   height: 100%;
