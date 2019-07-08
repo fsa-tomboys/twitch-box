@@ -13,7 +13,7 @@ const AuthForm = props => {
     <div className="login-link-twitch">
       <div className="login-signup-box">
         <span className="welcome-text-login">
-          <h2>Welcome to Twitch-Box!</h2>
+          <h2>Welcome to Twitch Box!</h2>
         </span>
         <a className="login-link-twitch-text-box" href="/auth/twitch">
           {/* <a href="/auth/twitch">{displayName} with Twitch</a> */}
