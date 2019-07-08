@@ -23,7 +23,10 @@ const AuthForm = props => {
         </a>
         <span className="sign-up-question">
           Need to create Twitch account?
-          <a className="sign-up-twitch"> Sign up here</a>
+          <a className="sign-up-twitch" href="https://www.twitch.tv/signup">
+            {' '}
+            Sign up here
+          </a>
         </span>
       </div>
     </div>
