@@ -51,7 +51,8 @@ class Featured extends Component {
       topGames: [],
       displayChannelsFromTopGames: [],
       selected: [],
-      randomChannels: []
+      randomChannels: [],
+      followedStreams: []
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
@@ -109,10 +110,23 @@ class Featured extends Component {
     })
     if (this.props.isLoggedIn) {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
-      await this.props.fetchInitialChannels(this.props.user.twitchId)
-      await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
       await this.props.fetchInitialMs(this.props.user.id)
       await this.props.fetchInitialClips(this.props.user.id)
+      let theStreams = await axios.get(
+        'https://api.twitch.tv/kraken/streams/followed',
+        {
+          headers: {
+            Accept: 'application/vnd.twitchtv.v5+json',
+            'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh',
+            Authorization: `OAuth ${this.props.user.token}`
+          }
+        }
+      )
+      this.setState({
+        followedStreams: theStreams.data.streams
+      })
+      await this.props.fetchInitialChannels(this.props.user.twitchId)
+      await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
     }
     console.log('state ', this.state)
   }
@@ -197,32 +211,32 @@ class Featured extends Component {
               <Divider />
               <div>
                 <Grid>
-                  {this.props.userTwitchInfo.channels.length > 0 ? (
-                    this.props.userTwitchInfo.channels.map((ch, idx) => (
+                  {this.state.followedStreams.length > 0 ? (
+                    this.state.followedStreams.map((stream, idx) => (
                       <div className="followed-single-channel-wrapper">
                         <div
                           // className="followed-channels-icons"
-                          key={ch._data.channel._id}
+                          key={stream.channel._id}
                           className={
-                            this.state.selected.includes(ch._data.channel.name)
+                            this.state.selected.includes(stream.channel.name)
                               ? 'selected'
                               : 'unselected'
                           }
-                          onClick={() =>
-                            this.handleClick(ch._data.channel.name)
-                          }
+                          onClick={() => this.handleClick(stream.channel.name)}
                         >
-                          <Image size="mini" src={ch._data.channel.logo} />
+                          <Image size="mini" src={stream.channel.logo} />
 
                           <span className="followed-channels-icon-channelName">
-                            {ch._data.channel.name}
+                            {stream.channel.name}
                           </span>
                           {/* <span className="followed-channels-followers">
-                            {convertFollowers(ch._data.channel.followers)}
+                            {convertFollowers(stream.channel.followers)}
                             followers
                           </span> */}
-
-                          {this.props.userTwitchInfo.isOnline[idx] ? (
+                          <div className="channel-online">
+                            <span>Live</span>
+                          </div>
+                          {/* {this.props.userTwitchInfo.isOnline[idx] ? (
                             <div className="channel-online">
                               <span>Live</span>
                             </div>
@@ -230,7 +244,7 @@ class Featured extends Component {
                             <div className="channel-offline">
                               <span>Offline</span>
                             </div>
-                          )}
+                          )} */}
                         </div>
                       </div>
                     ))
