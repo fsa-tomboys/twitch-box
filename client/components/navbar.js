@@ -8,8 +8,8 @@ import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
 import MyClipsModal from './modals/myClipsModal'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div className="navbar">
+const Navbar = ({handleClick, isLoggedIn, pos}) => (
+  <div className={pos}>
     {isLoggedIn ? (
       <Menu size="small" inverted>
         {/* <Menu.Item as={Link} to="/featured">
