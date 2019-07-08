@@ -44,16 +44,10 @@ class Routes extends Component {
         {this.props.location.search.includes('name') && (
           <Route path="/widget" component={Widget} />
         )}
+        <Route path="/" component={Featured} />
+        {/* <Route path="/list" component={List} /> */}
 
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        )}
         {/* Displays our Login component as a fallback */}
-
-        <Route component={Featured} />
       </Switch>
     )
   }
