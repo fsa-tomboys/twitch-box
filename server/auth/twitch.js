@@ -24,9 +24,10 @@ if (!process.env.TWITCH_CLIENT_ID || !process.env.TWITCH_CLIENT_SECRET) {
       // })
       //   .then(([user]) => done(null, user))
       //   .catch(done)
+      console.log(profile)
       try {
         let theUser = await User.findOne({
-          where: {twitchId: profile.id}
+          where: {twitchId: String(profile.id)}
         })
         // console.log('theUser: ', theUser)
         if (!theUser) {
