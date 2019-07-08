@@ -7,7 +7,9 @@ module.exports = io => {
     socket.on('newHeart', uniqueCanvas => {
       io.emit('addHeart', uniqueCanvas)
     })
-
+    socket.on('newSmile', uniqueCanvas => {
+      io.emit('addSmile', uniqueCanvas)
+    })
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`)
     })
