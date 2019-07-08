@@ -1,3 +1,3 @@
-# Boilermaker
+# Twitch Box
 
-_Good things come in pairs_
+A new way to watch multiple Twitch streamers at once
