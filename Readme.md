@@ -1,3 +1,3 @@
 # Twitch Box
 
-A web application for watching multiple Twitch streamers at once.
+A new way to watch multiple Twitch streamers at once
