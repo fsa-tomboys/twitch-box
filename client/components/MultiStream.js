@@ -6,6 +6,7 @@ import queryString from 'query-string'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import TimeMe from 'timeme.js'
+import Navbar from './navbar'
 export class MultiStream extends Component {
   constructor() {
     super()
@@ -96,38 +97,41 @@ export class MultiStream extends Component {
 
     return (
       <div>
-        <div className="main-layout-container">
-          {this.state.testArray.length > 0 && (
-            <MultistreamSidebar
-              testArray={this.state.testArray}
-              remove={this.remove}
-              addStream={this.addStream}
-              channelIds={this.state.channelIds}
-              getTime={this.getTime}
-            />
-          )}
-          {/* </div> */}
-          <div className="all-streams-container">
-            {this.state.testArray.map((element, index) => (
-              <SingleStreamComponent
-                name={element}
-                streamNum={index}
-                totalNumber={this.state.testArray.length}
-                handleChatClick={this.handleChatClick}
-                key={index}
-                handleSelect={this.handleSelect}
+        <Navbar pos="navbar" />
+        <div>
+          <div className="main-layout-container">
+            {this.state.testArray.length > 0 && (
+              <MultistreamSidebar
+                testArray={this.state.testArray}
                 remove={this.remove}
+                addStream={this.addStream}
+                channelIds={this.state.channelIds}
+                getTime={this.getTime}
               />
-            ))}
+            )}
+            {/* </div> */}
+            <div className="all-streams-container">
+              {this.state.testArray.map((element, index) => (
+                <SingleStreamComponent
+                  name={element}
+                  streamNum={index}
+                  totalNumber={this.state.testArray.length}
+                  handleChatClick={this.handleChatClick}
+                  key={index}
+                  handleSelect={this.handleSelect}
+                  remove={this.remove}
+                />
+              ))}
+            </div>
+            {this.state.testArray.length > 0 && (
+              <Chat
+                index={this.state.index}
+                array={this.state.testArray}
+                handleSelect={this.handleSelect}
+                setHeight={window.innerHeight - 140}
+              />
+            )}
           </div>
-          {this.state.testArray.length > 0 && (
-            <Chat
-              index={this.state.index}
-              array={this.state.testArray}
-              handleSelect={this.handleSelect}
-              setHeight={window.innerHeight - 140}
-            />
-          )}
         </div>
       </div>
     )
