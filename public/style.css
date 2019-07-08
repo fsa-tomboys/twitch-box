@@ -464,7 +464,6 @@ form div {
 
 .followed-channels-wrapper {
   display: flex;
-  flex-direction: column;
   /* background: #2F2C40; */
   /* align-items: center; */
 }
@@ -582,4 +581,12 @@ li {
 .by-game-channels-followers {
   position: relative;
   left: 7px;
+}
+
+.show-button {
+  margin-top: 40px;
+}
+.show-more:hover,
+.show-less:hover {
+  cursor: pointer;
 }
