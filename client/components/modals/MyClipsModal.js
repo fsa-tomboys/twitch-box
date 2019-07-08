@@ -65,8 +65,8 @@ class MyClipsModal extends React.Component {
                         this.routeChange(elem)
                       }}
                     >
-                      Clip Name: {elem.name} created on{' '}
-                      {elem.createdAt.slice(0, 9)}
+                      Clip: {elem.name}, created on{' '}
+                      {elem.createdAt.slice(0, 10)}
                     </a>
                   </span>
                 </List.Item>

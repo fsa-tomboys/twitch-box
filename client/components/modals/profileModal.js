@@ -47,7 +47,7 @@ class ProfileModal extends React.Component {
         </Modal.Content>
         <Modal.Actions>
           <Button color="green" onClick={this.handleClose} inverted>
-            Close Profile
+            Close
           </Button>
         </Modal.Actions>
       </Modal>
