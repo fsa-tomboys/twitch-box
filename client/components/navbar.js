@@ -24,25 +24,26 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
         <span className="top-header">
           <h1>twitch box</h1>
         </span>
-
-        <Dropdown item text="View My Info">
-          <Dropdown.Menu>
-            <Dropdown.Item>
-              <span className="profile-dropdown">
-                <ProfileModal />
-              </span>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <MultistreamModal />
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <MyClipsModal />
-            </Dropdown.Item>
-            <Dropdown.Item as={Link} to="#" onClick={handleClick}>
-              <span className="logout-dropdown">Logout</span>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <div className="my-profile-dropdown-navbar">
+          <Dropdown item text="View My Info">
+            <Dropdown.Menu>
+              <Dropdown.Item>
+                <span className="profile-dropdown">
+                  <ProfileModal />
+                </span>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <MultistreamModal />
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <MyClipsModal />
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="#" onClick={handleClick}>
+                <span className="logout-dropdown">Logout</span>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
 
         {/* <Menu.Item as={Link} to="#" onClick={handleClick}>
           Logout
@@ -54,7 +55,7 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
           Featured Streams
         </Menu.Item>
         <span className="top-header">
-          <h1>TWITCH BOX</h1>
+          <h1>twitch box</h1>
         </span>
         <Menu.Item as={Link} to="/login" position="right">
           Login
