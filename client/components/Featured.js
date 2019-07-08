@@ -215,7 +215,7 @@ class Featured extends Component {
             Go to random Multistream
           </a> */}
             <CustomizeModal />
-            <h4>Channels you follw: </h4>
+            <h4>Channels you follow: </h4>
             <Divider hidden />
             {this.props.isLoggedIn && (
               <div className="followed-channels-wrapper">
@@ -305,15 +305,19 @@ class Featured extends Component {
                   </Grid>
                 </div>
                 <Divider hidden />
-                <div>
-                  {this.state.showMore ? (
-                    <a onClick={() => this.handleShowMore()}>show less</a>
-                  ) : (
-                    <a onClick={() => this.handleShowMore()}>show more</a>
-                  )}
-                </div>
               </div>
             )}
+            <div className="show-button">
+              {this.state.showMore ? (
+                <a onClick={() => this.handleShowMore()}>
+                  <span className="show-less">show less</span>
+                </a>
+              ) : (
+                <a onClick={() => this.handleShowMore()}>
+                  <span className="show-more">show more </span>
+                </a>
+              )}
+            </div>
 
             <Divider hidden />
             <Divider hidden />

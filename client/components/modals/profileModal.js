@@ -30,7 +30,8 @@ class ProfileModal extends React.Component {
         // basic
         // size='small'
       >
-        <Header content={`Profile of ${this.props.user.name}:`} />
+        {/* <Header content={`Profile of ${this.props.user.name}:`} /> */}
+        <Header content="My profile" />
         <Modal.Content image>
           <Image
             wrapped
@@ -47,7 +48,7 @@ class ProfileModal extends React.Component {
         </Modal.Content>
         <Modal.Actions>
           <Button color="green" onClick={this.handleClose} inverted>
-            Close Profile
+            Close
           </Button>
         </Modal.Actions>
       </Modal>

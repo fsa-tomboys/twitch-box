@@ -48,7 +48,7 @@ class MyClipsModal extends React.Component {
         // basic
         // size='small'
       >
-        <Header content="My clips:" />
+        <Header content="My clips" />
         <Modal.Content image>
           <Image
             wrapped
@@ -65,8 +65,8 @@ class MyClipsModal extends React.Component {
                         this.routeChange(elem)
                       }}
                     >
-                      Clip Name: {elem.name} created on{' '}
-                      {elem.createdAt.slice(0, 9)}
+                      Clip: {elem.name}, created on{' '}
+                      {elem.createdAt.slice(0, 10)}
                     </a>
                   </span>
                 </List.Item>
