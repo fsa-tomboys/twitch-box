@@ -16,21 +16,22 @@ class CustomizeModal extends React.Component {
   render() {
     return (
       <Modal
+        size="mini"
         trigger={
           <div>
-            <Button onClick={this.handleOpen}>Manully Customize</Button>
+            <Button onClick={this.handleOpen}>Add by stream name</Button>
           </div>
         }
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >
-        <Header content="Customize streams by input names" />
+        <Header content="Add streams by name" />
         <Modal.Content>
           <Customize />
         </Modal.Content>
         <Modal.Actions>
           <Button color="green" onClick={this.handleClose} inverted>
-            Cancal Customizing
+            Cancel
           </Button>
         </Modal.Actions>
       </Modal>
