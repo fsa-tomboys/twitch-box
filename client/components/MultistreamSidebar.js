@@ -1,5 +1,13 @@
 import React, {Component} from 'react'
-import {Button, Input, Modal, Form, Label} from 'semantic-ui-react'
+import {
+  Button,
+  Input,
+  Modal,
+  Form,
+  Label,
+  Divider,
+  Icon
+} from 'semantic-ui-react'
 import TwitchClient from 'twitch'
 import {connect} from 'react-redux'
 import {createClip} from '../store/clip'
@@ -39,7 +47,6 @@ class MultistreamSidebar extends Component {
 
   // async
   async createMultistreamClip(event) {
-    // event.persist();
     let clipName = event.target.streamName.value
     const client = await TwitchClient.withCredentials(
       'bmeab5l8jv7arn07ucv4zywa22qrl9',
@@ -75,8 +82,15 @@ class MultistreamSidebar extends Component {
     // console.log('PROPS IN SIDEBAR: ', this.props)
     return (
       <div className="multistream-sidebar">
+        <Divider hidden />
         <Modal
-          trigger={<Button className="sidebar-edit-btn">Edit stream</Button>}
+          trigger={
+            <Button inverted size="small">
+              <Icon name="edit" /> Edit
+            </Button>
+          }
+          // trigger={<Button className="sidebar-edit-btn">Edit</Button>}
+          // trigger={<Icon className="edit-icon-sidebar"name="edit outline" color="black" size="big">Here</Icon>}
           size="tiny"
         >
           <Modal.Header>Edit Streams</Modal.Header>
@@ -102,9 +116,13 @@ class MultistreamSidebar extends Component {
           </Modal.Description>
         </Modal>
         <div>
+          <Divider hidden />
           <Modal
             trigger={
-              <Button className="sidebar-edit-btn">Share stream </Button>
+              <Button inverted size="small">
+                <Icon name="share square outline" /> Share
+              </Button>
+              // <Button className="sidebar-edit-btn">Share</Button>
             }
             size="tiny"
           >
@@ -117,11 +135,16 @@ class MultistreamSidebar extends Component {
             </Modal.Description>
           </Modal>
         </div>
-
+        <Divider hidden />
         <Modal
           open={this.state.modalOpen}
           onClose={this.handleClose}
-          trigger={<Button onClick={this.handleOpen}>Record Clip</Button>}
+          trigger={
+            <Button inverted onClick={this.handleOpen} size="small">
+              <Icon name="record" /> Record Clip
+            </Button>
+          }
+          // trigger={<Button onClick={this.handleOpen}>Record Clip</Button>}
           size="tiny"
         >
           <Modal.Header>Enter Clip Name:</Modal.Header>
@@ -136,7 +159,7 @@ class MultistreamSidebar extends Component {
             </Form>
           </Modal.Description>
         </Modal>
-        <Modal
+        {/* <Modal
           trigger={
             <Button
               className="sidebar-edit-btn"
@@ -151,13 +174,13 @@ class MultistreamSidebar extends Component {
             </Button>
           }
           size="tiny"
-        >
-          {/* <Modal.Description className="customize-form-box">
+        > */}
+        {/* <Modal.Description className="customize-form-box">
             <Label>
               Seconds watched of this multistream: {this.state.time}
             </Label>
           </Modal.Description> */}
-        </Modal>
+        {/* </Modal> */}
         {/* <Button>Show/hide Chat</Button> */}
       </div>
     )
