@@ -456,6 +456,7 @@ form div {
 
 .followed-channels-wrapper {
   display: flex;
+  flex-direction: column;
   /* background: #2F2C40; */
   /* align-items: center; */
 }

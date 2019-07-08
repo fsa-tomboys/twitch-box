@@ -52,13 +52,15 @@ class Featured extends Component {
       displayChannelsFromTopGames: [],
       selected: [],
       randomChannels: [],
-      followedStreams: []
+      followedStreams: [],
+      showMore: false
     }
     this.handleClick = this.handleClick.bind(this)
     this.routeChange = this.routeChange.bind(this)
     this.resetSelected = this.resetSelected.bind(this)
     this.getChannelsForThisGame = this.getChannelsForThisGame.bind(this)
     this.goToRandomMultistream = this.goToRandomMultistream.bind(this)
+    this.handleShowMore = this.handleShowMore.bind(this)
   }
   async routeChange() {
     this.props.history.push({
@@ -161,6 +163,12 @@ class Featured extends Component {
     )
   }
 
+  handleShowMore() {
+    this.setState({
+      showMore: !this.state.showMore
+    })
+  }
+
   render() {
     console.log('PROPS', this.props)
     return (
@@ -253,12 +261,55 @@ class Featured extends Component {
                       <Image src="/image/loading.gif" />
                     </div>
                   )}
+                  {this.state.showMore ? (
+                    this.props.userTwitchInfo.channels
+                      .filter(
+                        (ch, idx) =>
+                          this.props.userTwitchInfo.isOnline[idx] === false
+                      )
+                      .map(ch => (
+                        <div className="followed-single-channel-wrapper">
+                          <div
+                            // className="followed-channels-icons"
+                            key={ch._data.channel._id}
+                            className={
+                              this.state.selected.includes(
+                                ch._data.channel.name
+                              )
+                                ? 'selected'
+                                : 'unselected'
+                            }
+                            onClick={() =>
+                              this.handleClick(ch._data.channel.name)
+                            }
+                          >
+                            <Image size="mini" src={ch._data.channel.logo} />
+
+                            <span className="followed-channels-icon-channelName">
+                              {ch._data.channel.name}
+                            </span>
+                            <div className="channel-offline">
+                              <span>Offline</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                  ) : (
+                    <div> </div>
+                  )}
                 </Grid>
+              </div>
+              <Divider hidden />
+              <div>
+                {this.state.showMore ? (
+                  <a onClick={() => this.handleShowMore()}>show less</a>
+                ) : (
+                  <a onClick={() => this.handleShowMore()}>show more</a>
+                )}
               </div>
             </div>
           )}
 
-          <Divider hidden />
           <Divider hidden />
           <Divider hidden />
           <Divider hidden />
