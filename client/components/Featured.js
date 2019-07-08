@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-key */
 import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
-import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
+import {Grid, Image, Button, Divider, Select, Icon} from 'semantic-ui-react'
 import axios from 'axios'
 import {
   fetchTwitchUser,
@@ -9,11 +10,13 @@ import {
   fetchChannelsStreamsStatus
 } from '../store/usertwitchinfo'
 import {createMultistream, fetchMultistreams} from '../store/multistreams'
+import {fetchClips} from '../store/clip'
 import {createUserMultistreamAssociation} from '../store/users'
 import RandomMultistream from './RandomMultiStream'
 import {ECONNABORTED} from 'constants'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
+import CustomizeModal from './modals/customizeModal'
 
 function randomNumerGenerator(maxNum) {
   let randNums = []
@@ -24,6 +27,20 @@ function randomNumerGenerator(maxNum) {
     }
   }
   return randNums
+}
+function convertFollowers(num) {
+  if (num < 1000) {
+    return String(num)
+  } else if (num / 1000 > 1000 && num / 1000 < 1000000) {
+    return String((num / 1000000).toFixed(2)) + 'm'
+  } else {
+    return String(Math.round(num / 1000)) + 'k'
+  }
+}
+
+function processStreamDescription(streamText) {
+  var doc = new DOMParser().parseFromString(streamText, 'text/html')
+  return doc.body.textContent || ''
 }
 
 class Featured extends Component {
@@ -56,8 +73,6 @@ class Featured extends Component {
     }
   }
   goToRandomMultistream() {
-    // let newRandomStreamNames = []
-
     this.state.randomChannels.map(channelNum =>
       this.state.selected.push(
         this.state.testArray[channelNum].stream.channel.name
@@ -73,14 +88,14 @@ class Featured extends Component {
   }
   async componentDidMount() {
     let featuredChannels = await axios.get(
-      'https://api.twitch.tv/kraken/streams/featured?limit=40',
+      'https://api.twitch.tv/kraken/streams/featured?limit=25',
       {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
     )
-
+    // console.log('featured: ', featuredChannels)
     let topGames = await axios.get(
-      'https://api.twitch.tv/helix/games/top?first=30',
+      'https://api.twitch.tv/helix/games/top?first=10',
       {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
@@ -97,7 +112,9 @@ class Featured extends Component {
       await this.props.fetchInitialChannels(this.props.user.twitchId)
       await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
       await this.props.fetchInitialMs(this.props.user.id)
+      await this.props.fetchInitialClips(this.props.user.id)
     }
+    console.log('state ', this.state)
   }
 
   async handleClick(channelName) {
@@ -124,31 +141,68 @@ class Featured extends Component {
     this.setState({
       displayChannelsFromTopGames: channelsForThisGame.data.streams
     })
+    console.log(
+      'channels for this game: ',
+      this.state.displayChannelsFromTopGames
+    )
   }
 
   render() {
-    let windowWidth = window.innerWidth
-
-    let randStreamWidth = Math.floor((windowWidth - windowWidth * 0.5) / 5)
-    let randStreamHeight = randStreamWidth * 1.5
-
+    console.log('PROPS', this.props)
     return (
-      <div>
-        <div>
-          {this.props.isLoggedIn && (
-            <div>
+      <div className="main-layout-wrapper-featured">
+        <div className="sidebar-featured">
+          <div>
+            {this.props.isLoggedIn ? (
               <div className="login-welcome-title">
-                <h3>Welcome, {this.props.user.name}</h3>
+                <h4>
+                  Welcome{' '}
+                  <span className="username-featured">
+                    {this.props.user.name}
+                  </span>, click any channel to add to multistream.
+                </h4>
               </div>
-              <h4>Your followed channels: </h4>
+            ) : (
+              <div className="login-welcome-title">
+                <h3>
+                  Welcome visitor, click any channel to add to multistream.
+                </h3>
+              </div>
+            )}
+            <div className="customize-form-buttons-box">
+              <Button onClick={this.resetSelected}>Clear</Button>
+              <Button
+                color="purple"
+                onClick={this.routeChange}
+                disabled={this.state.selected.length === 0}
+              >
+                Watch Streams
+              </Button>
+            </div>
+            <Button primary onClick={this.goToRandomMultistream}>
+              Random multistream
+            </Button>
+          </div>
+          {/* <a
+            className="featured-sidebar-link"
+            onClick={this.goToRandomMultistream}
+          >
+            Go to random Multistream
+          </a> */}
+          <CustomizeModal />
+          <h4>Channels you follw: </h4>
+          <Divider hidden />
+          {this.props.isLoggedIn && (
+            <div className="followed-channels-wrapper">
+              <Divider />
               <div>
                 <Grid>
                   {this.props.userTwitchInfo.channels.length > 0 ? (
                     this.props.userTwitchInfo.channels.map((ch, idx) => (
-                      <div key={ch._data.channel._id}>
-                        <Image
-                          size="small"
-                          src={ch._data.channel.logo}
+                      <div className="followed-single-channel-wrapper">
+                        <div
+                          // className="followed-channels-icons"
+                          key={ch._data.channel._id}
                           className={
                             this.state.selected.includes(ch._data.channel.name)
                               ? 'selected'
@@ -157,18 +211,27 @@ class Featured extends Component {
                           onClick={() =>
                             this.handleClick(ch._data.channel.name)
                           }
-                        />
-                        {this.props.userTwitchInfo.isOnline[idx] ? (
-                          <div>
-                            <Button size="mini" color="green">
-                              Online
-                            </Button>
-                          </div>
-                        ) : (
-                          <div>
-                            <Button size="mini">Offline</Button>
-                          </div>
-                        )}
+                        >
+                          <Image size="mini" src={ch._data.channel.logo} />
+
+                          <span className="followed-channels-icon-channelName">
+                            {ch._data.channel.name}
+                          </span>
+                          {/* <span className="followed-channels-followers">
+                            {convertFollowers(ch._data.channel.followers)}
+                            followers
+                          </span> */}
+
+                          {this.props.userTwitchInfo.isOnline[idx] ? (
+                            <div className="channel-online">
+                              <span>Live</span>
+                            </div>
+                          ) : (
+                            <div className="channel-offline">
+                              <span>Offline</span>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     ))
                   ) : (
@@ -178,77 +241,116 @@ class Featured extends Component {
                   )}
                 </Grid>
               </div>
-              <Divider hidden />
             </div>
           )}
+
+          <Divider hidden />
+          <Divider hidden />
+          <Divider hidden />
+          <Divider hidden />
         </div>
-        <Divider hidden />
-        <Divider hidden />
+        <div className="main-inner-featured">
+          <Divider regular />
 
-        <Button primary onClick={this.goToRandomMultistream}>
-          Go to random multistream
-        </Button>
-        <Divider hidden />
-
-        <h4>Top streamers</h4>
-        <Divider hidden />
-        <Grid>
-          {this.state.testArray.map(element => {
-            return (
-              <Image
-                size="small"
-                src={element.image}
-                className={
-                  this.state.selected.includes(element.stream.channel.name)
-                    ? 'selected'
-                    : 'unselected'
-                }
-                onClick={() => this.handleClick(element.stream.channel.name)}
-              />
-            )
-          })}
-        </Grid>
-        <Divider hidden />
-        <Divider hidden />
-        <h4>Streamers by game</h4>
-        <Divider hidden />
-        <Divider hidden />
-        <Select
-          placeholder="Browse by Game"
-          onChange={this.getChannelsForThisGame}
-          options={this.state.topGames.map(game => ({
-            key: game.id,
-            text: game.name,
-            value: game.name
-          }))}
-        />
-        <Divider hidden />
-        <Grid>
-          {!(this.state.displayChannelsFromTopGames.length === 0) ? (
-            this.state.displayChannelsFromTopGames.map(gameChannel => {
+          <span className="featured-channels-header">
+            <h4>Featured Channels</h4>
+          </span>
+          <Divider regular />
+          <Grid>
+            {this.state.testArray.map(element => {
               return (
-                <Image
-                  size="small"
-                  src={gameChannel.channel.logo}
-                  className={
-                    this.state.selected.includes(gameChannel.channel.name)
-                      ? 'selected'
-                      : 'unselected'
-                  }
-                  onClick={() => this.handleClick(gameChannel.channel.name)}
-                />
+                <div className="featured-streams-icons">
+                  <span className="featured-streams-icon-channelName">
+                    {element.stream.channel.name}
+                  </span>
+                  <Image
+                    src={element.stream.preview.medium}
+                    className={
+                      this.state.selected.includes(element.stream.channel.name)
+                        ? 'selected'
+                        : 'unselected'
+                    }
+                    onClick={() =>
+                      this.handleClick(element.stream.channel.name)
+                    }
+                  />
+                  <div className="fetaured-stream-description-box">
+                    <span className="featured-channels-followers">
+                      {convertFollowers(element.stream.channel.followers)}{' '}
+                      followers
+                    </span>
+
+                    <span className="featured-channels-watching">
+                      {convertFollowers(element.stream.viewers)} viewers
+                    </span>
+                    <span className="featured-channels-game">
+                      Game: {element.stream.game}
+                    </span>
+                    <span className="featured-streams-icons-tooltiptext">
+                      {processStreamDescription(element.text)}
+                    </span>
+                  </div>
+                </div>
               )
-            })
-          ) : (
-            <p />
-          )}
-        </Grid>
-        <Divider hidden />
-        <Divider hidden />
-        <Divider hidden />
-        <div className="customize-form-buttons-box">
-          <Button onClick={this.resetSelected}>Clear</Button>
-          <Button onClick={this.routeChange}>Watch Streams</Button>
+            })}
+          </Grid>
+          <Divider hidden />
+          <Divider />
+          <span className="browse-by-game-header">
+            <h4>Browse channels by game </h4>
+          </span>
+          <Divider hidden />
+          <div className="browse-by-game-selection">
+            <Select
+              placeholder="Browse by Game"
+              onChange={this.getChannelsForThisGame}
+              options={this.state.topGames.map(game => ({
+                key: game.id,
+                text: game.name,
+                value: game.name
+              }))}
+            />
+          </div>
+          <Divider />
+          <Grid>
+            {!(this.state.displayChannelsFromTopGames.length === 0) ? (
+              this.state.displayChannelsFromTopGames.map(gameChannel => {
+                return (
+                  <div className="streams-by-game">
+                    <span className="streams-by-game-icon-channelName">
+                      {gameChannel.channel.name}
+                    </span>
+                    <Image
+                      src={gameChannel.preview.medium}
+                      className={
+                        this.state.selected.includes(gameChannel.channel.name)
+                          ? 'selected'
+                          : 'unselected'
+                      }
+                      onClick={() => this.handleClick(gameChannel.channel.name)}
+                    />
+                    <div className="by-game-stream-description-box">
+                      <span className="by-game-channels-followers">
+                        {convertFollowers(gameChannel.channel.followers)}{' '}
+                        followers
+                      </span>
+                      <span className="by-game-channels-watching">
+                        {convertFollowers(gameChannel.viewers)} viewers
+                      </span>
+                      <span className="by-game-channels-game">
+                        Game: {gameChannel.game}
+                      </span>
+                      {/* <span className="by-game-streams-icons-tooltiptext">
+                    {processStreamDescription(element.text)}
+                  </span> */}
+                    </div>
+                  </div>
+                )
+              })
+            ) : (
+              <p />
+            )}
+          </Grid>
         </div>
       </div>
     )
@@ -260,7 +362,8 @@ const mapStateToProps = state => {
     isLoggedIn: !!state.user.id,
     user: state.user,
     userTwitchInfo: state.userTwitchInfo,
-    multistreams: state.multistreams
+    multistreams: state.multistreams,
+    clips: state.clip
   }
 }
 
@@ -269,6 +372,7 @@ const mapDispatchToProps = dispatch => {
     fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id)),
     fetchInitialChannels: id => dispatch(fetchUserChannels(id)),
     fetchInitialMs: userId => dispatch(fetchMultistreams(userId)),
+    fetchInitialClips: userId => dispatch(fetchClips(userId)),
     addMultistream: ms => dispatch(createMultistream(ms)),
     associateUserMs: (userId, msId) =>
       dispatch(createUserMultistreamAssociation(userId, msId)),

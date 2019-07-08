@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {Button, Card, Image, Search} from 'semantic-ui-react'
 import axios from 'axios'
-import {MultiStream} from './Multistream'
+import {MultiStream} from './ViewClipsComponent'
 
 export class List extends Component {
   constructor() {

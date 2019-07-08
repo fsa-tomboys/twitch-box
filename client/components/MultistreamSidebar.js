@@ -4,33 +4,74 @@ import TwitchClient from 'twitch'
 import {connect} from 'react-redux'
 import {createClip} from '../store/clip'
 
+// function clipNamePopup() {
+//   var today = new Date()
+//   var dd = String(today.getDate()).padStart(2, '0')
+//   var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+//   var yyyy = today.getFullYear()
+
+//   today = mm + '/' + dd + '/' + yyyy
+//   var txt
+//   var clipName = prompt('Please enter clip name', `Clip-created-on-${today}`)
+//   // if (clipNmae == null || clipName == '') {
+//   //   txt = 'User did not enter clip name'
+//   // } else {
+//   //   txt = 'Hello ' + person + '! How are you today?'
+//   // }
+//   // document.getElementById('demo').innerHTML = txt
+//   return clipName
+// }
+
 // const MultistreamSidebar = props => {
 class MultistreamSidebar extends Component {
   constructor() {
     super()
     this.state = {
-      userTwitchInfo: []
+      userTwitchInfo: [],
+      modalOpen: false
     }
+
     this.createMultistreamClip = this.createMultistreamClip.bind(this)
+    this.handleOpen = this.handleOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
 
-  async createMultistreamClip(ids) {
+  // async
+  async createMultistreamClip(event) {
+    // event.persist();
+    let clipName = event.target.streamName.value
     const client = await TwitchClient.withCredentials(
       'bmeab5l8jv7arn07ucv4zywa22qrl9',
       this.props.userTwitchInfo.token
     )
     let clipArray = []
-    for (let i = 0; i < ids.length; i++) {
-      const clipId = await client.helix.clips.createClip({channelId: ids[i]})
+    for (let i = 0; i < this.props.channelIds.length; i++) {
+      const clipId = await client.helix.clips.createClip({
+        channelId: this.props.channelIds[i]
+      })
       clipArray.push(clipId)
       // console.log(clipId)
     }
+    // let clipName = clipNamePopup()
+    // console.log('CLIP ', clipArray)
+    await this.props.addClip(
+      clipArray.join(','),
+      this.props.userTwitchInfo.id,
+      clipName
+    )
+  }
 
-    await this.props.addClip(clipArray.join(','), this.props.userTwitchInfo.id)
+  handleOpen() {
+    this.setState({modalOpen: true})
+    // console.log('Opened')
+  }
+  handleClose() {
+    this.setState({modalOpen: false})
+    // console.log('Closed')
   }
   // console.log('sidebar props ', props)
   render() {
-    console.log('props in sidebar', this.props)
+    // console.log('PROPS IN SIDEBAR: ', this.props)
     return (
       <div className="multistream-sidebar">
         <Modal
@@ -75,28 +116,40 @@ class MultistreamSidebar extends Component {
             </Modal.Description>
           </Modal>
         </div>
-        <Button
-          onClick={() => {
-            this.createMultistreamClip(this.props.channelIds)
-          }}
+
+        <Modal
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
+          trigger={<Button onClick={this.handleOpen}>Record Clip</Button>}
+          size="tiny"
         >
-          Record Clip
-        </Button>
+          <Modal.Header>Enter Clip Name:</Modal.Header>
+          <Modal.Description className="customize-form-box">
+            <Form onSubmit={this.createMultistreamClip}>
+              <Form.Field>
+                <Input type="text" name="streamName" />
+              </Form.Field>
+              <Button type="submit" onSubmit={this.createMultistreamClip}>
+                Create clip
+              </Button>
+            </Form>
+          </Modal.Description>
+        </Modal>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  console.log('STATE', state)
   return {
-    userTwitchInfo: state.user
+    userTwitchInfo: state.user,
+    clips: state.clip
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addClip: (clip, id) => dispatch(createClip(clip, id))
+    addClip: (clip, id, name) => dispatch(createClip(clip, id, name))
   }
 }
 // export default MultistreamSidebar

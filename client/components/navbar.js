@@ -3,50 +3,55 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Menu, Dropdown} from 'semantic-ui-react'
+import {Menu, Dropdown, Icon} from 'semantic-ui-react'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
+import MyClipsModal from './modals/myClipsModal'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
+  <div className="navbar">
     {isLoggedIn ? (
-      <Menu size="massive" inverted>
-        <Menu.Item as={Link} to="/featured">
+      <Menu size="small" inverted>
+        {/* <Menu.Item as={Link} to="/featured">
           Featured Streams
-        </Menu.Item>
-        <Menu.Item as={Link} to="/customize">
-          Customize Streams
-        </Menu.Item>
-        <Menu.Item as={Link} to="/list">
-          View Created Streams
-        </Menu.Item>
+        </Menu.Item> */}
+        <span className="navbar-home-icon">
+          <a href="/featured">
+            {' '}
+            <Icon color="purple" name="home" size="large" />
+          </a>
+        </span>
         <span className="top-header">
           <h1>TWITCH BOX</h1>
         </span>
-        <Menu.Menu position="right">
-          <Dropdown item text="View My Info">
-            <Dropdown.Menu>
-              <Dropdown.Item>
+
+        <Dropdown item text="View My Info">
+          <Dropdown.Menu>
+            <Dropdown.Item>
+              <span className="profile-dropdown">
                 <ProfileModal />
-              </Dropdown.Item>
-              <Dropdown.Item>
-                <MultistreamModal />
-              </Dropdown.Item>
-              {/* <Dropdown.Item>My Clips</Dropdown.Item> */}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu.Menu>
-        <Menu.Item as={Link} to="#" onClick={handleClick}>
+              </span>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <MultistreamModal />
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <MyClipsModal />
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to="#" onClick={handleClick}>
+              <span className="logout-dropdown">Logout</span>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+
+        {/* <Menu.Item as={Link} to="#" onClick={handleClick}>
           Logout
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     ) : (
       <Menu size="massive" inverted>
         <Menu.Item as={Link} to="/featured">
           Featured Streams
-        </Menu.Item>
-        <Menu.Item as={Link} to="/customize">
-          Customize Streams
         </Menu.Item>
         <span className="top-header">
           <h1>TWITCH BOX</h1>
