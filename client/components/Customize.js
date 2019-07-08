@@ -94,16 +94,16 @@ export class Customize extends React.Component {
               </div>
             </div>
             <div className="customize-form-buttons-box">
-              <div className="customize-form-button">
-                <Button type="button" onClick={evt => this.handleClear()}>
-                  Clear
-                </Button>
-              </div>
-              <div className="customize-form-button">
-                <Button type="submit" onClick={this.handleSubmit}>
-                  Watch Streams
-                </Button>
-              </div>
+              {/* <div className="customize-form-button"> */}
+              <Button type="button" onClick={evt => this.handleClear()}>
+                Clear
+              </Button>
+              {/* </div> */}
+              {/* <div className="customize-form-button"> */}
+              <Button type="submit" onClick={this.handleSubmit}>
+                Watch Streams
+              </Button>
+              {/* </div> */}
             </div>
           </Form>
         </div>
