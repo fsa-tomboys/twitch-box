@@ -8,6 +8,7 @@ class SingleStreamComponent extends Component {
     let streamNumber = this.props.streamNum
     let totalStreams = this.props.totalNumber
     let handleChatClick = this.props.handleChatClick
+
     // if (streamNumber === 0) {
     //   let element = document.getElementsByClassName('single-stream-outer')
     // }
@@ -70,7 +71,7 @@ class SingleStreamComponent extends Component {
               href="#"
               onClick={() => socket.emit('displayCanvas', uniqueCanvas)}
             >
-              <Icon name="refresh" size="large" />
+              <Icon name="thumbs up outline" size="large" />
             </a>
             <a className="single-stream-link" href="#">
               <Icon

@@ -5,7 +5,7 @@ import MultistreamSidebar from './MultistreamSidebar'
 import queryString from 'query-string'
 import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
-
+import TimeMe from 'timeme.js'
 export class MultiStream extends Component {
   constructor() {
     super()
@@ -19,6 +19,7 @@ export class MultiStream extends Component {
     this.addStream = this.addStream.bind(this)
     this.handleChatClick = this.handleChatClick.bind(this)
     this.getChannelId = this.getChannelId.bind(this)
+    this.getTime = this.getTime.bind(this)
   }
   remove(element) {
     let arr = this.state.testArray
@@ -28,14 +29,22 @@ export class MultiStream extends Component {
     this.setState({
       testArray: arr
     })
+    this.props.history.push({
+      pathname: '/home?list=' + this.state.testArray.join('-')
+    })
   }
   addStream(event) {
     let arr = this.state.testArray
     let newArr = arr.concat(event.target.newStream.value)
+
     this.setState({
       testArray: newArr
     })
+    this.props.history.push({
+      pathname: '/home?list=' + newArr.join('-')
+    })
   }
+  toggleChat() {}
 
   async getChannelId(channelsArray) {
     let allChannelIdArray = []
@@ -63,6 +72,10 @@ export class MultiStream extends Component {
     this.setState({
       testArray: arrFromProps || this.props.location.state.testArray
     })
+    TimeMe.initialize({
+      currentPageName: 'my-home-page', // current page
+      idleTimeoutInSeconds: 30 // seconds
+    })
   }
 
   handleSelect(evt) {
@@ -73,6 +86,9 @@ export class MultiStream extends Component {
   handleChatClick(name) {
     let index = this.state.testArray.indexOf(name)
     this.setState({index})
+  }
+  getTime() {
+    return TimeMe.getTimeOnCurrentPageInSeconds()
   }
 
   render() {
@@ -87,6 +103,7 @@ export class MultiStream extends Component {
               remove={this.remove}
               addStream={this.addStream}
               channelIds={this.state.channelIds}
+              getTime={this.getTime}
             />
           )}
           {/* </div> */}
