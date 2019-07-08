@@ -78,6 +78,7 @@ class SingleStreamComponent extends Component {
                 name="window close"
                 size="large"
                 onClick={() => this.props.remove(this.props.name)}
+                disabled={totalStreams < 2}
               />
             </a>
           </div>

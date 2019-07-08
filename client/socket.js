@@ -11,10 +11,10 @@ socket.on('showCanvas', uniqueCanvas => {
   let base_image = new Image()
 
   base_image.src =
-    'http://icons.iconarchive.com/icons/iconarchive/blue-election/32/Election-Thumbs-Up-Outline-icon.png'
+    'http://icons.iconarchive.com/icons/iconarchive/blue-election/64/Election-Thumbs-Up-Outline-icon.png'
   base_image.onload = function() {
-    let xpos = Math.random() * 100
-    let ypos = Math.random() * 100
+    let xpos = Math.random() * 100 + Math.random() * 100 + 50
+    let ypos = Math.random() * 100 + Math.random() * 100 + 50
 
     // world.add(new SSCD.Circle(new SSCD.Vector(xpos, ypos), 75))
     // if (world.test_collision(new SSCD.Vector(xpos, y))) {

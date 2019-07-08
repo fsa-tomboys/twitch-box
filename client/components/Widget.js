@@ -23,7 +23,7 @@ export class Widget extends Component {
 
     return (
       <div className="single-stream-outer">
-        <canvas id={uniqueCanvas} width="300" height="300" />
+        <canvas id={uniqueCanvas} width="800" height="800" />
 
         <div />
       </div>
