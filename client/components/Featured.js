@@ -195,18 +195,27 @@ class Featured extends Component {
                 </div>
               )}
               <div className="customize-form-buttons-box">
-                <Button onClick={this.resetSelected}>Clear</Button>
+                <Button onClick={this.resetSelected} size="small">
+                  Clear
+                </Button>
                 <Button
                   color="purple"
                   onClick={this.routeChange}
                   disabled={this.state.selected.length === 0}
+                  size="medium"
                 >
                   Watch Streams
                 </Button>
               </div>
-              <Button primary onClick={this.goToRandomMultistream}>
-                Random multistream
+              <Divider hidden />
+              <Button
+                inverted
+                onClick={this.goToRandomMultistream}
+                size="small"
+              >
+                Go to random multistream
               </Button>
+              <Divider hidden />
             </div>
             {/* <a
             className="featured-sidebar-link"
