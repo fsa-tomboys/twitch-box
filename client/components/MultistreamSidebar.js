@@ -152,13 +152,13 @@ class MultistreamSidebar extends Component {
           }
           size="tiny"
         >
-          <Modal.Description className="customize-form-box">
+          {/* <Modal.Description className="customize-form-box">
             <Label>
               Seconds watched of this multistream: {this.state.time}
             </Label>
-          </Modal.Description>
+          </Modal.Description> */}
         </Modal>
-        <Button>Show/hide Chat</Button>
+        {/* <Button>Show/hide Chat</Button> */}
       </div>
     )
   }
