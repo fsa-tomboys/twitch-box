@@ -80,6 +80,7 @@ class MultistreamSidebar extends Component {
   }
 
   render() {
+    console.log('>>>>>>>>>', this.props)
     return (
       <div className="multistream-sidebar">
         <div id="success">
@@ -158,36 +159,40 @@ class MultistreamSidebar extends Component {
           </Modal>
         </div>
         <Divider hidden />
-        <Modal
-          open={this.state.modalOpen}
-          onClose={this.handleClose}
-          trigger={
-            <Button inverted onClick={this.handleOpen} size="small">
-              <Icon name="record" /> Record Clip
-            </Button>
-          }
-          size="mini"
-        >
-          <Modal.Header>Enter Clip Name:</Modal.Header>
-          <Modal.Description className="customize-form-box">
-            <Form onSubmit={this.createMultistreamClip}>
-              <Form.Field>
-                <Input type="text" name="streamName" />
-              </Form.Field>{' '}
-              {'   '}
-              <span className="create-clip-button">
-                <Button
-                  inverted
-                  color="green"
-                  type="submit"
-                  onSubmit={this.createMultistreamClip}
-                >
-                  Create
-                </Button>
-              </span>
-            </Form>
-          </Modal.Description>
-        </Modal>
+        {this.props.userTwitchInfo.length > 0 ? (
+          <Modal
+            open={this.state.modalOpen}
+            onClose={this.handleClose}
+            trigger={
+              <Button inverted onClick={this.handleOpen} size="small">
+                <Icon name="record" /> Record Clip
+              </Button>
+            }
+            size="mini"
+          >
+            <Modal.Header>Enter Clip Name:</Modal.Header>
+            <Modal.Description className="customize-form-box">
+              <Form onSubmit={this.createMultistreamClip}>
+                <Form.Field>
+                  <Input type="text" name="streamName" />
+                </Form.Field>{' '}
+                {'   '}
+                <span className="create-clip-button">
+                  <Button
+                    inverted
+                    color="green"
+                    type="submit"
+                    onSubmit={this.createMultistreamClip}
+                  >
+                    Create
+                  </Button>
+                </span>
+              </Form>
+            </Modal.Description>
+          </Modal>
+        ) : (
+          <p />
+        )}
         {/* <Modal
           trigger={
             <Button

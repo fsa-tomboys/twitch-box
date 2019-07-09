@@ -884,3 +884,7 @@ li {
   padding:0px;
   background: yellow;
 } */
+
+.logout-link {
+  color: white;
+}
