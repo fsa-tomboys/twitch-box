@@ -29,16 +29,18 @@ export class ViewClipsComponent extends Component {
   render() {
     let length = this.state.clipsArray.length
     return (
-      <div className="single-clip-outer">
-        <Navbar pos="navbar" />
-        {this.state.clipsArray.map((element, index) => (
-          <SingleClipComponent
-            source={element}
-            clipNumber={index}
-            totalClips={length}
-            key={index}
-          />
-        ))}
+      <div>
+        <Navbar className="navbar" />
+        <div className="all-clips-container">
+          {this.state.clipsArray.map((element, index) => (
+            <SingleClipComponent
+              source={element}
+              clipNumber={index}
+              totalClips={length}
+              key={index}
+            />
+          ))}
+        </div>
       </div>
     )
   }
