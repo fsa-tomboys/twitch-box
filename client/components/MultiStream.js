@@ -24,12 +24,14 @@ class MultiStream extends Component {
     TimeMe.initialize({
       currentPageName: 'my-home-page' // current page
     })
-    let snap = this
+    let object = this
     TimeMe.callWhenUserLeaves(async function() {
-      let snark = await axios.post(
-        `/api/users/time/${snap.props.userTwitchInfo.id}`
+      let userTime = await axios.post(
+        `/api/users/time/${
+          object.props.userTwitchInfo.id
+        }/${TimeMe.getTimeOnCurrentPageInSeconds()}`
       )
-      console.log(snark.data)
+      console.log(userTime.data)
       console.log(TimeMe.getTimeOnCurrentPageInSeconds())
     })
   }

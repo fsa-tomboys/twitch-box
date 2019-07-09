@@ -21,6 +21,7 @@ class ProfileModal extends React.Component {
     if (this.props.userTwitchInfo.twitchUser.created_at) {
       dateCreated = this.props.userTwitchInfo.twitchUser.created_at.slice(0, 10)
     }
+    console.log('time: ', this.props)
     return (
       <Modal
         size="tiny"
@@ -47,6 +48,9 @@ class ProfileModal extends React.Component {
             <p>Twitch ID: {this.props.userTwitchInfo.twitchUser._id}</p>
             <p>Type: {this.props.userTwitchInfo.twitchUser.type}</p>
             <p>Member since {dateCreated}</p>
+            <p>
+              Time spent watching multistreams: {this.props.user.time} seconds
+            </p>
             {/* <p>Updated at: {this.props.userTwitchInfo.twitchUser.updated_at}</p> */}
           </Modal.Description>
         </Modal.Content>
