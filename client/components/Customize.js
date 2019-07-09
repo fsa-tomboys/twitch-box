@@ -37,7 +37,6 @@ export class Customize extends React.Component {
       pathname: '/home?list=' + arr.join('-'),
       state: {testArray: arr}
     })
-    // arr is an array of strings to be passed to other component
   }
 
   render() {

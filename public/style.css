@@ -117,6 +117,8 @@ form div {
 
 .login-user-selfview-menu {
   display: flex;
+  line-height: 1rem;
+  font-size: 1.1rem;
 }
 
 .login-link-twitch {
@@ -369,6 +371,7 @@ animation-duration: 4s; */
   /* max-width: 700px; */
   flex-wrap: wrap;
   width: 100%;
+  justify-content: center;
   background: gray;
 }
 .single-stream-outer {
@@ -376,7 +379,7 @@ animation-duration: 4s; */
 
   /* border: 1px solid red; */
   display: block;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   margin-top: 5px;
   /* border: 10px solid black; */
 }
@@ -792,7 +795,7 @@ li {
 
 .my-profile-dropdown-navbar {
   position: absolute;
-  right: 10px;
+  right: 50px;
   background: #181721;
 }
 
