@@ -14,12 +14,11 @@ import {connect} from 'react-redux'
 import {createClip} from '../store/clip'
 
 class MultistreamSidebar extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
       userTwitchInfo: [],
-      modalOpen: false,
-      time: 0
+      modalOpen: false
     }
     this.createMultistreamClip = this.createMultistreamClip.bind(this)
     this.handleOpen = this.handleOpen.bind(this)
