@@ -10,20 +10,20 @@ import MyClipsModal from './modals/myClipsModal'
 
 const Navbar = ({handleClick, isLoggedIn, pos}) => (
   <div className={pos}>
-    {isLoggedIn ? (
-      <Menu size="small" inverted>
-        {/* <Menu.Item as={Link} to="/featured">
+    <Menu size="small" inverted>
+      {/* <Menu.Item as={Link} to="/featured">
           Featured Streams
         </Menu.Item> */}
-        <span className="navbar-home-icon">
-          <a href="/featured">
-            {' '}
-            <Icon color="grey" name="home" size="huge" />
-          </a>
-        </span>
-        <span className="top-header">
-          <h1>twitch box</h1>
-        </span>
+      <span className="navbar-home-icon">
+        <a href="/featured">
+          {' '}
+          <Icon color="grey" name="home" size="huge" />
+        </a>
+      </span>
+      <span className="top-header">
+        <h1>twitch box</h1>
+      </span>
+      {isLoggedIn ? (
         <div className="my-profile-dropdown-navbar">
           <Dropdown
             className="my-profile-dropdown-self"
@@ -48,24 +48,16 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
             </Dropdown.Menu>
           </Dropdown>
         </div>
-
-        {/* <Menu.Item as={Link} to="#" onClick={handleClick}>
-          Logout
-        </Menu.Item> */}
-      </Menu>
-    ) : (
-      <Menu size="massive" inverted>
-        <Menu.Item as={Link} to="/featured">
-          Featured Streams
-        </Menu.Item>
-        <span className="top-header">
-          <h1>twitch box</h1>
-        </span>
+      ) : (
         <Menu.Item as={Link} to="/login" position="right">
           Login
         </Menu.Item>
-      </Menu>
-    )}
+      )}
+
+      {/* <Menu.Item as={Link} to="#" onClick={handleClick}>
+          Logout
+        </Menu.Item> */}
+    </Menu>
   </div>
 )
 

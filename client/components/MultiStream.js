@@ -101,7 +101,7 @@ export class MultiStream extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.user.id !== prevProps.user.id) {
+    if (this.props.user.id && this.props.user.id !== prevProps.user.id) {
       this.props.fetchInitialTwitchUser(this.props.user.twitchId)
       this.props.fetchInitialMs(this.props.user.id)
       this.props.fetchInitialClips(this.props.user.id)
