@@ -6,7 +6,7 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
-export {MultiStream} from './Multistream'
+export {default as MultiStream} from './Multistream'
 export {ViewClipsComponent} from './ViewClipsComponent'
 export {Customize} from './Customize'
 export {default as SingleStreamComponent} from './SingleStreamComponent'

@@ -39,6 +39,10 @@ const User = db.define('user', {
   },
   refreshToken: {
     type: Sequelize.STRING
+  },
+  time: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 

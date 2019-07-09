@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+// const ADD_TIME_TO_USER = 'ADD_TIME_TO_USER'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+// const addTimeToUser = user => ({type: ADD_TIME_TO_USER, user})
 
 /**
  * THUNK CREATORS
@@ -54,6 +56,14 @@ export const logout = () => async dispatch => {
     console.error(err)
   }
 }
+// export const addTime = () => async dispatch => {
+//   try {
+//     const res = await axios.get('/auth/me')
+//     dispatch(addTimeToUser(res.data))
+//   } catch (err) {
+//     console.error(err)
+//   }
+// }
 
 /**
  * REDUCER
@@ -64,6 +74,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    // case ADD_TIME_TO_USER:
+    //   return action.user
     default:
       return state
   }

@@ -275,10 +275,7 @@ class Featured extends Component {
                       ))
                     ) : (
                       <div>
-                        {/* <Image src="/image/loading.gif" /> */}
-                        <Dimmer active>
-                          <Loader />
-                        </Dimmer>
+                        <Image src="/image/loading.gif" />
                       </div>
                     )}
                     {this.state.showMore ? (

@@ -27,9 +27,11 @@ class MyClipsModal extends React.Component {
   routeChange(elem) {
     // console.log('EVENT', elem)
     let clipArray = elem.clips
+    console.log(clipArray)
     // console.log('this.props ',clipArray.split(',').join('-'))
     this.props.history.push({
-      pathname: '/clips?list=' + clipArray.split(',').join('-')
+      pathname: '/clips?list=' + elem.clips.split(',').join('-'),
+      state: {clips: elem.clips.split(',')}
     })
     this.setState({
       clips: elem.clips.split(',')
@@ -66,11 +68,7 @@ class MyClipsModal extends React.Component {
               {this.props.clips.map(elem => (
                 <List.Item key={elem.id}>
                   <span>
-                    <a
-                      onClick={() => {
-                        this.routeChange(elem)
-                      }}
-                    >
+                    <a href={'/clips?list=' + elem.clips.split(',').join('-')}>
                       Clip: {elem.name}, created on{' '}
                       {elem.createdAt.slice(0, 10)}
                     </a>

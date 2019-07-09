@@ -20,7 +20,7 @@ export class ViewClipsComponent extends Component {
       queryStuff = queryString.parse(this.props.location.search)
     }
     let arrFromProps = queryStuff.list.split('-')
-
+    console.log(arrFromProps)
     this.setState({
       clipsArray: arrFromProps || this.props.location.state.clipsArray
     })

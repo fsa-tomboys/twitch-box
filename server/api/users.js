@@ -15,6 +15,25 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+router.post('/time/:userId/:seconds', async (req, res, next) => {
+  try {
+    let theUser = await User.findByPk(req.params.userId)
+    theUser.update({
+      time: (theUser.time += Math.round(req.params.seconds))
+    })
+    res.json('time added to user successfully!')
+  } catch (err) {
+    next(err)
+  }
+})
+router.get('/time/:userId/', async (req, res, next) => {
+  try {
+    let theUser = await User.findByPk(req.params.userId)
+    res.json(theUser.data.time)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.post('/association/:userId/:multistreamId', async (req, res, next) => {
   try {
