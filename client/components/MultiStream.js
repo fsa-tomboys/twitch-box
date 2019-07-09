@@ -77,6 +77,9 @@ export class MultiStream extends Component {
       currentPageName: 'my-home-page', // current page
       idleTimeoutInSeconds: 30 // seconds
     })
+    TimeMe.callWhenUserLeaves(function() {
+      console.log('The user is not currently viewing the page!')
+    })
   }
 
   handleSelect(evt) {
