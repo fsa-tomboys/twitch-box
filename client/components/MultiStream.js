@@ -7,6 +7,16 @@ import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import TimeMe from 'timeme.js'
 import Navbar from './navbar'
+import {connect} from 'react-redux'
+import {
+  fetchTwitchUser,
+  fetchUserChannels,
+  fetchChannelsStreamsStatus
+} from '../store/usertwitchinfo'
+import {createMultistream, fetchMultistreams} from '../store/multistreams'
+import {fetchClips} from '../store/clip'
+import {me} from '../store/user'
+
 export class MultiStream extends Component {
   constructor() {
     super()
@@ -70,6 +80,14 @@ export class MultiStream extends Component {
     }
     let arrFromProps = queryStuff.list.split('-')
 
+    if (!this.props.isLoggedIn) {
+      this.props.fetchLoggedInUser()
+    } else {
+      this.props.fetchInitialTwitchUser(this.props.user.twitchId)
+      this.props.fetchInitialMs(this.props.user.id)
+      this.props.fetchInitialClips(this.props.user.id)
+    }
+
     this.setState({
       testArray: arrFromProps || this.props.location.state.testArray
     })
@@ -80,6 +98,14 @@ export class MultiStream extends Component {
     TimeMe.callWhenUserLeaves(function() {
       console.log('The user is not currently viewing the page!')
     })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.user.id !== prevProps.user.id) {
+      this.props.fetchInitialTwitchUser(this.props.user.twitchId)
+      this.props.fetchInitialMs(this.props.user.id)
+      this.props.fetchInitialClips(this.props.user.id)
+    }
   }
 
   handleSelect(evt) {
@@ -139,3 +165,24 @@ export class MultiStream extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: !!state.user.id,
+    user: state.user,
+    userTwitchInfo: state.userTwitchInfo,
+    multistreams: state.multistreams,
+    clips: state.clip
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id)),
+    fetchInitialMs: userId => dispatch(fetchMultistreams(userId)),
+    fetchInitialClips: userId => dispatch(fetchClips(userId)),
+    fetchLoggedInUser: () => dispatch(me())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MultiStream)

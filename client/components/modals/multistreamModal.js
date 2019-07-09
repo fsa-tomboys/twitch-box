@@ -1,8 +1,6 @@
 import React from 'react'
 import {Button, Header, Image, Modal, List} from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import {fetchTwitchUser} from '../../store/usertwitchinfo'
-import {fetchMultistreams} from '../../store/multistreams'
 
 class MultistreamModal extends React.Component {
   constructor() {
@@ -16,10 +14,6 @@ class MultistreamModal extends React.Component {
 
   render() {
     // console.log('this.props: ', this.props)
-    if (this.props.multistreams.length === 0) {
-      this.props.fetchInitialTwitchUser(this.props.user.twitchId)
-      this.props.fetchInitialMs(this.props.user.id)
-    }
     return (
       <Modal
         trigger={
@@ -74,11 +68,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id)),
-    fetchInitialMs: userId => dispatch(fetchMultistreams(userId))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MultistreamModal)
+export default connect(mapStateToProps)(MultistreamModal)

@@ -2,8 +2,6 @@ import React from 'react'
 import {Button, Header, Image, Modal, List} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {fetchTwitchUser} from '../../store/usertwitchinfo'
-import {fetchClips} from '../../store/clip'
 
 class MyClipsModal extends React.Component {
   constructor() {
@@ -38,10 +36,6 @@ class MyClipsModal extends React.Component {
 
   render() {
     // console.log('In my clips modal', this.props)
-    if (this.props.clips.length === 0) {
-      this.props.fetchInitialTwitchUser(this.props.user.twitchId)
-      this.props.fetchInitialClips(this.props.user.id)
-    }
     return (
       <Modal
         trigger={
@@ -98,13 +92,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchInitialTwitchUser: id => dispatch(fetchTwitchUser(id)),
-    fetchInitialClips: userId => dispatch(fetchClips(userId))
-  }
-}
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(MyClipsModal)
-)
+export default withRouter(connect(mapStateToProps)(MyClipsModal))
