@@ -25,10 +25,11 @@ class MyClipsModal extends React.Component {
     })
   }
   routeChange(elem) {
-    // console.log('EVENT', elem)
+    console.log('EVENT', elem)
     let clipArray = elem.clips
     console.log(clipArray)
     // console.log('this.props ',clipArray.split(',').join('-'))
+    console.log('>>>>>>>>props:', this.props)
     this.props.history.push({
       pathname: '/clips?list=' + elem.clips.split(',').join('-'),
       state: {clips: elem.clips.split(',')}
