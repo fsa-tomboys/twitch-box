@@ -664,3 +664,8 @@ li {
   padding: 5px;
   text-align: center;
 }
+
+.create-clip-button {
+  position: relative;
+  left: 50px;
+}

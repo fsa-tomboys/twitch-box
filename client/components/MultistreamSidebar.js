@@ -58,15 +58,14 @@ class MultistreamSidebar extends Component {
       clipsArrayBefore.length < clipsArrayAfter.length &&
       clipsArrayAfter[clipsArrayAfter.length - 1].clips !== ''
     ) {
-      console.log('SUCCESS', this.props.clips)
       document.getElementById('creating').style.display = 'none'
       document.getElementById('success').style.display = 'block'
       setTimeout(function() {
         document.getElementById('success').style.display = 'none'
       }, 2500)
     } else {
-      console.log('failed to create clip')
       document.getElementById('success').style.display = 'none'
+      document.getElementById('creating').style.display = 'none'
       document.getElementById('error').style.display = 'block'
       setTimeout(function() {
         document.getElementById('error').style.display = 'none'
@@ -171,17 +170,25 @@ class MultistreamSidebar extends Component {
             </Button>
           }
           // trigger={<Button onClick={this.handleOpen}>Record Clip</Button>}
-          size="tiny"
+          size="mini"
         >
           <Modal.Header>Enter Clip Name:</Modal.Header>
           <Modal.Description className="customize-form-box">
             <Form onSubmit={this.createMultistreamClip}>
               <Form.Field>
                 <Input type="text" name="streamName" />
-              </Form.Field>
-              <Button type="submit" onSubmit={this.createMultistreamClip}>
-                Create clip
-              </Button>
+              </Form.Field>{' '}
+              {'   '}
+              <span className="create-clip-button">
+                <Button
+                  inverted
+                  color="green"
+                  type="submit"
+                  onSubmit={this.createMultistreamClip}
+                >
+                  Create
+                </Button>
+              </span>
             </Form>
           </Modal.Description>
         </Modal>
