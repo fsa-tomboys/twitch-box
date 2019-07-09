@@ -7,7 +7,8 @@ import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import TimeMe from 'timeme.js'
 import Navbar from './navbar'
-export class MultiStream extends Component {
+import {connect} from 'react-redux'
+class MultiStream extends Component {
   constructor() {
     super()
     this.state = {
@@ -20,7 +21,17 @@ export class MultiStream extends Component {
     this.addStream = this.addStream.bind(this)
     this.handleChatClick = this.handleChatClick.bind(this)
     this.getChannelId = this.getChannelId.bind(this)
-    this.getTime = this.getTime.bind(this)
+    TimeMe.initialize({
+      currentPageName: 'my-home-page' // current page
+    })
+    let snap = this
+    TimeMe.callWhenUserLeaves(async function() {
+      let snark = await axios.post(
+        `/api/users/time/${snap.props.userTwitchInfo.id}`
+      )
+      console.log(snark.data)
+      console.log(TimeMe.getTimeOnCurrentPageInSeconds())
+    })
   }
   remove(element) {
     let arr = this.state.testArray
@@ -72,13 +83,6 @@ export class MultiStream extends Component {
 
     this.setState({
       testArray: arrFromProps || this.props.location.state.testArray
-    })
-    TimeMe.initialize({
-      currentPageName: 'my-home-page', // current page
-      idleTimeoutInSeconds: 30 // seconds
-    })
-    TimeMe.callWhenUserLeaves(function() {
-      console.log('The user is not currently viewing the page!')
     })
   }
 
@@ -139,3 +143,15 @@ export class MultiStream extends Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    userTwitchInfo: state.user
+  }
+}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addTime: (clip, id, name) => dispatch(addTime(clip, id, name))
+//   }
+// }
+
+export default connect(mapStateToProps, null)(MultiStream)

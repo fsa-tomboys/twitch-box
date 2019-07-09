@@ -14,12 +14,11 @@ import {connect} from 'react-redux'
 import {createClip} from '../store/clip'
 
 class MultistreamSidebar extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
       userTwitchInfo: [],
-      modalOpen: false,
-      time: 0
+      modalOpen: false
     }
     this.createMultistreamClip = this.createMultistreamClip.bind(this)
     this.handleOpen = this.handleOpen.bind(this)
@@ -188,28 +187,7 @@ class MultistreamSidebar extends Component {
             </Form>
           </Modal.Description>
         </Modal>
-        {/* <Modal
-          trigger={
-            <Button
-              className="sidebar-edit-btn"
-              onClick={() => {
-                let currentTime = this.props.getTime()
-                this.setState({
-                  time: currentTime
-                })
-              }}
-            >
-              Get Time{' '}
-            </Button>
-          }
-          size="tiny"
-        > */}
-        {/* <Modal.Description className="customize-form-box">
-            <Label>
-              Seconds watched of this multistream: {this.state.time}
-            </Label>
-          </Modal.Description> */}
-        {/* </Modal> */}
+
         {/* <Button>Show/hide Chat</Button> */}
       </div>
     )

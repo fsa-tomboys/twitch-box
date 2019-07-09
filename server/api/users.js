@@ -15,6 +15,14 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+router.post('/time/:userId', async (req, res, next) => {
+  try {
+    let theUser = await User.findByPk(req.params.userId)
+    res.json(theUser)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.post('/association/:userId/:multistreamId', async (req, res, next) => {
   try {
