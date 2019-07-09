@@ -124,8 +124,6 @@ class MultiStream extends Component {
 
   render() {
     this.getChannelId(this.state.testArray)
-
-    console.log('checking PROPS in multistream :', this.props)
     return (
       <div>
         <Navbar pos="navbar" />
@@ -139,7 +137,6 @@ class MultiStream extends Component {
               getTime={this.getTime}
             />
           )}
-          {/* </div> */}
           <div className="all-streams-container">
             {this.state.testArray.map((element, index) => (
               <SingleStreamComponent

@@ -4,8 +4,6 @@ import Navbar from './navbar'
 // import {Chat} from './chat'
 // import MultistreamSidebar from './MultistreamSidebar'
 import queryString from 'query-string'
-import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
-import axios from 'axios'
 
 export class ViewClipsComponent extends Component {
   constructor() {
@@ -20,7 +18,6 @@ export class ViewClipsComponent extends Component {
       queryStuff = queryString.parse(this.props.location.search)
     }
     let arrFromProps = queryStuff.list.split('-')
-    console.log(arrFromProps)
     this.setState({
       clipsArray: arrFromProps || this.props.location.state.clipsArray
     })

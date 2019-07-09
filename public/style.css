@@ -1,8 +1,5 @@
 body {
   font-family: sans-serif;
-  /* margin: 0; */
-  /* padding: 0; */
-  /* overflow-y: scroll; */
   margin-bottom: 20px;
   background: grey;
 }
@@ -20,16 +17,12 @@ label {
 }
 
 nav {
-  /* background-color: #242525; */
   background: #181721;
 }
 .navbar {
-  /* position: fixed; */
-
   left: 0;
   right: 0;
   z-index: 1;
-  /* height: 92px; */
 }
 .navbar-featured {
   position: fixed;
@@ -37,7 +30,6 @@ nav {
   left: 0;
   right: 0;
   z-index: 1;
-  /* height: 92px; */
 }
 
 nav a {
@@ -75,7 +67,7 @@ form div {
 }
 
 .top-header h1 {
-  margin: 0; /* let text fill the whole background */
+  margin: 0;
   font-size: 2.5em;
 }
 
@@ -96,7 +88,6 @@ form div {
 }
 
 .customize-form-buttons-box {
-  /* display: flex; */
   justify-content: center;
   position: -webkit-sticky;
   position: sticky;
@@ -125,8 +116,6 @@ form div {
   display: flex;
   font-size: 1.5rem;
   justify-content: center;
-  /* border: 1px solid black; */
-  /* background: yellow; */
   height: 400px;
   width: 100%;
 }
@@ -143,10 +132,6 @@ form div {
   padding-top: 15px;
   background: #6441a5;
   margin: auto;
-  /* -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-  /* -webkit-animation-duration: 4s; Safari 4.0 - 8.0 */
-  /* animation-name: example;
-animation-duration: 4s; */
 }
 
 .login-link-twitch-text-box:hover {
@@ -160,7 +145,6 @@ animation-duration: 4s; */
   width: 300px;
   height: 100px;
   text-align: center;
-  /* border: 1px solid black; */
 }
 
 .sign-up-twitch {
@@ -170,7 +154,6 @@ animation-duration: 4s; */
   cursor: pointer;
 }
 .sign-up-question {
-  /* line-height: 3rem; */
   font-size: 1rem;
 }
 
@@ -321,68 +304,21 @@ animation-duration: 4s; */
   }
 }
 
-/* Safari 4.0 - 8.0 */
-/* @-webkit-keyframes example {
-
-10%  {left:0px; top:-700px;}
-15%  {left:0px; top:-650px;}
-20%  {left:0px; top:-600px;}
-25%  {left:0px; top:-550px;}
-30%  {left:0px; top:-500px;}
-35%  {left:0px; top:-450px;}
-/* 40%  {left:0px; top:-400px;}
-45%  {left:0px; top:-350px;}
-55%  {left:0px; top:-300px;}
-65%  {left:0px; top:-250px;}
-70%  {left:0px; top:-200px;}
--webkit-transform: rotate(180deg); /* Safari */
-/* transform: rotate(180deg);
-75%  {left:0px; top:-150px;}
-80%  {left:0px; top:-100px;}
-90%  {left:0px; top:-50px;}
-100% {left:0px; top:0px;} */
-/* } */
-
-/* Standard syntax */
-/* @keyframes example {
-  10%  {left:0px; top:-700px;}
-  15%  {left:0px; top:-650px;}
-  20%  {left:0px; top:-600px;}
-  25%  {left:0px; top:-550px;}
-  30%  {left:0px; top:-500px;}
-  35%  {left:0px; top:-450px;}
-  40%  {left:0px; top:-400px;}
-  45%  {left:0px; top:-350px;}
-  55%  {left:0px; top:-300px;}
-  65%  {left:0px; top:-250px;}
-  70%  {left:0px; top:-200px;}
-  75%  {left:0px; top:-150px;}
-  80%  {left:0px; top:-100px;}
-  90%  {left:0px; top:-50px;}
-  100% {left:0px; top:0px;} */
-
-/* } */
-
 .main-layout-container {
   display: flex;
 }
 .all-streams-container {
   display: flex;
-  /* max-width: 700px; */
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
   background: gray;
 }
 .single-stream-outer {
-  /* position: absolute; */
-
-  /* border: 1px solid red; */
   display: block;
-  /* margin-left: 5px; */
   margin-top: 5px;
-  /* border: 10px solid black; */
 }
+
 .single-stream-overlay-menu {
   position: relative;
   top: 0;
@@ -391,10 +327,7 @@ animation-duration: 4s; */
   top: 0;
   background: black;
   color: black;
-  /* opacity: 0.1; */
   z-index: 1;
-
-  /* visibility: hidden; */
 }
 
 .single-stream-link {
@@ -425,12 +358,10 @@ animation-duration: 4s; */
 }
 .multistream-sidebar-wrapper {
   width: 150px;
-  /* height: 100vh; */
 }
 
 .multistream-sidebar {
   position: relative;
-  /* height: 100%; */
   height: 100hw;
   background: black;
   width: 140px;
@@ -464,26 +395,7 @@ animation-duration: 4s; */
 .followed-channels-container {
   justify-content: justify;
 }
-/* .canvases {
-  width: 100%;
-  top: 20%;
-  left: 6%;
-  height: 40%;
-  border: 1px solid;
-  opacity: 0.4;
-}
-.box {
-  width: 100px;
-  height: 100px;
-  background: #ff1c68;
-  transform-origin: 50% 50%;
-}
-} */
-/* display: flex;
-  flex-wrap: wrap;
-  max-width: 80%;
-  margin: 0 auto;
-} */
+
 .sidebar-featured {
   position: fixed;
   height: 100%;
@@ -492,11 +404,9 @@ animation-duration: 4s; */
   bottom: 0;
   width: 240px;
   background: black;
-  z-index: 1; /* Stay on top */
+  z-index: 1;
   overflow-x: hidden;
   overflow-y: scroll;
-  /* Disable horizontal scroll  */
-  /* padding: 25px;ˆ */
 }
 .main-inner-featured {
   position: absolute;
@@ -511,7 +421,6 @@ animation-duration: 4s; */
   display: block;
   width: 100%;
   height: 3rem;
-  /* padding: 20px; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.1rem;
 }
@@ -525,7 +434,6 @@ animation-duration: 4s; */
   width: 100%;
   height: 2rem;
   padding: 10px;
-  /* padding-top:30px; */
   text-align: center;
 }
 .channel-online {
@@ -536,47 +444,34 @@ animation-duration: 4s; */
 .channel-offline {
   color: #bababa;
 }
-/* .channel-online,
-.channel-offline {
-  position: relative;
-  left: 100px;
-  bottom: 20px;
-  font-size: 1.2rem;
-} */
 
 .featured-streams-icons,
 .streams-by-game {
   position: relative;
   margin: 10px;
   text-align: center;
-  /* margin-bottom: 30px; */
 }
+
 .featured-streams-icons .selected,
 .streams-by-game .selected {
   position: relative;
-  /* margin: 10px; */
   text-align: center;
   opacity: 0.4;
   padding: 0;
-  /* border: 4px solid #6441a5; */
-  /* margin-bottom: 30px; */
 }
 
 .featured-streams-icons .unselected {
   position: relative;
-  /* margin: 10px; */
   text-align: center;
   padding: 0;
-  /* margin-bottom: 30px; */
 }
 
 .streams-by-game .unselected {
   position: relative;
-  /* margin: 10px; */
   text-align: center;
   padding: 0;
 }
-/* .featured-streams-icons  */
+
 .featured-streams-icons-tooltiptext,
 .by-game-streams-icons-tooltiptext {
   visibility: hidden;
@@ -586,8 +481,6 @@ animation-duration: 4s; */
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
 }
@@ -619,61 +512,33 @@ animation-duration: 4s; */
   font-weight: bolder;
   color: navy;
 }
-/* .followed-channels-icon-channelName {
-  position: absolute;
-} */
-.followed-channels-icons,
-.unselected,
-.selected {
-  /* padding: 5px; */
-  /* border: 1px solid red; */
-  /* width: 100%; */
-  /* height: 65px; */
-  /* margin: auto; */
-}
-.followed-channels-wrapper .unselected {
-  /* text-align: center; */
-  /* width: 140px; */
-}
-.followed-channels-wrapper .selected {
-  /* text-align: center; */
-  /* width: 140px; */
-}
+
 .followed-single-channel-wrapper {
   width: 240px;
   height: 60px;
-  /* margin: 10px; */
 }
 
 .selected {
-  /* opacity: 0.6; */
-  /* border: 3px solid green; */
   padding: 5px;
   margin-left: 5px;
-  /* width: 100%; */
 }
 
 .unselected {
   opacity: 1;
   margin-left: 5px;
   padding: 5px;
-  /* width: 100%; */
 }
 
 .followed-channels-wrapper {
   display: flex;
-  /* background: #2F2C40; */
-  /* align-items: center; */
 }
 .username-featured {
   color: purple;
-  /* font-size: 1.6rem; */
 }
 .logout-dropdown {
   font-weight: bolder;
 }
-.top-games-link {
-}
+
 .top-games-link:hover {
   cursor: pointer;
 }
@@ -693,14 +558,9 @@ li {
 
 .unselected .followed-channels-followers,
 .selected .followed-channels-followers {
-  /* position: relative;
-  left: 9px;
-  bottom: 14px; */
   color: #c9edeb;
 }
 .followed-single-channel-wrapper .unselected {
-  /* display: flex; */
-
   width: 240px;
   background: black;
 }
@@ -751,26 +611,20 @@ li {
 }
 
 .featured-channels-followers {
-  /* float: left;
-   */
   position: relative;
   top: 0;
   left: 7px;
 }
 
 .featured-channels-game {
-  /* display: inline-block; */
   position: relative;
   width: 150px;
   left: -10px;
-  /* float: left; */
 }
 .by-game-channels-game {
-  /* display: inline-block; */
   position: relative;
   width: 150px;
   left: -30px;
-  /* float: left; */
 }
 .browse-by-game-header h4,
 .featured-channels-header h4 {
@@ -867,23 +721,12 @@ li {
 
 .all-clips-container {
   display: flex;
-  /* max-width: 90%; */
   flex-wrap: wrap;
   width: 80%;
   background: gray;
   margin: 0 auto;
   justify-content: center;
 }
-
-/* .input-streams-by-name input[type=text] {
-  background: #6441a5;
-  border: 1px solid purple;
-} */
-
-/* .customize-form-box-outer {
-  padding:0px;
-  background: yellow;
-} */
 
 .logout-link {
   color: white;

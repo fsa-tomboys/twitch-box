@@ -1,5 +1,5 @@
 import React from 'react'
-import {Select, Dropdown} from 'semantic-ui-react'
+import {Select} from 'semantic-ui-react'
 
 export const Chat = props => {
   const {index, array, handleSelect} = props

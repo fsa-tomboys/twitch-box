@@ -23,22 +23,13 @@ class MyClipsModal extends React.Component {
     })
   }
   routeChange(elem) {
-    console.log('EVENT', elem)
-    let clipArray = elem.clips
-    console.log(clipArray)
-    // console.log('this.props ',clipArray.split(',').join('-'))
-    console.log('>>>>>>>>props:', this.props)
     this.props.history.push({
       pathname: '/clips?list=' + elem.clips.split(',').join('-'),
       state: {clips: elem.clips.split(',')}
     })
-    this.setState({
-      clips: elem.clips.split(',')
-    })
   }
 
   render() {
-    // console.log('In my clips modal', this.props)
     return (
       <Modal
         trigger={
@@ -48,7 +39,6 @@ class MyClipsModal extends React.Component {
         }
         open={this.state.modalOpen}
         onClose={this.handleClose}
-        // basic
         size="tiny"
       >
         <Header content="My clips" />

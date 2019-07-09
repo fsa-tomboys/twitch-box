@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
-import {Icon} from 'semantic-ui-react'
-import socket from '../socket'
 import queryString from 'query-string'
 
-// var SSCD = require('sscd').sscd
 export class Widget extends Component {
   constructor() {
     super()
@@ -18,7 +15,6 @@ export class Widget extends Component {
   }
 
   render() {
-    // var world = new SSCD.World()
     let uniqueCanvas = this.state.name + '-canvas'
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import history from '../history'
-import {Button, Form, Checkbox} from 'semantic-ui-react'
+import {Button, Form} from 'semantic-ui-react'
 
 export class Customize extends React.Component {
   constructor(props) {
@@ -41,7 +41,6 @@ export class Customize extends React.Component {
 
   render() {
     return (
-      // <div>
       <div className="customize-form-box-outer">
         <Form className="customize-form-box" onSubmit={this.handleSubmit}>
           <div className="customize-form-inputs-box">
@@ -97,20 +96,15 @@ export class Customize extends React.Component {
             </div>
           </div>
           <div className="customize-form-buttons-box">
-            {/* <div className="customize-form-button"> */}
             <Button type="button" onClick={evt => this.handleClear()}>
               Clear
             </Button>
-            {/* </div> */}
-            {/* <div className="customize-form-button"> */}
             <Button type="submit" onClick={this.handleSubmit}>
               Watch Streams
             </Button>
-            {/* </div> */}
           </div>
         </Form>
       </div>
-      // </div>
     )
   }
 }

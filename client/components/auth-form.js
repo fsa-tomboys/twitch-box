@@ -16,7 +16,6 @@ const AuthForm = props => {
           <h2>Welcome to Twitch Box!</h2>
         </span>
         <a className="login-link-twitch-text-box" href="/auth/twitch">
-          {/* <a href="/auth/twitch">{displayName} with Twitch</a> */}
           <span className="login-link-twitch-text-itself">
             <span>Log in with Twitch</span>
           </span>
@@ -33,13 +32,6 @@ const AuthForm = props => {
   )
 }
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = state => {
   return {
     name: 'login',
