@@ -7,6 +7,7 @@ import {Menu, Dropdown, Icon, Button} from 'semantic-ui-react'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
 import MyClipsModal from './modals/myClipsModal'
+import AboutModal from './modals/aboutModal'
 
 const Navbar = ({handleClick, isLoggedIn, pos}) => (
   <div className={pos}>
@@ -20,6 +21,9 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
           <Icon color="grey" name="home" size="huge" />
         </a>
       </span>
+      <Menu.Item>
+        <AboutModal />
+      </Menu.Item>
       <span className="top-header">
         <h1>twitch box</h1>
       </span>
