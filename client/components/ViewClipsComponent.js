@@ -29,7 +29,7 @@ export class ViewClipsComponent extends Component {
   render() {
     let length = this.state.clipsArray.length
     return (
-      <div className="single-clip-outer">
+      <div className="all-streams-container">
         <Navbar pos="navbar" />
         {this.state.clipsArray.map((element, index) => (
           <SingleClipComponent

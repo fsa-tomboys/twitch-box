@@ -31,6 +31,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         {/* <Route path="/singlestream" component={SingleStreamComponent} /> */}
+        <Route path="/clips" component={ViewClipsComponent} />
         <Route path="/clips:list" component={ViewClipsComponent} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
@@ -44,7 +45,6 @@ class Routes extends Component {
         {this.props.location.search.includes('name') && (
           <Route path="/widget" component={Widget} />
         )}
-        <Route path="/" component={Featured} />
         {/* <Route path="/list" component={List} /> */}
 
         {/* Displays our Login component as a fallback */}
