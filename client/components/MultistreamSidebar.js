@@ -6,31 +6,13 @@ import {
   Form,
   Label,
   Divider,
-  Icon
+  Icon,
+  Image
 } from 'semantic-ui-react'
 import TwitchClient from 'twitch'
 import {connect} from 'react-redux'
 import {createClip} from '../store/clip'
 
-// function clipNamePopup() {
-//   var today = new Date()
-//   var dd = String(today.getDate()).padStart(2, '0')
-//   var mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
-//   var yyyy = today.getFullYear()
-
-//   today = mm + '/' + dd + '/' + yyyy
-//   var txt
-//   var clipName = prompt('Please enter clip name', `Clip-created-on-${today}`)
-//   // if (clipNmae == null || clipName == '') {
-//   //   txt = 'User did not enter clip name'
-//   // } else {
-//   //   txt = 'Hello ' + person + '! How are you today?'
-//   // }
-//   // document.getElementById('demo').innerHTML = txt
-//   return clipName
-// }
-
-// const MultistreamSidebar = props => {
 class MultistreamSidebar extends Component {
   constructor() {
     super()
@@ -39,7 +21,6 @@ class MultistreamSidebar extends Component {
       modalOpen: false,
       time: 0
     }
-
     this.createMultistreamClip = this.createMultistreamClip.bind(this)
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -47,11 +28,15 @@ class MultistreamSidebar extends Component {
 
   // async
   async createMultistreamClip(event) {
+    console.log('before', this.props.clips)
+    let clipsArrayBefore = this.props.clips
     let clipName = event.target.streamName.value
     const client = await TwitchClient.withCredentials(
       'bmeab5l8jv7arn07ucv4zywa22qrl9',
       this.props.userTwitchInfo.token
     )
+    this.handleClose()
+    document.getElementById('creating').style.display = 'block'
     let clipArray = []
     for (let i = 0; i < this.props.channelIds.length; i++) {
       const clipId = await client.helix.clips.createClip({
@@ -67,21 +52,60 @@ class MultistreamSidebar extends Component {
       this.props.userTwitchInfo.id,
       clipName
     )
+    let clipsArrayAfter = this.props.clips
+    if (
+      clipsArrayBefore.length < clipsArrayAfter.length &&
+      clipsArrayAfter[clipsArrayAfter.length - 1].clips !== ''
+    ) {
+      document.getElementById('creating').style.display = 'none'
+      document.getElementById('success').style.display = 'block'
+      setTimeout(function() {
+        document.getElementById('success').style.display = 'none'
+      }, 2500)
+    } else {
+      document.getElementById('success').style.display = 'none'
+      document.getElementById('creating').style.display = 'none'
+      document.getElementById('error').style.display = 'block'
+      setTimeout(function() {
+        document.getElementById('error').style.display = 'none'
+      }, 2500)
+    }
   }
 
   handleOpen() {
     this.setState({modalOpen: true})
-    // console.log('Opened')
   }
   handleClose() {
     this.setState({modalOpen: false})
-    // console.log('Closed')
   }
-  // console.log('sidebar props ', props)
+
   render() {
-    // console.log('PROPS IN SIDEBAR: ', this.props)
     return (
       <div className="multistream-sidebar">
+        <div id="success">
+          <span>
+            <img src="/image/s.png" alt="success" height="42" width="42" />
+            <p>The clip was created successfully!</p>
+          </span>
+        </div>
+        <div id="creating">
+          <span>
+            <img
+              src="/image/loading2.gif"
+              alt="the clip is being created"
+              height="42"
+              width="42"
+            />
+            <p>Hold tight, the clip is being created...</p>
+          </span>
+        </div>
+
+        <div id="error">
+          <span>
+            <img src="/image/e.png" alt="error" height="42" width="42" />
+            <p>The was an error, please try again.</p>
+          </span>
+        </div>
         <Divider hidden />
         <Modal
           trigger={
@@ -122,13 +146,11 @@ class MultistreamSidebar extends Component {
               <Button inverted size="small">
                 <Icon name="share square outline" /> Share
               </Button>
-              // <Button className="sidebar-edit-btn">Share</Button>
             }
             size="tiny"
           >
             <Modal.Header>
-              Copy the link below and share it with your friends! so you can
-              share it!
+              <span>Copy the link below and share it with your friends!</span>
             </Modal.Header>
             <Modal.Description className="customize-form-box">
               <Label>{window.location.href}</Label>
@@ -144,18 +166,25 @@ class MultistreamSidebar extends Component {
               <Icon name="record" /> Record Clip
             </Button>
           }
-          // trigger={<Button onClick={this.handleOpen}>Record Clip</Button>}
-          size="tiny"
+          size="mini"
         >
           <Modal.Header>Enter Clip Name:</Modal.Header>
           <Modal.Description className="customize-form-box">
             <Form onSubmit={this.createMultistreamClip}>
               <Form.Field>
                 <Input type="text" name="streamName" />
-              </Form.Field>
-              <Button type="submit" onSubmit={this.createMultistreamClip}>
-                Create clip
-              </Button>
+              </Form.Field>{' '}
+              {'   '}
+              <span className="create-clip-button">
+                <Button
+                  inverted
+                  color="green"
+                  type="submit"
+                  onSubmit={this.createMultistreamClip}
+                >
+                  Create
+                </Button>
+              </span>
             </Form>
           </Modal.Description>
         </Modal>
@@ -199,6 +228,5 @@ const mapDispatchToProps = dispatch => {
     addClip: (clip, id, name) => dispatch(createClip(clip, id, name))
   }
 }
-// export default MultistreamSidebar
 
 export default connect(mapStateToProps, mapDispatchToProps)(MultistreamSidebar)

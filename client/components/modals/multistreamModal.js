@@ -30,13 +30,13 @@ class MultistreamModal extends React.Component {
         open={this.state.modalOpen}
         onClose={this.handleClose}
         // basic
-        // size='small'
+        size="tiny"
       >
         <Header content="My multistreams" />
         <Modal.Content image>
           <Image
             wrapped
-            size="medium"
+            size="tiny"
             src={this.props.userTwitchInfo.twitchUser.logo}
           />
           <Modal.Description>
@@ -57,7 +57,7 @@ class MultistreamModal extends React.Component {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button color="green" onClick={this.handleClose} inverted>
+          <Button color="red" onClick={this.handleClose} inverted>
             Close
           </Button>
         </Modal.Actions>

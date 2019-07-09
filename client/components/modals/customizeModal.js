@@ -32,7 +32,7 @@ class CustomizeModal extends React.Component {
           <Customize />
         </Modal.Content>
         <Modal.Actions>
-          <Button color="green" onClick={this.handleClose} inverted>
+          <Button color="red" onClick={this.handleClose} inverted>
             Cancel
           </Button>
         </Modal.Actions>
