@@ -45,12 +45,8 @@ class SingleStreamComponent extends Component {
         <div className="single-stream-overlay-menu">
           <div className="single-stream-overlay-icon-box">
             <a className="single-stream-link" href="#">
-              <Icon name="arrow alternate circle up outline" size="large" />{' '}
-            </a>
-            <a className="single-stream-link" href="#">
               <Icon
                 name="user outline"
-                size="large"
                 onClick={() => {
                   window.open(`https://twitch.tv/${this.props.name}`)
                 }}
@@ -61,26 +57,33 @@ class SingleStreamComponent extends Component {
               href="#"
               onClick={() => handleChatClick(this.props.name)}
             >
-              <Icon name="chat" size="large" />
+              <Icon name="chat" />
             </a>
             <a
               className="single-stream-link"
               href="#"
               onClick={() => socket.emit('newThumb', uniqueCanvas)}
             >
-              <Icon name="thumbs up outline" size="large" />
+              <Icon name="thumbs up outline" />
             </a>
             <a
               className="single-stream-link"
               href="#"
               onClick={() => socket.emit('newHeart', uniqueCanvas)}
             >
-              <Icon name="heart" size="large" />
+              <Icon name="heart" />
             </a>
+            <a
+              className="single-stream-link"
+              href="#"
+              onClick={() => socket.emit('newSmile', uniqueCanvas)}
+            >
+              <Icon name="smile outline" />
+            </a>
+
             <a className="single-stream-link" href="#">
               <Icon
                 name="window close"
-                size="large"
                 onClick={() => this.props.remove(this.props.name)}
                 disabled={totalStreams < 2}
               />
