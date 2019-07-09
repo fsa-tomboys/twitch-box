@@ -21,7 +21,6 @@ class MultistreamSidebar extends Component {
       modalOpen: false,
       time: 0
     }
-
     this.createMultistreamClip = this.createMultistreamClip.bind(this)
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -147,13 +146,11 @@ class MultistreamSidebar extends Component {
               <Button inverted size="small">
                 <Icon name="share square outline" /> Share
               </Button>
-              // <Button className="sidebar-edit-btn">Share</Button>
             }
             size="tiny"
           >
             <Modal.Header>
-              Copy the link below and share it with your friends! so you can
-              share it!
+              <span>Copy the link below and share it with your friends!</span>
             </Modal.Header>
             <Modal.Description className="customize-form-box">
               <Label>{window.location.href}</Label>
@@ -169,7 +166,6 @@ class MultistreamSidebar extends Component {
               <Icon name="record" /> Record Clip
             </Button>
           }
-          // trigger={<Button onClick={this.handleOpen}>Record Clip</Button>}
           size="mini"
         >
           <Modal.Header>Enter Clip Name:</Modal.Header>
@@ -232,6 +228,5 @@ const mapDispatchToProps = dispatch => {
     addClip: (clip, id, name) => dispatch(createClip(clip, id, name))
   }
 }
-// export default MultistreamSidebar
 
 export default connect(mapStateToProps, mapDispatchToProps)(MultistreamSidebar)

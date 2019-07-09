@@ -131,7 +131,6 @@ class Featured extends Component {
       await this.props.fetchInitialChannels(this.props.user.twitchId)
       await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
     }
-    console.log('state ', this.state)
   }
 
   async handleClick(channelName) {
@@ -158,10 +157,6 @@ class Featured extends Component {
     this.setState({
       displayChannelsFromTopGames: channelsForThisGame.data.streams
     })
-    // console.log(
-    //   'channels for this game: ',
-    //   this.state.displayChannelsFromTopGames
-    // )
   }
 
   handleShowMore() {
@@ -171,7 +166,6 @@ class Featured extends Component {
   }
 
   render() {
-    // console.log('PROPS', this.props)
     return (
       <div>
         <Navbar pos="navbar-featured" />
