@@ -4,6 +4,7 @@ body {
   /* padding: 0; */
   /* overflow-y: scroll; */
   margin-bottom: 20px;
+  background: grey;
 }
 h4 {
   color: white;
@@ -552,9 +553,9 @@ animation-duration: 4s; */
   position: relative;
   /* margin: 10px; */
   text-align: center;
-  /* opacity: 0.8; */
+  opacity: 0.4;
   padding: 0;
-  border: 4px solid #6441a5;
+  /* border: 4px solid #6441a5; */
   /* margin-bottom: 30px; */
 }
 
@@ -798,6 +799,7 @@ li {
 .my-profile-dropdown-self {
   background: #181721;
 }
+
 #success {
   display: none;
   position: absolute;
@@ -859,3 +861,23 @@ li {
   position: relative;
   left: 50px;
 }
+
+.all-clips-container {
+  display: flex;
+  /* max-width: 90%; */
+  flex-wrap: wrap;
+  width: 80%;
+  background: gray;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+/* .input-streams-by-name input[type=text] {
+  background: #6441a5;
+  border: 1px solid purple;
+} */
+
+/* .customize-form-box-outer {
+  padding:0px;
+  background: yellow;
+} */

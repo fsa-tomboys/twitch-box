@@ -3,7 +3,15 @@ import React, {Component} from 'react'
 import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
 import Navbar from './navbar'
-import {Grid, Image, Button, Divider, Select, Icon} from 'semantic-ui-react'
+import {
+  Grid,
+  Image,
+  Button,
+  Divider,
+  Select,
+  Dimmer,
+  Loader
+} from 'semantic-ui-react'
 import axios from 'axios'
 import {
   fetchTwitchUser,
@@ -145,6 +153,7 @@ class Featured extends Component {
       selected: newArr
     })
   }
+
   async getChannelsForThisGame(event, {value}) {
     let findGame = value.split(' ').join('+')
 
@@ -266,7 +275,10 @@ class Featured extends Component {
                       ))
                     ) : (
                       <div>
-                        <Image src="/image/loading.gif" />
+                        {/* <Image src="/image/loading.gif" /> */}
+                        <Dimmer active>
+                          <Loader />
+                        </Dimmer>
                       </div>
                     )}
                     {this.state.showMore ? (
