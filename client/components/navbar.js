@@ -25,7 +25,11 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
           <h1>twitch box</h1>
         </span>
         <div className="my-profile-dropdown-navbar">
-          <Dropdown item text="View My Info">
+          <Dropdown
+            className="my-profile-dropdown-self"
+            item
+            text="View My Info"
+          >
             <Dropdown.Menu>
               <Dropdown.Item>
                 <span className="profile-dropdown">

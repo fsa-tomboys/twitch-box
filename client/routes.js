@@ -31,11 +31,11 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         {/* <Route path="/singlestream" component={SingleStreamComponent} /> */}
+        <Route path="/clips:list" component={ViewClipsComponent} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={MultiStream} />
         <Route path="/home:list" component={MultiStream} />
-        <Route path="/clips:list" component={ViewClipsComponent} />
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />

@@ -158,10 +158,10 @@ class Featured extends Component {
     this.setState({
       displayChannelsFromTopGames: channelsForThisGame.data.streams
     })
-    console.log(
-      'channels for this game: ',
-      this.state.displayChannelsFromTopGames
-    )
+    // console.log(
+    //   'channels for this game: ',
+    //   this.state.displayChannelsFromTopGames
+    // )
   }
 
   handleShowMore() {
@@ -171,7 +171,7 @@ class Featured extends Component {
   }
 
   render() {
-    console.log('PROPS', this.props)
+    // console.log('PROPS', this.props)
     return (
       <div>
         <Navbar pos="navbar-featured" />
