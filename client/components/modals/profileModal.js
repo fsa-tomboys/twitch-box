@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Header, Image, Modal} from 'semantic-ui-react'
+import {Button, Header, Image, Modal, Label} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class ProfileModal extends React.Component {
@@ -17,6 +17,14 @@ class ProfileModal extends React.Component {
     if (this.props.userTwitchInfo.twitchUser.created_at) {
       dateCreated = this.props.userTwitchInfo.twitchUser.created_at.slice(0, 10)
     }
+    let d = this.props.user.time
+    var h = Math.floor(d / 3600)
+    var m = Math.floor((d % 3600) / 60)
+    var s = Math.floor((d % 3600) % 60)
+
+    var hDisplay = h > 0 ? h + (h == 1 ? ' hour, ' : ' hours, ') : ''
+    var mDisplay = m > 0 ? m + (m == 1 ? ' minute, ' : ' minutes, ') : ''
+    var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' seconds') : ''
     return (
       <Modal
         size="tiny"
@@ -43,6 +51,9 @@ class ProfileModal extends React.Component {
             <p>Twitch ID: {this.props.userTwitchInfo.twitchUser._id}</p>
             <p>Type: {this.props.userTwitchInfo.twitchUser.type}</p>
             <p>Member since {dateCreated}</p>
+            <p>
+              Time spent watching multistreams: {hDisplay + mDisplay + sDisplay}
+            </p>
             {/* <p>Updated at: {this.props.userTwitchInfo.twitchUser.updated_at}</p> */}
           </Modal.Description>
         </Modal.Content>

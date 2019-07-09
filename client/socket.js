@@ -62,7 +62,7 @@ socket.on('addHeart', uniqueCanvas => {
     }, 3000)
   }
 })
-socket.on('addHeart', uniqueCanvas => {
+socket.on('addSmile', uniqueCanvas => {
   const canvas = document.getElementById(uniqueCanvas)
   const ctx = canvas.getContext('2d')
   let base_image = new Image()

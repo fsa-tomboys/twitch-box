@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Menu, Dropdown, Icon} from 'semantic-ui-react'
+import {Menu, Dropdown, Icon, Button} from 'semantic-ui-react'
 import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
 import MyClipsModal from './modals/myClipsModal'
@@ -36,7 +36,7 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
                   <ProfileModal />
                 </span>
               </Dropdown.Item>
-              <Dropdown.Item>
+              <Dropdown.Item as={Button}>
                 <MultistreamModal />
               </Dropdown.Item>
               <Dropdown.Item>

@@ -8,16 +8,12 @@ import axios from 'axios'
 import TimeMe from 'timeme.js'
 import Navbar from './navbar'
 import {connect} from 'react-redux'
-import {
-  fetchTwitchUser,
-  fetchUserChannels,
-  fetchChannelsStreamsStatus
-} from '../store/usertwitchinfo'
-import {createMultistream, fetchMultistreams} from '../store/multistreams'
+import {fetchTwitchUser} from '../store/usertwitchinfo'
+import {fetchMultistreams} from '../store/multistreams'
 import {fetchClips} from '../store/clip'
 import {me} from '../store/user'
 
-export class MultiStream extends Component {
+class MultiStream extends Component {
   constructor() {
     super()
     this.state = {
@@ -30,7 +26,19 @@ export class MultiStream extends Component {
     this.addStream = this.addStream.bind(this)
     this.handleChatClick = this.handleChatClick.bind(this)
     this.getChannelId = this.getChannelId.bind(this)
-    this.getTime = this.getTime.bind(this)
+    TimeMe.initialize({
+      currentPageName: 'my-home-page' // current page
+    })
+    let object = this
+    TimeMe.callWhenUserLeaves(async function() {
+      let userTime = await axios.post(
+        `/api/users/time/${
+          object.props.userTwitchInfo.id
+        }/${TimeMe.getTimeOnCurrentPageInSeconds()}`
+      )
+      console.log(userTime.data)
+      console.log(TimeMe.getTimeOnCurrentPageInSeconds())
+    })
   }
   remove(element) {
     let arr = this.state.testArray
@@ -90,13 +98,6 @@ export class MultiStream extends Component {
 
     this.setState({
       testArray: arrFromProps || this.props.location.state.testArray
-    })
-    TimeMe.initialize({
-      currentPageName: 'my-home-page', // current page
-      idleTimeoutInSeconds: 30 // seconds
-    })
-    TimeMe.callWhenUserLeaves(function() {
-      console.log('The user is not currently viewing the page!')
     })
   }
 
