@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Header, Image, Modal, Label} from 'semantic-ui-react'
+import {Button, Header, Image, Modal} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class ProfileModal extends React.Component {
@@ -35,10 +35,7 @@ class ProfileModal extends React.Component {
         }
         open={this.state.modalOpen}
         onClose={this.handleClose}
-        // basic
-        // size='small'
       >
-        {/* <Header content={`Profile of ${this.props.user.name}:`} /> */}
         <Header content="My profile" />
         <Modal.Content image>
           <Image
@@ -54,7 +51,6 @@ class ProfileModal extends React.Component {
             <p>
               Time spent watching multistreams: {hDisplay + mDisplay + sDisplay}
             </p>
-            {/* <p>Updated at: {this.props.userTwitchInfo.twitchUser.updated_at}</p> */}
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>

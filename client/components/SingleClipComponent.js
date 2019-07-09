@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import {Icon} from 'semantic-ui-react'
 
 class SingleClipComponent extends Component {
   render() {

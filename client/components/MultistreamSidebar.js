@@ -6,8 +6,7 @@ import {
   Form,
   Label,
   Divider,
-  Icon,
-  Image
+  Icon
 } from 'semantic-ui-react'
 import TwitchClient from 'twitch'
 import {connect} from 'react-redux'
@@ -27,7 +26,6 @@ class MultistreamSidebar extends Component {
 
   // async
   async createMultistreamClip(event) {
-    console.log('before', this.props.clips)
     let clipsArrayBefore = this.props.clips
     let clipName = event.target.streamName.value
     const client = await TwitchClient.withCredentials(
@@ -42,10 +40,7 @@ class MultistreamSidebar extends Component {
         channelId: this.props.channelIds[i]
       })
       clipArray.push(clipId)
-      // console.log(clipId)
     }
-    // let clipName = clipNamePopup()
-    // console.log('CLIP ', clipArray)
     await this.props.addClip(
       clipArray.join(','),
       this.props.userTwitchInfo.id,
@@ -60,14 +55,14 @@ class MultistreamSidebar extends Component {
       document.getElementById('success').style.display = 'block'
       setTimeout(function() {
         document.getElementById('success').style.display = 'none'
-      }, 2500)
+      }, 1500)
     } else {
       document.getElementById('success').style.display = 'none'
       document.getElementById('creating').style.display = 'none'
       document.getElementById('error').style.display = 'block'
       setTimeout(function() {
         document.getElementById('error').style.display = 'none'
-      }, 2500)
+      }, 1500)
     }
   }
 
@@ -79,7 +74,6 @@ class MultistreamSidebar extends Component {
   }
 
   render() {
-    console.log('>>>>>>>>>', this.props)
     return (
       <div className="multistream-sidebar">
         <div id="success">
@@ -113,8 +107,6 @@ class MultistreamSidebar extends Component {
               <Icon name="edit" /> Edit
             </Button>
           }
-          // trigger={<Button className="sidebar-edit-btn">Edit</Button>}
-          // trigger={<Icon className="edit-icon-sidebar"name="edit outline" color="black" size="big">Here</Icon>}
           size="tiny"
         >
           <Modal.Header>Edit Streams</Modal.Header>
@@ -158,7 +150,7 @@ class MultistreamSidebar extends Component {
           </Modal>
         </div>
         <Divider hidden />
-        {this.props.userTwitchInfo.length > 0 ? (
+        {Object.keys(this.props.userTwitchInfo).length > 0 ? (
           <Modal
             open={this.state.modalOpen}
             onClose={this.handleClose}
@@ -192,29 +184,6 @@ class MultistreamSidebar extends Component {
         ) : (
           <p />
         )}
-        {/* <Modal
-          trigger={
-            <Button
-              className="sidebar-edit-btn"
-              onClick={() => {
-                let currentTime = this.props.getTime()
-                this.setState({
-                  time: currentTime
-                })
-              }}
-            >
-              Get Time{' '}
-            </Button>
-          }
-          size="tiny"
-        > */}
-        {/* <Modal.Description className="customize-form-box">
-            <Label>
-              Seconds watched of this multistream: {this.state.time}
-            </Label>
-          </Modal.Description> */}
-        {/* </Modal> */}
-        {/* <Button>Show/hide Chat</Button> */}
       </div>
     )
   }

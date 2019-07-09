@@ -12,9 +12,6 @@ import AboutModal from './modals/aboutModal'
 const Navbar = ({handleClick, isLoggedIn, pos}) => (
   <div className={pos}>
     <Menu size="small" inverted>
-      {/* <Menu.Item as={Link} to="/featured">
-          Featured Streams
-        </Menu.Item> */}
       <span className="navbar-home-icon">
         <a href="/featured">
           {' '}
@@ -57,10 +54,6 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
           Login
         </Menu.Item>
       )}
-
-      {/* <Menu.Item as={Link} to="#" onClick={handleClick}>
-          Logout
-        </Menu.Item> */}
     </Menu>
   </div>
 )

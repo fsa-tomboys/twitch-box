@@ -13,7 +13,6 @@ class MultistreamModal extends React.Component {
   handleClose = () => this.setState({modalOpen: false})
 
   render() {
-    // console.log('this.props: ', this.props)
     return (
       <Modal
         trigger={

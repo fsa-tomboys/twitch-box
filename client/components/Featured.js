@@ -21,10 +21,6 @@ import {
 import {createMultistream, fetchMultistreams} from '../store/multistreams'
 import {fetchClips} from '../store/clip'
 import {createUserMultistreamAssociation} from '../store/users'
-import RandomMultistream from './RandomMultiStream'
-import {ECONNABORTED} from 'constants'
-import ProfileModal from './modals/profileModal'
-import MultistreamModal from './modals/multistreamModal'
 import CustomizeModal from './modals/customizeModal'
 
 function randomNumerGenerator(maxNum) {
@@ -105,7 +101,6 @@ class Featured extends Component {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
     )
-    // console.log('featured: ', featuredChannels)
     let topGames = await axios.get(
       'https://api.twitch.tv/helix/games/top?first=10',
       {
@@ -220,12 +215,6 @@ class Featured extends Component {
               </Button>
               <Divider hidden />
             </div>
-            {/* <a
-            className="featured-sidebar-link"
-            onClick={this.goToRandomMultistream}
-          >
-            Go to random Multistream
-          </a> */}
             <CustomizeModal />
             <h4>Channels you follow: </h4>
             <Divider hidden />
@@ -238,7 +227,6 @@ class Featured extends Component {
                       this.state.followedStreams.map((stream, idx) => (
                         <div className="followed-single-channel-wrapper">
                           <div
-                            // className="followed-channels-icons"
                             key={stream.channel._id}
                             className={
                               this.state.selected.includes(stream.channel.name)
@@ -254,28 +242,18 @@ class Featured extends Component {
                             <span className="followed-channels-icon-channelName">
                               {stream.channel.name}
                             </span>
-                            {/* <span className="followed-channels-followers">
-                            {convertFollowers(stream.channel.followers)}
-                            followers
-                          </span> */}
                             <div className="channel-online">
                               <span>Live</span>
                             </div>
-                            {/* {this.props.userTwitchInfo.isOnline[idx] ? (
-                            <div className="channel-online">
-                              <span>Live</span>
-                            </div>
-                          ) : (
-                            <div className="channel-offline">
-                              <span>Offline</span>
-                            </div>
-                          )} */}
                           </div>
                         </div>
                       ))
                     ) : (
                       <div>
-                        <Image src="/image/loading.gif" />
+                        <Dimmer active>
+                          <Loader />
+                        </Dimmer>
+                        {/* <Image src="/image/loading.gif" /> */}
                       </div>
                     )}
                     {this.state.showMore ? (
@@ -287,7 +265,6 @@ class Featured extends Component {
                         .map(ch => (
                           <div className="followed-single-channel-wrapper">
                             <div
-                              // className="followed-channels-icons"
                               key={ch._data.channel._id}
                               className={
                                 this.state.selected.includes(
@@ -301,7 +278,6 @@ class Featured extends Component {
                               }
                             >
                               <Image size="mini" src={ch._data.channel.logo} />
-
                               <span className="followed-channels-icon-channelName">
                                 {ch._data.channel.name}
                               </span>
@@ -431,9 +407,6 @@ class Featured extends Component {
                         <span className="by-game-channels-game">
                           Game: {gameChannel.game}
                         </span>
-                        {/* <span className="by-game-streams-icons-tooltiptext">
-                    {processStreamDescription(element.text)}
-                  </span> */}
                       </div>
                     </div>
                   )
