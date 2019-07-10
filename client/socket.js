@@ -1,5 +1,4 @@
 import io from 'socket.io-client'
-// var SSCD = require('sscd').sscd
 const socket = io(window.location.origin)
 
 socket.on('connect', () => {
@@ -15,16 +14,6 @@ socket.on('addThumb', uniqueCanvas => {
   base_image.onload = function() {
     let xpos = Math.random() * 100 + Math.random() * 100 + 50
     let ypos = Math.random() * 100 + Math.random() * 100 + 50
-
-    // world.add(new SSCD.Circle(new SSCD.Vector(xpos, ypos), 75))
-    // if (world.test_collision(new SSCD.Vector(xpos, y))) {
-    //   console.log('Collision!')
-    // } else {
-    //   world.add(new SSCD.Circle(new SSCD.Vector(xpos, ypos), 75))
-    // }
-    // if (world.test_collision(new SSCD.Vector(300, 300))) {
-    //   console.log('this should not display unless I add a circle')
-    // }
 
     ctx.drawImage(base_image, xpos, ypos)
 
@@ -45,16 +34,6 @@ socket.on('addHeart', uniqueCanvas => {
     let xpos = Math.random() * 100 + Math.random() * 100 + 50
     let ypos = Math.random() * 100 + Math.random() * 100 + 50
 
-    // world.add(new SSCD.Circle(new SSCD.Vector(xpos, ypos), 75))
-    // if (world.test_collision(new SSCD.Vector(xpos, y))) {
-    //   console.log('Collision!')
-    // } else {
-    //   world.add(new SSCD.Circle(new SSCD.Vector(xpos, ypos), 75))
-    // }
-    // if (world.test_collision(new SSCD.Vector(300, 300))) {
-    //   console.log('this should not display unless I add a circle')
-    // }
-
     ctx.drawImage(base_image, xpos, ypos)
 
     setTimeout(function() {
@@ -72,17 +51,6 @@ socket.on('addSmile', uniqueCanvas => {
   base_image.onload = function() {
     let xpos = Math.random() * 100 + Math.random() * 100 + 50
     let ypos = Math.random() * 100 + Math.random() * 100 + 50
-
-    // world.add(new SSCD.Circle(new SSCD.Vector(xpos, ypos), 75))
-    // if (world.test_collision(new SSCD.Vector(xpos, y))) {
-    //   console.log('Collision!')
-    // } else {
-    //   world.add(new SSCD.Circle(new SSCD.Vector(xpos, ypos), 75))
-    // }
-    // if (world.test_collision(new SSCD.Vector(300, 300))) {
-    //   console.log('this should not display unless I add a circle')
-    // }
-
     ctx.drawImage(base_image, xpos, ypos)
 
     setTimeout(function() {

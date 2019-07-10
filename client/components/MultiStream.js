@@ -30,10 +30,12 @@ class MultiStream extends Component {
       currentPageName: 'my-home-page' // current page
     })
     let object = this
+
     TimeMe.callWhenUserLeaves(async function() {
+      console.log('call when user leaves, ', object)
       let userTime = await axios.post(
         `/api/users/time/${
-          object.props.userTwitchInfo.id
+          object.props.user.id
         }/${TimeMe.getTimeOnCurrentPageInSeconds()}`
       )
       console.log(userTime.data)
