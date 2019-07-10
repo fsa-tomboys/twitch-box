@@ -182,13 +182,15 @@ class Featured extends Component {
                     Welcome{' '}
                     <span className="username-featured">
                       {this.props.user.name}
-                    </span>, click any channel to add to multistream.
+                    </span>, click up to 4 channels to create a multistream
+                    from.
                   </h4>
                 </div>
               ) : (
                 <div className="login-welcome-title">
                   <h4>
-                    Welcome visitor, click any channel to add to multistream.
+                    Welcome visitor, click up to 4 channels to create a
+                    multistream from.
                   </h4>
                 </div>
               )}
