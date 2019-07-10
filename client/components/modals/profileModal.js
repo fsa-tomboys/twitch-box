@@ -51,6 +51,11 @@ class ProfileModal extends React.Component {
             <p>
               Time spent watching multistreams: {hDisplay + mDisplay + sDisplay}
             </p>
+            <p>
+              Your widget url: {window.location.origin}/widget/?name={
+                this.props.userTwitchInfo.twitchUser.name
+              }
+            </p>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
