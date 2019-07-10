@@ -11,7 +11,7 @@ const AuthForm = props => {
 
   return (
     <div>
-      <Navbar pos="navbar" />
+      <Navbar pos="navbar-login" />
 
       <div className="login-link-twitch">
         <div className="login-signup-box">

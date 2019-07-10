@@ -50,9 +50,14 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
           </Dropdown>
         </div>
       ) : (
+        <div />
+      )}
+      {pos !== 'navbar-login' ? (
         <Menu.Item as={Link} to="/login" position="right">
           Login
         </Menu.Item>
+      ) : (
+        <div />
       )}
     </Menu>
   </div>
