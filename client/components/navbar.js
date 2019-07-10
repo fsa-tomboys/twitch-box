@@ -18,9 +18,12 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
           <Icon color="grey" name="home" size="huge" />
         </a>
       </span>
-      <Menu.Item>
-        <AboutModal />
-      </Menu.Item>
+      <span className="navbar-element">
+        <Menu.Item>
+          <AboutModal />
+        </Menu.Item>
+      </span>
+
       <span className="top-header">
         <h1>twitch box</h1>
       </span>
