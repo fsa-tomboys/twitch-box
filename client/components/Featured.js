@@ -187,9 +187,9 @@ class Featured extends Component {
                 </div>
               ) : (
                 <div className="login-welcome-title">
-                  <h3>
+                  <h4>
                     Welcome visitor, click any channel to add to multistream.
-                  </h3>
+                  </h4>
                 </div>
               )}
               <div className="customize-form-buttons-box">
@@ -216,7 +216,7 @@ class Featured extends Component {
               <Divider hidden />
             </div>
             <CustomizeModal />
-            <h4>Channels you follow: </h4>
+            {this.props.isLoggedIn ? <h4>Channels you follow: </h4> : <p />}
             <Divider hidden />
             {this.props.isLoggedIn && (
               <div className="followed-channels-wrapper">
@@ -295,17 +295,21 @@ class Featured extends Component {
                 <Divider hidden />
               </div>
             )}
-            <div className="show-button">
-              {this.state.showMore ? (
-                <a onClick={() => this.handleShowMore()}>
-                  <span className="show-less">show less</span>
-                </a>
-              ) : (
-                <a onClick={() => this.handleShowMore()}>
-                  <span className="show-more">show more </span>
-                </a>
-              )}
-            </div>
+            {this.props.isLoggedIn ? (
+              <div className="show-button">
+                {this.state.showMore ? (
+                  <a onClick={() => this.handleShowMore()}>
+                    <span className="show-less">show less</span>
+                  </a>
+                ) : (
+                  <a onClick={() => this.handleShowMore()}>
+                    <span className="show-more">show more </span>
+                  </a>
+                )}
+              </div>
+            ) : (
+              <p />
+            )}
 
             <Divider hidden />
             <Divider hidden />
