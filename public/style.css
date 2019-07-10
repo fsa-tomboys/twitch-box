@@ -17,21 +17,23 @@ label {
 }
 
 nav {
-  background: #181721;
+  background: '#181721';
 }
 .navbar {
   left: 0;
   right: 0;
   z-index: 1;
+  background: #181721;
 }
 .navbar-featured {
   position: fixed;
-
+  background: #181721;
   left: 0;
   right: 0;
   z-index: 1;
 }
 .navbar-login {
+  background: #181721;
   left: 0;
   right: 0;
   z-index: 1;
@@ -51,6 +53,9 @@ nav a:hover {
   padding-left: 21px;
   padding-top: 9px;
 }
+.navbar-element {
+  background: #181721;
+}
 .profile-dropdown {
   background: #181721;
   text-align: left;
@@ -68,7 +73,7 @@ form div {
   color: #c9cfce;
   padding: 1rem;
   background: #181721;
-  width: 80rem;
+  width: 115rem;
 }
 
 .top-header h1 {
@@ -536,9 +541,6 @@ form div {
 
 .followed-channels-wrapper {
   display: flex;
-}
-.username-featured {
-  color: purple;
 }
 .logout-dropdown {
   font-weight: bolder;
