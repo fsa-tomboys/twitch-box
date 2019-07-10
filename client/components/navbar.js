@@ -52,7 +52,7 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
       ) : (
         <div />
       )}
-      {pos !== 'navbar-login' ? (
+      {!isLoggedIn && pos !== 'navbar-login' ? (
         <Menu.Item as={Link} to="/login" position="right">
           Login
         </Menu.Item>
