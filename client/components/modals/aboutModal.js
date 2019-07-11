@@ -17,7 +17,7 @@ class AboutModal extends React.Component {
         size="small"
         trigger={
           <div className="login-user-selfview-menu">
-            <p onClick={this.handleOpen}>About</p>
+            <p onClick={this.handleOpen}>About/Contact</p>
           </div>
         }
         open={this.state.modalOpen}
@@ -33,7 +33,8 @@ class AboutModal extends React.Component {
             multiple Twitch streams with an easier process. This application was
             made by TOMboys(maxgrosshandler, olgashi, and taowang6000). You can
             find them all on Github. This project was made using React, Redux,
-            Express, Sequelize, Node.js, and Socket.io.
+            Express, Sequelize, Node.js, and Socket.io. You can contact us with
+            questions/concerns/bug reports at twitchboxapp@gmail.com
           </div>
         </Modal.Content>
         <Modal.Actions>
