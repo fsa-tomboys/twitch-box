@@ -85,7 +85,7 @@ class MultistreamSidebar extends Component {
         <div id="creating">
           <span>
             <img
-              src="/image/loading2.gif"
+              src="/image/loader2.gif"
               alt="the clip is being created"
               height="42"
               width="42"
