@@ -101,6 +101,7 @@ class MultiStream extends Component {
     this.setState({
       testArray: arrFromProps || this.props.location.state.testArray
     })
+    this.getChannelId(arrFromProps || this.props.location.state.testArray)
   }
 
   componentDidUpdate(prevProps) {
@@ -125,7 +126,7 @@ class MultiStream extends Component {
   }
 
   render() {
-    this.getChannelId(this.state.testArray)
+    // this.getChannelId(this.state.testArray)
     return (
       <div>
         <Navbar pos="navbar" />
