@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+//Same as the Multistream component, just takes in a random amount of streams
 class RandomMultistream extends Component {
   render() {
     let width = this.props.height
