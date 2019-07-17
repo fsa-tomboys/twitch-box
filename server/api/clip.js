@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {Clip} = require('../db/models')
 
-// getr clips for this user
+// get clips for this user
 
 router.get('/:userId', async (req, res, next) => {
   console.log('userId: ', req.params.userId)

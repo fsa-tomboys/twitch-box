@@ -6,6 +6,7 @@ import Navbar from './navbar'
 /**
  * COMPONENT
  */
+// This form helps handle logging in with Twitch
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 

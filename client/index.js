@@ -6,7 +6,7 @@ import history from './history'
 import store from './store'
 import App from './app'
 
-// establishes socket connection
+// establishes socket connection, and serves to help provide the entire application with the router history and the redux store
 import './socket'
 
 ReactDOM.render(

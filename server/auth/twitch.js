@@ -3,6 +3,7 @@ const router = require('express').Router()
 const twitchStrategy = require('passport-twitch').Strategy
 const {User} = require('../db/models')
 module.exports = router
+// This passport strategy allows for logging in with Twitch
 
 if (!process.env.TWITCH_CLIENT_ID || !process.env.TWITCH_CLIENT_SECRET) {
   console.log('TWITCH client ID / secret not found. Skipping TWITCH OAuth.')

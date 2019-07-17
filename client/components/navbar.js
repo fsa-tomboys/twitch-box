@@ -8,7 +8,7 @@ import ProfileModal from './modals/profileModal'
 import MultistreamModal from './modals/multistreamModal'
 import MyClipsModal from './modals/myClipsModal'
 import AboutModal from './modals/aboutModal'
-
+// This is our navbar component. It has an icon that takes a user back to the home/Featured page, and a dropdown for their profile if they are logged in
 const Navbar = ({handleClick, isLoggedIn, pos}) => (
   <div className={pos}>
     <Menu size="small" inverted>
@@ -27,6 +27,7 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
       <span className="top-header">
         <h1>twitch box</h1>
       </span>
+      {/* This only displays if the user is logged in */}
       {isLoggedIn ? (
         <div className="my-profile-dropdown-navbar">
           <Dropdown
