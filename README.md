@@ -29,3 +29,5 @@ Only an existing Twitch user (registered user of twitch.tv) could become a user 
 2.  While watching streams, you could make clips of these streams (previous 30 seconds' stream), and save them locally for later watching.
 
 3.  On home page, by clicking "View My Info" on Navbar, you could view your Twitch profile, the multistreams you've ever watched, as well as the clips you've ever made.
+
+This project used [Boilermaker](https://github.com/FullstackAcademy/boilermaker) as a starting point to help with minor setup details
