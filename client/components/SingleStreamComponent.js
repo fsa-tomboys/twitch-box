@@ -9,7 +9,7 @@ class SingleStreamComponent extends Component {
     let streamNumber = this.props.streamNum
     let totalStreams = this.props.totalNumber
     let handleChatClick = this.props.handleChatClick
-    // This switch statement helps resize the streams as needed
+    // This switch statement helps resize the streams as needed to make a consistent user experience
     switch (totalStreams) {
       case 1:
         width = window.innerWidth - 473
