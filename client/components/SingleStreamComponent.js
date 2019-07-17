@@ -33,6 +33,9 @@ class SingleStreamComponent extends Component {
         width = (window.innerWidth - 490) / 2
         height = window.innerHeight / 2 - 100
         break
+      case 5:
+        width = (window.innerWidth - 520) / 2
+        height = window.innerHeight / 2 - 100
       default:
         console.log('There must be an error.')
         break
