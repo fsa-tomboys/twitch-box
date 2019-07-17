@@ -2,13 +2,14 @@ import React, {Component} from 'react'
 import {Icon} from 'semantic-ui-react'
 import socket from '../socket'
 class SingleStreamComponent extends Component {
+  //This component displays a single stream
   render() {
     let width
     let height
     let streamNumber = this.props.streamNum
     let totalStreams = this.props.totalNumber
     let handleChatClick = this.props.handleChatClick
-
+    // This switch statement helps resize the streams as needed to make a consistent user experience
     switch (totalStreams) {
       case 1:
         width = window.innerWidth - 473
@@ -36,6 +37,7 @@ class SingleStreamComponent extends Component {
         console.log('There must be an error.')
         break
     }
+    //This variable is needed to connect the Single Stream Componennt with the Widget
     const uniqueCanvas = this.props.name + '-canvas'
     return (
       <div className="single-stream-outer">

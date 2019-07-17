@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+// This component works in a similar way to the SingleStreamComponent
 class SingleClipComponent extends Component {
   render() {
     let width, height
