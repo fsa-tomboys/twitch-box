@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const RESET_TOKENS = 'RESET_TOKENS'
 // const ADD_TIME_TO_USER = 'ADD_TIME_TO_USER'
 
 /**
@@ -18,6 +19,8 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+// tokensObj: {token, refreshToken}
+const resetTokens = tokensObj => ({type: RESET_TOKENS, tokensObj})
 // const addTimeToUser = user => ({type: ADD_TIME_TO_USER, user})
 
 /**
@@ -56,6 +59,18 @@ export const logout = () => async dispatch => {
     console.error(err)
   }
 }
+
+export const fetchRefreshTokens = () => async dispatch => {
+  try {
+    let {theUser} = await axios.get('/auth/refresh')
+    dispatch(
+      resetTokens({token: theUser.token, refreshToken: theUser.refreshToken})
+    )
+  } catch (error) {
+    console.log('Error inside thunk method fetchRefreshTokens: ', error)
+  }
+}
+
 // export const addTime = () => async dispatch => {
 //   try {
 //     const res = await axios.get('/auth/me')
@@ -76,6 +91,12 @@ export default function(state = defaultUser, action) {
       return defaultUser
     // case ADD_TIME_TO_USER:
     //   return action.user
+    case RESET_TOKENS:
+      return {
+        ...state,
+        token: action.tokensObj.token,
+        refreshToken: action.tokensObj.refreshToken
+      }
     default:
       return state
   }

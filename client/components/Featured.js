@@ -1,17 +1,8 @@
 /* eslint-disable react/jsx-key */
 import React, {Component} from 'react'
-import ReactTwitchEmbedVideo from 'react-twitch-embed-video'
 import {connect} from 'react-redux'
 import Navbar from './navbar'
-import {
-  Grid,
-  Image,
-  Button,
-  Divider,
-  Select,
-  Dimmer,
-  Loader
-} from 'semantic-ui-react'
+import {Grid, Image, Button, Divider, Select} from 'semantic-ui-react'
 import axios from 'axios'
 import {
   fetchTwitchUser,
@@ -20,6 +11,7 @@ import {
 } from '../store/usertwitchinfo'
 import {createMultistream, fetchMultistreams} from '../store/multistreams'
 import {fetchClips} from '../store/clip'
+import {fetchRefreshTokens} from '../store/user'
 import {createUserMultistreamAssociation} from '../store/users'
 import CustomizeModal from './modals/customizeModal'
 
@@ -118,21 +110,52 @@ class Featured extends Component {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)
       await this.props.fetchInitialMs(this.props.user.id)
       await this.props.fetchInitialClips(this.props.user.id)
+      let theStreams
+      try {
+        theStreams = await axios.get(
+          'https://api.twitch.tv/kraken/streams/followed',
+          {
+            headers: {
+              Accept: 'application/vnd.twitchtv.v5+json',
+              'Client-ID': 'bmeab5l8jv7arn07ucv4zywa22qrl9',
+              Authorization: `OAuth ${this.props.user.token}`
+            }
+          }
+        )
+      } catch (error) {
+        // fetch token and refresh token
+        await this.props.fetchRT()
+        console.log('updated user for token refresh: ', this.props.user)
+      }
+      if (theStreams) {
+        this.setState({
+          followedStreams: theStreams.data.streams
+        })
+        await this.props.fetchInitialChannels(this.props.user.twitchId)
+        await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
+      }
+    }
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (this.props.user.id && this.props.user.token !== prevProps.user.token) {
       let theStreams = await axios.get(
         'https://api.twitch.tv/kraken/streams/followed',
         {
           headers: {
             Accept: 'application/vnd.twitchtv.v5+json',
-            'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh',
+            'Client-ID': 'bmeab5l8jv7arn07ucv4zywa22qrl9',
             Authorization: `OAuth ${this.props.user.token}`
           }
         }
       )
-      this.setState({
-        followedStreams: theStreams.data.streams
-      })
-      await this.props.fetchInitialChannels(this.props.user.twitchId)
-      await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
+      if (theStreams) {
+        this.setState({
+          followedStreams: theStreams.data.streams
+        })
+        await this.props.fetchInitialChannels(this.props.user.twitchId)
+        await this.props.fetchChannelsStatus(this.props.userTwitchInfo.channels)
+      }
     }
   }
 
@@ -441,11 +464,9 @@ const mapDispatchToProps = dispatch => {
     fetchInitialChannels: id => dispatch(fetchUserChannels(id)),
     fetchInitialMs: userId => dispatch(fetchMultistreams(userId)),
     fetchInitialClips: userId => dispatch(fetchClips(userId)),
-    addMultistream: ms => dispatch(createMultistream(ms)),
-    associateUserMs: (userId, msId) =>
-      dispatch(createUserMultistreamAssociation(userId, msId)),
     fetchChannelsStatus: channels =>
-      dispatch(fetchChannelsStreamsStatus(channels))
+      dispatch(fetchChannelsStreamsStatus(channels)),
+    fetchRT: () => dispatch(fetchRefreshTokens())
   }
 }
 
