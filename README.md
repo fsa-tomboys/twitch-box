@@ -4,6 +4,8 @@ Twitch Box is an APP which will make watching twitch streams easier.
 
 You could use the app either as a visitor or as a logged in user.
 
+You can watch a video on the project [here!](https://www.youtube.com/watch?v=qkW0zxZ3kvA)
+
 ## For a visitor, you have the following choices:
 
 1.  You could select several channels you are interested by clicking them, then click the "watch streams" button on sidebar to watch them. If you want to watch streams of a specific game, use the "Browse channels by game" selector, which could be found at the bottom of the home page.
@@ -29,3 +31,5 @@ Only an existing Twitch user (registered user of twitch.tv) could become a user 
 2.  While watching streams, you could make clips of these streams (previous 30 seconds' stream), and save them locally for later watching.
 
 3.  On home page, by clicking "View My Info" on Navbar, you could view your Twitch profile, the multistreams you've ever watched, as well as the clips you've ever made.
+
+This project used [Boilermaker](https://github.com/FullstackAcademy/boilermaker) as a starting point to help with minor setup details

@@ -2,6 +2,7 @@ import React from 'react'
 import history from '../history'
 import {Button, Form} from 'semantic-ui-react'
 
+//This component is what allows users to add streamers by name when they are creating a multistream
 export class Customize extends React.Component {
   constructor(props) {
     super(props)

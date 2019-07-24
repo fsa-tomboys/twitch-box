@@ -11,7 +11,7 @@ import {
 import TwitchClient from 'twitch'
 import {connect} from 'react-redux'
 import {createClip} from '../store/clip'
-
+// The sidebar on any given multistream page has a variety of useful buttons
 class MultistreamSidebar extends Component {
   constructor(props) {
     super()

@@ -15,7 +15,8 @@ import {fetchRefreshTokens} from '../store/user'
 import {createUserMultistreamAssociation} from '../store/users'
 import CustomizeModal from './modals/customizeModal'
 
-function randomNumerGenerator(maxNum) {
+//This component serves as the home page where users can create a multistream in a variety of ways
+function randomNumberGenerator(maxNum) {
   let randNums = []
   while (randNums.length < maxNum) {
     let num = Math.floor(Math.random() * 20) + 1
@@ -104,7 +105,7 @@ class Featured extends Component {
     this.setState({
       testArray: featuredChannels.data.featured,
       topGames: topGamesToDisplay,
-      randomChannels: randomNumerGenerator(4)
+      randomChannels: randomNumberGenerator(4)
     })
     if (this.props.isLoggedIn) {
       await this.props.fetchInitialTwitchUser(this.props.user.twitchId)

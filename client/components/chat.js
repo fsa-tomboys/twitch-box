@@ -1,6 +1,6 @@
 import React from 'react'
 import {Select} from 'semantic-ui-react'
-
+// This component renders the chat window for Twitch, and has methods passed down to it so that you can switch the active chat channel with the selector
 export const Chat = props => {
   const {index, array, handleSelect} = props
   let options = array.map(elem => ({
