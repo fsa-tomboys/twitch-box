@@ -36,7 +36,7 @@ if (!process.env.TWITCH_CLIENT_ID || !process.env.TWITCH_CLIENT_SECRET) {
             name,
             token,
             refreshToken,
-            twitchId: profile.id
+            twitchId: String(profile.id)
           })
         }
         // console.log('theUser: ', theUser)
