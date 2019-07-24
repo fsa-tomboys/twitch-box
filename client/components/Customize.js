@@ -1,7 +1,7 @@
 import React from 'react'
 import history from '../history'
 import {Button, Form} from 'semantic-ui-react'
-
+// Customize component lets user add streamers by name
 export class Customize extends React.Component {
   constructor(props) {
     super(props)
@@ -11,6 +11,7 @@ export class Customize extends React.Component {
       name3: '',
       name4: ''
     }
+    // binding
     this.state = this.initState
     this.handleChange = this.handleChange.bind(this)
     this.handleClear = this.handleClear.bind(this)

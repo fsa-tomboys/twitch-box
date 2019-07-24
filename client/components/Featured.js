@@ -15,6 +15,7 @@ import {fetchRefreshTokens} from '../store/user'
 import {createUserMultistreamAssociation} from '../store/users'
 import CustomizeModal from './modals/customizeModal'
 
+// generate provided number (maxNum) of random numbers up to 20
 function randomNumerGenerator(maxNum) {
   let randNums = []
   while (randNums.length < maxNum) {
@@ -25,6 +26,7 @@ function randomNumerGenerator(maxNum) {
   }
   return randNums
 }
+// convert number of followers: keem same if under 1000, if over 1000 convert to 1k, and so on
 function convertFollowers(num) {
   if (num < 1000) {
     return String(num)
@@ -34,12 +36,12 @@ function convertFollowers(num) {
     return String(Math.round(num / 1000)) + 'k'
   }
 }
-
+// get rid of html tags in stream description text
 function processStreamDescription(streamText) {
   var doc = new DOMParser().parseFromString(streamText, 'text/html')
   return doc.body.textContent || ''
 }
-
+// home page component
 class Featured extends Component {
   constructor(props) {
     super(props)
@@ -59,6 +61,7 @@ class Featured extends Component {
     this.goToRandomMultistream = this.goToRandomMultistream.bind(this)
     this.handleShowMore = this.handleShowMore.bind(this)
   }
+
   async routeChange() {
     this.props.history.push({
       pathname: '/home?list=' + this.state.selected.join('-'),
@@ -72,6 +75,7 @@ class Featured extends Component {
       })
     }
   }
+  // grab random multistream from
   goToRandomMultistream() {
     this.state.randomChannels.map(channelNum =>
       this.state.selected.push(
