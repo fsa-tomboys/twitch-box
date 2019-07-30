@@ -19,13 +19,15 @@ class MultiStream extends Component {
     this.state = {
       testArray: [],
       index: 0,
-      channelIds: []
+      channelIds: [],
+      theme: true
     }
     this.handleSelect = this.handleSelect.bind(this)
     this.remove = this.remove.bind(this)
     this.addStream = this.addStream.bind(this)
     this.handleChatClick = this.handleChatClick.bind(this)
     this.getChannelId = this.getChannelId.bind(this)
+    this.changeTheme = this.changeTheme.bind(this)
     TimeMe.initialize({
       currentPageName: 'my-home-page' // current page
     })
@@ -66,6 +68,11 @@ class MultiStream extends Component {
     })
   }
   toggleChat() {}
+  changeTheme() {
+    this.setState({
+      theme: !this.state.theme
+    })
+  }
 
   async getChannelId(channelsArray) {
     let allChannelIdArray = []
@@ -140,19 +147,37 @@ class MultiStream extends Component {
               getTime={this.getTime}
             />
           )}
-          <div className="all-streams-container">
-            {this.state.testArray.map((element, index) => (
-              <SingleStreamComponent
-                name={element}
-                streamNum={index}
-                totalNumber={this.state.testArray.length}
-                handleChatClick={this.handleChatClick}
-                key={index}
-                handleSelect={this.handleSelect}
-                remove={this.remove}
-              />
-            ))}
-          </div>
+          {this.state.theme === true ? (
+            <div className="all-streams-container-light">
+              {this.state.testArray.map((element, index) => (
+                <SingleStreamComponent
+                  name={element}
+                  streamNum={index}
+                  totalNumber={this.state.testArray.length}
+                  handleChatClick={this.handleChatClick}
+                  key={index}
+                  handleSelect={this.handleSelect}
+                  remove={this.remove}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="all-streams-container-dark">
+              {this.state.testArray.map((element, index) => (
+                <SingleStreamComponent
+                  name={element}
+                  streamNum={index}
+                  totalNumber={this.state.testArray.length}
+                  handleChatClick={this.handleChatClick}
+                  key={index}
+                  handleSelect={this.handleSelect}
+                  remove={this.remove}
+                  changeTheme={this.changeTheme}
+                />
+              ))}
+            </div>
+          )}
+
           {this.state.testArray.length > 0 && (
             <Chat
               index={this.state.index}

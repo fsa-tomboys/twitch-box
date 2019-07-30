@@ -317,7 +317,14 @@ form div {
 .main-layout-container {
   display: flex;
 }
-.all-streams-container {
+.all-streams-container-light {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  background: white;
+}
+.all-streams-container-dark {
   display: flex;
   flex-wrap: wrap;
   width: 100%;

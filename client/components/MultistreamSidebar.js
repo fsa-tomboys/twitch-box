@@ -182,10 +182,14 @@ class MultistreamSidebar extends Component {
                 </Form>
               </Modal.Description>
             </Modal>
-            <Button>hello</Button>
+            <Button inverted onClick={this.changeTheme} size="small">
+              Switch theme
+            </Button>
           </div>
         ) : (
-          <p />
+          <Button inverted onClick={this.changeTheme} size="small">
+            Switch theme
+          </Button>
         )}
       </div>
     )
