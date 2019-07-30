@@ -145,6 +145,7 @@ class MultiStream extends Component {
               addStream={this.addStream}
               channelIds={this.state.channelIds}
               getTime={this.getTime}
+              changeTheme={this.changeTheme}
             />
           )}
           {this.state.theme === true ? (
@@ -172,7 +173,6 @@ class MultiStream extends Component {
                   key={index}
                   handleSelect={this.handleSelect}
                   remove={this.remove}
-                  changeTheme={this.changeTheme}
                 />
               ))}
             </div>

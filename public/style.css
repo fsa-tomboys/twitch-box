@@ -383,6 +383,12 @@ form div {
   background: black;
   width: 140px;
 }
+.multistream-sidebar-light {
+  position: relative;
+  height: 100hw;
+  background: white;
+  width: 140px;
+}
 
 .sidebar-edit-btn {
   background: black;

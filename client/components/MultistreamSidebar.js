@@ -72,7 +72,9 @@ class MultistreamSidebar extends Component {
   handleClose() {
     this.setState({modalOpen: false})
   }
-
+  doMultiple() {
+    this.props.changeTheme()
+  }
   render() {
     return (
       <div className="multistream-sidebar">
@@ -182,12 +184,12 @@ class MultistreamSidebar extends Component {
                 </Form>
               </Modal.Description>
             </Modal>
-            <Button inverted onClick={this.changeTheme} size="small">
+            <Button inverted onClick={this.props.changeTheme} size="small">
               Switch theme
             </Button>
           </div>
         ) : (
-          <Button inverted onClick={this.changeTheme} size="small">
+          <Button inverted onClick={this.props.changeTheme} size="small">
             Switch theme
           </Button>
         )}
