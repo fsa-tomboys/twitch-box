@@ -146,7 +146,7 @@ class TFT extends Component {
 
                     <div className="fetaured-stream-description-box">
                       <span className="featured-channels-game">
-                        Game: {element.game_id}
+                        Game: Teamfight Tactics
                       </span>
                     </div>
                   </div>
