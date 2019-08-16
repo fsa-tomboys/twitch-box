@@ -84,7 +84,7 @@ class TFT extends Component {
         headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
       }
     )
-
+    axios.get('api/users/tft')
     console.log(featuredChannels.data.data)
     this.setState({
       testArray: featuredChannels.data.data
