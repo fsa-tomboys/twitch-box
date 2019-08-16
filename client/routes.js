@@ -12,7 +12,8 @@ import {
   Chat,
   List,
   Widget,
-  ViewClipsComponent
+  ViewClipsComponent,
+  TFT
 } from './components'
 
 import {me} from './store'
@@ -40,6 +41,7 @@ class Routes extends Component {
         <Route path="/customize" component={Customize} />
         <Route path="/featured" component={Featured} />
         <Route path="/chat" component={Chat} />
+        <Route path="/tft" component={TFT} />
         {this.props.location.search.includes('name') && (
           <Route path="/widget" component={Widget} />
         )}
