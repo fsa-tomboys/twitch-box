@@ -38,7 +38,6 @@ router.get('/time/:userId/', async (req, res, next) => {
 router.get('/tft', async (req, res, next) => {
   try {
     res.json('hello')
-    console.log(snake)
   } catch (err) {
     next(err)
   }
