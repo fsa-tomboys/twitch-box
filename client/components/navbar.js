@@ -23,6 +23,9 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
           <AboutModal />
         </Menu.Item>
       </span>
+      <Menu.Item as={Link} to="/tft" position="right">
+        TFT Hub
+      </Menu.Item>
 
       <span className="top-header">
         <h1>twitch box</h1>

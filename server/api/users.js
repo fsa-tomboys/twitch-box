@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User, Multistream} = require('../db/models')
+const axios = require('axios')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -34,7 +35,13 @@ router.get('/time/:userId/', async (req, res, next) => {
     next(err)
   }
 })
-
+router.get('/tft', async (req, res, next) => {
+  try {
+    res.json('hello')
+  } catch (err) {
+    next(err)
+  }
+})
 router.post('/association/:userId/:multistreamId', async (req, res, next) => {
   try {
     let theMultistream = await Multistream.findByPk(req.params.multistreamId)
