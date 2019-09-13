@@ -24,7 +24,7 @@ const Navbar = ({handleClick, isLoggedIn, pos}) => (
         </Menu.Item>
       </span>
       <Menu.Item as={Link} to="/tft" position="right">
-        TFT Hub
+        TFT Hub (Beta)
       </Menu.Item>
 
       <span className="top-header">
