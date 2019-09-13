@@ -91,13 +91,19 @@ class Featured extends Component {
     let featuredChannels = await axios.get(
       'https://api.twitch.tv/kraken/streams/featured?limit=25',
       {
-        headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
+        headers: {
+          Accept: 'application/vnd.twitchtv.v5+json',
+          'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'
+        }
       }
     )
     let topGames = await axios.get(
       'https://api.twitch.tv/helix/games/top?first=10',
       {
-        headers: {'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'}
+        headers: {
+          Accept: 'application/vnd.twitchtv.v5+json',
+          'Client-ID': 'wpp8xoz167jt0vnmlmko398h4g8ydh'
+        }
       }
     )
     let topGamesToDisplay = topGames.data.data
