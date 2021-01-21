@@ -75,7 +75,7 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.87.2",
     "sequelize": "^5.3.1",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.4.0",
     "sscd": "^1.5.1",
     "timeme.js": "^2.0.3",
     "twitch": "^2.2.8",
