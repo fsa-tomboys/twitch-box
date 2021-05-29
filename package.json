@@ -79,7 +79,7 @@
     "sscd": "^1.5.1",
     "timeme.js": "^2.0.3",
     "twitch": "^2.2.8",
-    "ws": "^7.0.1"
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
