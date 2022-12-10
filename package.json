@@ -46,7 +46,7 @@
     "connect-session-sequelize": "^6.0.0",
     "createjs": "^1.0.1",
     "easeljs": "^1.0.2",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-session": "^1.15.1",
     "faker": "^4.1.0",
     "fast-deep-equal": "^2.0.1",
